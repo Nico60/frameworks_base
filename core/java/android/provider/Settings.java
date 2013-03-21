@@ -2766,6 +2766,19 @@ public final class Settings {
         public static final String QUICK_SETTINGS_TILES = "quick_settings_tiles";
 
         /**
+         * Number of QuickSettings tiles per row
+         * @hide
+         */
+        public static final String QUICK_TILES_PER_ROW = "quick_tiles_per_row";
+
+        /**
+         * Whether on landscape tiles quantity per row are duplicated
+         * @hide
+         */
+        public static final String QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE =
+                "quick_tiles_per_row_duplicate_landscape";
+
+        /**
          * Enable looking up of phone numbers of nearby places
          *
          * @hide
