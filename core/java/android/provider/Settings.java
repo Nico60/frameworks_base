@@ -4350,6 +4350,12 @@ public final class Settings {
         public static final String SCREEN_RECORDER_RECORD_AUDIO = "screen_recorder_record_audio";
 
         /**
+         * HALO enabled, should default to 1 (yes, HALO is enabled)
+         * @hide
+         */
+        public static final String HALO_ENABLED = "halo_enabled";
+
+        /**
          * HALO, should default to 0 (no, do not show)
          * @hide
          */
