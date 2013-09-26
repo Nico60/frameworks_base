@@ -166,6 +166,10 @@ public class GlowPadView extends View {
     private int mNewTargetResources;
     private ArrayList<TargetDrawable> mNewTargetDrawables;
 
+    private Paint mArcPaint;
+    private RectF mArcRect;
+    private float mArcAngle = 0f;
+
     private class AnimationBundle extends ArrayList<Tweener> {
         private static final long serialVersionUID = 0xA84D78726F127468L;
         private boolean mSuspended;
@@ -331,6 +335,14 @@ public class GlowPadView extends View {
         mPaintText.setTextSize(res.getDimensionPixelSize(R.dimen.glowpad_notification_font_size));
         mTextRadius = res.getDimensionPixelSize(R.dimen.glowpad_notification_text_radius);
         mMaxTextArcLength = mTextRadius * MAX_TEXT_ARC_RADIANS;
+
+        mArcPaint = new Paint();
+        mArcPaint.setStrokeWidth(10.0f);
+        mArcPaint.setStyle(Paint.Style.STROKE);
+        mArcRect = new RectF(mHandleDrawable.getPositionX() - mHandleDrawable.getWidth()/2,
+                                 mHandleDrawable.getPositionY() - mHandleDrawable.getHeight()/2,
+                                 mHandleDrawable.getPositionX() + mHandleDrawable.getWidth()/2,
+                                 mHandleDrawable.getPositionY() + mHandleDrawable.getHeight()/2);
     }
 
     private int getResourceId(TypedArray a, int id) {
@@ -1345,6 +1357,15 @@ public class GlowPadView extends View {
         }
         mHandleDrawable.draw(canvas);
 
+        if (mArcAngle > 0 && mHandleDrawable.getAlpha() > 0) {
+            mArcRect.set(mHandleDrawable.getPositionX() - mHandleDrawable.getWidth()/3,
+                    mHandleDrawable.getPositionY() - mHandleDrawable.getHeight()/3,
+                    mHandleDrawable.getPositionX() + mHandleDrawable.getWidth()/3,
+                    mHandleDrawable.getPositionY() + mHandleDrawable.getHeight()/3);
+
+            canvas.drawArc(mArcRect, -90, mArcAngle, false, mArcPaint);
+        }
+
         if (!TextUtils.isEmpty(mHandleText) && mPaintText.getAlpha() != 0) {
             float x = mHandleDrawable.getPositionX();
             float y = mHandleDrawable.getPositionY();
@@ -1557,5 +1578,10 @@ public class GlowPadView extends View {
             mHandleDrawable = new TargetDrawable(res, 0);
         }
         mHandleDrawable.setState(TargetDrawable.STATE_INACTIVE);
+    }
+
+    public void setArc(float angle, int color) {
+        mArcAngle = angle;
+        mArcPaint.setColor(color);
     }
 }
