@@ -525,8 +525,8 @@ public final class BatteryService extends IBatteryService.Stub {
                     && mBatteryProps.batteryLevel <= mLowBatteryWarningLevel
                     && (oldPlugged || mLastBatteryLevel > mLowBatteryWarningLevel);
 
-            if (mBatteryStatus == BatteryManager.BATTERY_STATUS_UNKNOWN)
-                mBatteryLevel = BATTERY_SCALE;
+            if (mBatteryProps.batteryStatus == BatteryManager.BATTERY_STATUS_UNKNOWN)
+                mBatteryProps.batteryLevel = BATTERY_SCALE;
 
             sendIntentLocked();
 
