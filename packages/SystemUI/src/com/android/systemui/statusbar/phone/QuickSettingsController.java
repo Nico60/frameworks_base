@@ -51,6 +51,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_VOLUME;
 import static com.android.internal.util.cm.QSConstants.TILE_WIFI;
 import static com.android.internal.util.cm.QSConstants.TILE_WIFIAP;
 import static com.android.internal.util.cm.QSConstants.TILE_WIMAX;
+import static com.android.internal.util.cm.QSConstants.TILE_POWER;
 import static com.android.internal.util.cm.QSConstants.TILE_THEME;
 import static com.android.internal.util.cm.QSConstants.TILE_ONTHEGO;
 
@@ -112,6 +113,7 @@ import com.android.systemui.quicksettings.RebootTile;
 import com.android.systemui.quicksettings.RemoteDisplayTile;
 import com.android.systemui.quicksettings.WiFiTile;
 import com.android.systemui.quicksettings.WifiAPTile;
+import com.android.systemui.quicksettings.PowerMenuTile;
 import com.android.systemui.quicksettings.OnTheGoTile;
 
 import java.util.ArrayList;
@@ -302,6 +304,8 @@ public class QuickSettingsController {
                 qs = new NavbarTile(mContext, this);
             } else if (tile.equals(TILE_COMPASS)) {
                 qs = new CompassTile(mContext, this);
+	    } else if (tile.equals(TILE_POWER)) {
+                qs = new PowerMenuTile(mContext, this);     
             }
 
             if (qs != null) {
