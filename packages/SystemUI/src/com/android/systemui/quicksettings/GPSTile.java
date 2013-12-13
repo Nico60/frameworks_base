@@ -36,6 +36,7 @@ public class GPSTile extends QuickSettingsTile implements LocationSettingsChange
                 changeLocationMode();
                 if (isFlipTilesEnabled()) {
                     flipTile(0);
+                }
             }
         };
 
