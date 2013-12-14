@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+
+  <!-- UI theme mode -->
+  <java-symbol type="integer" name="config_uiThemeMode" />
+
+</resources>
