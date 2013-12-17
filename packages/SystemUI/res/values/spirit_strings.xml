@@ -17,4 +17,6 @@
     <string name="status_bar_recent_playstore_item_title">Play Store</string>
     <string name="status_bar_recent_amazon_item_title">Amazon Store</string>
 
+    <string name="quick_settings_theme_switch_dark">Dark theme</string>
+    <string name="quick_settings_theme_switch_light">Light theme</string>
 </resources>
