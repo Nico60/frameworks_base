@@ -9,4 +9,8 @@
     <!-- [CHAR LIMIT=10] Running services, summary of foreground processes -->
     <string name="service_used_mem"><xliff:g id="memory">%1$s</xliff:g> used</string>
 
+    <!-- App Window -->
+    <string name="app_window">Application Window</string>
+    <string name="close">Close</string>
+
 </resources>

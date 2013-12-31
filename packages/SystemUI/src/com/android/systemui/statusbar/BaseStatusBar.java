@@ -81,6 +81,7 @@ import com.android.systemui.SystemUI;
 import com.android.systemui.recent.RecentTasksLoader;
 import com.android.systemui.recent.RecentsActivity;
 import com.android.systemui.recent.TaskDescription;
+import com.android.systemui.aokp.AppWindow;
 import com.android.systemui.statusbar.phone.KeyguardTouchDelegate;
 import com.android.systemui.statusbar.policy.NotificationRowLayout;
 import com.android.systemui.statusbar.policy.activedisplay.ActiveDisplayView;
@@ -135,6 +136,7 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     // Search panel
     protected AOKPSearchPanelView mSearchPanelView;
+    protected AppWindow mAppWindow;
 
     protected PopupMenu mNotificationBlamePopup;
 
@@ -363,7 +365,7 @@ public abstract class BaseStatusBar extends SystemUI implements
                    switches[3]
                    ));
         }
-
+        mAppWindow = new AppWindow(mContext);
         mCurrentUserId = ActivityManager.getCurrentUser();
 
         IntentFilter filter = new IntentFilter();
