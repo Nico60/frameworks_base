@@ -3996,6 +3996,14 @@ public final class Settings {
         public static final String DOUBLE_TAP_SLEEP_GESTURE = "double_tap_sleep_gesture";
 
         /**
+         * @hide
+         * Show Wifi network name in notification drawer
+         * 0 - don't show
+         * 1 - show
+         */
+        public static final String NOTIFICATION_SHOW_WIFI_SSID = "notification_show_wifi_ssid";
+
+        /**
          * Show brightness slider in notification panel
          * @hide
          */
