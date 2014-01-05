@@ -3610,7 +3610,16 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         @Override
         public void onChange(boolean selfChange, Uri uri) {
-            if (uri != null && uri.equals(Settings.System.getUriFor(
+            if (uri.equals(Settings.System.getUriFor(
+                    Settings.System.QUICK_SETTINGS_TILES))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.QUICK_TILES_PER_ROW))
+                || uri.equals(Settings.System.getUriFor(
+                    Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE))) {
+                if (mQS != null) {
+                    mQS.setupQuickSettings();
+                }
+            } else if (uri != null && uri.equals(Settings.System.getUriFor(
                     Settings.System.QS_QUICK_ACCESS))) {
                 final ContentResolver resolver = mContext.getContentResolver();
                 mHasQuickAccessSettings = Settings.System.getIntForUser(resolver,
@@ -3653,12 +3662,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             } else if (uri.equals(Settings.System.getUriFor(
                     Settings.System.NOTIFICATION_ALPHA))) {
                 setNotificationAlpha();
-            } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.QUICK_TILES_PER_ROW))) {
-                recreateStatusBar();
-            } else if (uri.equals(Settings.System.getUriFor(
-                    Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE))) {
-                recreateStatusBar();
             } else if (mSettingsContainer != null) {
                 mQS.setupQuickSettings();
                 if (mQuickAccessLayoutLinked && mRibbonQS != null) {
@@ -3671,6 +3674,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             final ContentResolver cr = mContext.getContentResolver();
             cr.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.QUICK_SETTINGS_TILES),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QUICK_TILES_PER_ROW),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE),
                     false, this, UserHandle.USER_ALL);
 
             cr.registerContentObserver(
@@ -3723,14 +3734,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             cr.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.NOTIFICATION_ALPHA),
-                    false, this, UserHandle.USER_ALL);
-
-            cr.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.QUICK_TILES_PER_ROW),
-                    false, this, UserHandle.USER_ALL);
-
-            cr.registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE),
                     false, this, UserHandle.USER_ALL);
         }
     }
