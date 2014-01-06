@@ -1066,6 +1066,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mSettingsButton = (ImageView) mStatusBarWindow.findViewById(R.id.settings_button);
         if (mSettingsButton != null) {
             mSettingsButton.setOnClickListener(mSettingsButtonListener);
+            mSettingsButton.setOnLongClickListener(mSettingsButtonLongListener);
             if (mHasSettingsPanel) {
                 if (mStatusBarView.hasFullWidthNotifications()) {
                     // the settings panel is hiding behind this button
@@ -3653,6 +3654,17 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 startActivityDismissingKeyguard(
                         new Intent(android.provider.Settings.ACTION_SETTINGS), true);
             }
+        }
+    };
+
+    private View.OnLongClickListener mSettingsButtonLongListener = new View.OnLongClickListener() {
+        @Override
+        public boolean onLongClick(View v) {
+            Intent intent = new Intent(Intent.ACTION_MAIN);
+            intent.setClassName("com.android.settings",
+                    "com.android.settings.Settings$NotificationStationActivity");
+            startActivityDismissingKeyguard(intent, true);
+            return true;
         }
     };
 
