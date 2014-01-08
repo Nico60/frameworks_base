@@ -76,7 +76,7 @@ import com.android.internal.statusbar.StatusBarIconList;
 import com.android.internal.widget.SizeAdaptiveLayout;
 import com.android.systemui.R;
 import com.android.systemui.RecentsComponent;
-import com.android.systemui.SearchPanelView;
+import com.android.systemui.AOKPSearchPanelView;
 import com.android.systemui.SystemUI;
 import com.android.systemui.recent.RecentTasksLoader;
 import com.android.systemui.recent.RecentsActivity;
@@ -134,7 +134,7 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected boolean mPanelSlightlyVisible;
 
     // Search panel
-    protected SearchPanelView mSearchPanelView;
+    protected AOKPSearchPanelView mSearchPanelView;
 
     protected PopupMenu mNotificationBlamePopup;
 
@@ -585,7 +585,7 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         // Provide SearchPanel with a temporary parent to allow layout params to work.
         LinearLayout tmpRoot = new LinearLayout(mContext);
-        mSearchPanelView = (SearchPanelView) LayoutInflater.from(mContext).inflate(
+        mSearchPanelView = (AOKPSearchPanelView) LayoutInflater.from(mContext).inflate(
                  R.layout.status_bar_search_panel, tmpRoot, false);
         mSearchPanelView.setOnTouchListener(
                  new TouchOutsideListener(MSG_CLOSE_SEARCH_PANEL, mSearchPanelView));
@@ -680,7 +680,7 @@ public abstract class BaseStatusBar extends SystemUI implements
                   break;
              case MSG_OPEN_SEARCH_PANEL:
                  if (DEBUG) Log.d(TAG, "opening search panel");
-                 if (mSearchPanelView != null) {
+                 if (mSearchPanelView != null && mSearchPanelView.isAssistantAvailable()) {
                      mSearchPanelView.show(true, true);
                      onShowSearchPanel();
                  }
