@@ -4222,7 +4222,16 @@ public final class Settings {
         public static final String SCREEN_RECORDER_RECORD_AUDIO = "screen_recorder_record_audio";
 
         /**
+         * Whether incomming call UI stays in background
+         *
+         * @hide
+         */
+        public static final String CALL_UI_IN_BACKGROUND = "call_ui_in_background";
+
+        /**
          * Whether recent panel gravity is left or right (default = Gravity.RIGHT).
+         * Enable Stylus Gestures
+         *
          * @hide
          */
         public static final String RECENT_PANEL_GRAVITY = "recent_panel_gravity";
