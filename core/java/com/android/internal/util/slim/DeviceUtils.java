@@ -31,6 +31,7 @@ import android.util.Log;
 
 import com.android.internal.telephony.PhoneConstants;
 
+import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -161,6 +162,14 @@ public class DeviceUtils {
 
     public static boolean isTablet(Context con) {
         return getScreenType(con) == DEVICE_TABLET;
+    }
+
+    public static boolean fchargeEnabled(Context con) {
+        String fchargePath = con.getString(com.android.internal.R.string.config_fastChargePath);
+        if (fchargePath == null || fchargePath.isEmpty() || !new File(fchargePath).exists()) {
+            return false;
+        }
+        return true;
     }
 
 }

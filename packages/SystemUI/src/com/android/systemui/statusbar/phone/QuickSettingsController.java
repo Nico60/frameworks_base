@@ -58,6 +58,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_POWER;
 import static com.android.internal.util.cm.QSConstants.TILE_THEME;
 import static com.android.internal.util.cm.QSConstants.TILE_HOVER;
 import static com.android.internal.util.cm.QSConstants.TILE_GESTUREPANEL;
+import static com.android.internal.util.cm.QSConstants.TILE_FCHARGE;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -124,6 +125,7 @@ import com.android.systemui.quicksettings.PowerMenuTile;
 import com.android.systemui.quicksettings.OnTheGoTile;
 import com.android.systemui.quicksettings.HoverTile;
 import com.android.systemui.quicksettings.GesturePanelTile;
+import com.android.systemui.quicksettings.FastChargeTile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -342,6 +344,8 @@ public class QuickSettingsController {
                 qs = new PieTile(mContext, this);
             } else if (tile.equals(TILE_GESTUREPANEL)) {
                 qs = new GesturePanelTile(mContext, this);
+            } else if (tile.contains(TILE_FCHARGE)) {
+                qs = new FastChargeTile(mContext, this);
             }
 
             if (qs != null) {

@@ -1518,6 +1518,9 @@
          service state to display signal strength bars -->
     <bool name="config_combined_signal">true</bool>
 
+    <!-- Set to empty string to disable. Can be added to device overlay for device-specific path -->
+    <string name="config_fastChargePath" translatable="false">/sys/kernel/fast_charge/force_fast_charge</string>
+
     <!-- Configuration to restart radio upon PDP_DEACTIVATE with
          error cause as Regular deactivation(36). -->
     <bool name="config_radio_reset_on_regular_deactivation">true</bool>
