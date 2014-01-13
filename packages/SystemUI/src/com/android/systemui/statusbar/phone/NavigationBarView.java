@@ -160,7 +160,7 @@ public class NavigationBarView extends LinearLayout {
         public void onBackAltCleared() {
             // When dismissing ime during unlock, force the back button to run the same appearance
             // animation as home (if we catch this condition early enough).
-            if (!mBackTransitioning && getBackButton().getVisibility() == VISIBLE
+            if (getBackButton() != null && !mBackTransitioning && getBackButton().getVisibility() == VISIBLE
                     && mHomeAppearing && getHomeButton().getAlpha() == 0) {
                 ((KeyButtonView) getBackButton()).resetImage();
                 getBackButton().setAlpha(0);
