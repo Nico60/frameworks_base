@@ -50,9 +50,9 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.drawable.Drawable;
 import android.graphics.Paint;
-import android.graphics.PorterDuff;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.graphics.PorterDuff;
 import android.graphics.PorterDuffXfermode;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.drawable.BitmapDrawable;
@@ -231,6 +231,9 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     // Peek
     protected Peek mPeek;
+
+    // left-hand icons
+    public LinearLayout mStatusIcons;
 
     // UI-specific methods
 
@@ -523,6 +526,16 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         pieOnStart();
 
+        // Listen for status bar icon color changes
+        mContext.getContentResolver().registerContentObserver(
+            Settings.System.getUriFor(Settings.System.SYSTEM_ICON_COLOR), false, new ContentObserver(new Handler()) {
+                @Override
+                public void onChange(boolean selfChange) {
+                    updateIconColor();
+            }});
+
+        updateIconColor();
+
         // Listen for HALO state
         mContext.getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.HALO_ACTIVE), false, new ContentObserver(new Handler()) {
@@ -578,6 +591,26 @@ public abstract class BaseStatusBar extends SystemUI implements
         if (mPowerManager == null) mPowerManager
                 = (PowerManager) mContext.getSystemService(Context.POWER_SERVICE);
         return mPowerManager;
+    }
+
+    private void updateIconColor() {
+        ContentResolver resolver = mContext.getContentResolver();
+
+        boolean mCustomColor = Settings.System.getIntForUser(resolver,
+                Settings.System.CUSTOM_SYSTEM_ICON_COLOR, 0, UserHandle.USER_CURRENT) == 1;
+        int systemColor = Settings.System.getIntForUser(resolver,
+                Settings.System.SYSTEM_ICON_COLOR, -2, UserHandle.USER_CURRENT);
+
+        if (mStatusIcons != null) {
+            for(int i = 0; i < mStatusIcons.getChildCount(); i++) {
+                Drawable iconDrawable = ((ImageView)mStatusIcons.getChildAt(i)).getDrawable();
+                if (mCustomColor) {
+                    iconDrawable.setColorFilter(systemColor, PorterDuff.Mode.SRC_ATOP);
+                } else {
+                    iconDrawable.clearColorFilter();
+                }
+            }
+        }
     }
 
     public void setHaloTaskerActive(boolean haloTaskerActive, boolean updateNotificationIcons) {

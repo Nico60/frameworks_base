@@ -18,15 +18,21 @@ package com.android.systemui.statusbar.phone;
 
 import android.animation.TimeInterpolator;
 import android.app.ActivityManager;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Resources;
+import android.database.ContentObserver;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.ColorFilter;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
+import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.TransitionDrawable;
+import android.os.Handler;
 import android.os.SystemClock;
+import android.provider.Settings;
 import android.util.Log;
 import android.view.View;
 import android.view.animation.LinearInterpolator;
@@ -49,11 +55,14 @@ public class BarTransitions {
     public static final int LIGHTS_OUT_DURATION = 750;
     public static final int BACKGROUND_DURATION = 200;
 
+    private Context mContext;
     private final String mTag;
     private final View mView;
     private final BarBackgroundDrawable mBarBackground;
 
     private int mMode;
+
+    Handler mHandler;
 
     public BarTransitions(View view, int gradientResourceId, int opaqueColorResourceId,
             int semiTransparentColorResourceId) {
@@ -144,11 +153,19 @@ public class BarTransitions {
         public BarBackgroundDrawable(Context context, int gradientResourceId,
                 int opaqueColorResourceId, int semiTransparentColorResourceId) {
             final Resources res = context.getResources();
+            final ContentResolver resolver = context.getContentResolver();
+
             if (DEBUG_COLORS) {
                 mOpaque = 0xff0000ff;
                 mSemiTransparent = 0x7f0000ff;
             } else {
-                mOpaque = res.getColor(opaqueColorResourceId);
+                if (Settings.System.getInt(resolver,
+                        Settings.System.CUSTOM_STATUS_BAR_COLOR, 0) == 1) {
+                    mOpaque = Settings.System.getInt(resolver,
+                                Settings.System.STATUS_BAR_OPAQUE_COLOR, 0xff000000);
+                } else {
+                    mOpaque = res.getColor(opaqueColorResourceId);
+                }
                 mSemiTransparent = res.getColor(semiTransparentColorResourceId);
             }
             mGradient = res.getDrawable(gradientResourceId);
