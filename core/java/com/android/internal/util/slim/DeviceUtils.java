@@ -13,17 +13,16 @@
 * See the License for the specific language governing permissions and
 * limitations under the License.
 */
-
 package com.android.internal.util.slim;
 
 import android.bluetooth.BluetoothAdapter;
 import android.content.Context;
+import android.content.pm.ApplicationInfo;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
-import android.hardware.display.DisplayManager;
-import android.hardware.display.WifiDisplayStatus;
 import android.net.ConnectivityManager;
 import android.nfc.NfcAdapter;
+import android.os.Vibrator;
 import android.telephony.TelephonyManager;
 import android.util.DisplayMetrics;
 import android.view.DisplayInfo;
@@ -50,12 +49,6 @@ public class DeviceUtils {
         return (cm.getTetherableUsbRegexs().length != 0);
     }
 
-    public static boolean deviceSupportsWifiDisplay(Context context) {
-        DisplayManager dm = (DisplayManager) context.getSystemService(Context.DISPLAY_SERVICE);
-        return (dm.getWifiDisplayStatus().getFeatureState()
-                    != WifiDisplayStatus.FEATURE_STATE_UNAVAILABLE);
-    }
-
     public static boolean deviceSupportsMobileData(Context context) {
         ConnectivityManager cm =
             (ConnectivityManager) context.getSystemService(Context.CONNECTIVITY_SERVICE);
@@ -77,18 +70,32 @@ public class DeviceUtils {
                     || tm.getLteOnGsmMode() != 0;
     }
 
+    public static boolean deviceSupportsGps(Context context) {
+        return context.getPackageManager().hasSystemFeature(PackageManager.FEATURE_LOCATION_GPS);
+    }
+
+    public static boolean deviceSupportsImeSwitcher(Context ctx) {
+        Resources res = ctx.getResources();
+        return res.getBoolean(com.android.internal.R.bool.config_show_IMESwitcher);
+    }
+
+    public static boolean deviceSupportsVibrator(Context ctx) {
+        Vibrator vibrator = (Vibrator) ctx.getSystemService(Context.VIBRATOR_SERVICE);
+        return vibrator.hasVibrator();
+    }
+
     public static boolean deviceSupportsTorch(Context context) {
         PackageManager pm = context.getPackageManager();
-        Resources settingsResources = null;
         try {
-            settingsResources = pm.getResourcesForApplication(SETTINGS_METADATA_NAME);
+            List<ApplicationInfo> packages = pm.getInstalledApplications(0);
+                for (ApplicationInfo packageInfo : packages) {
+                    if (packageInfo.packageName.equals(TorchConstants.APP_PACKAGE_NAME)) {
+                        return true;
+                    }
+                }
         } catch (Exception e) {
-            Log.e("DeviceSupportUtils:", "can't access settings resources",e);
-            return false;
         }
-        int resId = settingsResources.getIdentifier(
-                  SETTINGS_METADATA_NAME + ":bool/has_led_flash", null, null);
-        return resId > 0 && settingsResources.getBoolean(resId);
+        return false;
     }
 
     public static FilteredDeviceFeaturesArray filterUnsupportedDeviceFeatures(Context context,
@@ -115,7 +122,12 @@ public class DeviceUtils {
     }
 
     private static boolean isSupportedFeature(Context context, String action) {
-        if (action.equals(ButtonsConstants.ACTION_TORCH) && !deviceSupportsTorch(context)) {
+        if (action.equals(ButtonsConstants.ACTION_TORCH)
+                        && !deviceSupportsTorch(context)
+                || action.equals(ButtonsConstants.ACTION_VIB)
+                        && !deviceSupportsVibrator(context)
+                || action.equals(ButtonsConstants.ACTION_VIB_SILENT)
+                        && !deviceSupportsVibrator(context)) {
             return false;
         }
         return true;
