@@ -20,6 +20,7 @@ import android.animation.Animator;
 import android.animation.AnimatorSet;
 import android.animation.ObjectAnimator;
 import android.content.Context;
+import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
@@ -58,6 +59,7 @@ public class KeyButtonView extends ImageView {
     long mUpTime;
     int mTouchSlop;
     Drawable mGlowBG;
+    int mGlowBgId;
     int mGlowWidth, mGlowHeight;
     float mGlowAlpha = 0f, mGlowScale = 1f;
     @ViewDebug.ExportedProperty(category = "drawing")
@@ -96,6 +98,11 @@ public class KeyButtonView extends ImageView {
     public KeyButtonView(Context context, AttributeSet attrs, int defStyle) {
         super(context, attrs);
 
+        TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.KeyButtonView,
+                defStyle, 0);
+
+        mGlowBgId = a.getResourceId(R.styleable.KeyButtonView_glowBackground, 0);
+        mGlowBG = a.getDrawable(R.styleable.KeyButtonView_glowBackground);
         setDrawingAlpha(mQuiescentAlpha);
         if (mGlowBG != null) {
             mGlowWidth = mGlowBG.getIntrinsicWidth();
@@ -135,6 +142,12 @@ public class KeyButtonView extends ImageView {
             setImageDrawable(NavBarHelpers.getIconImage(mContext, mActions.singleAction));
         } else {
             setImageResource(R.drawable.ic_sysbar_null);
+        }
+    }
+
+    public void updateResources() {
+        if (mGlowBgId != 0) {
+            mGlowBG = mContext.getResources().getDrawable(mGlowBgId);
         }
     }
 
