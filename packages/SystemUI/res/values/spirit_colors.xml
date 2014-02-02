@@ -25,4 +25,11 @@
     <!-- app sidebar item text shadow color -->
     <color name="sidebar_item_text_shadow_color">#ff000000</color>
 
+    <!-- Halo -->
+    <color name="halo_circle_color">#801d1d1d</color>
+    <color name="halo_bubble_color">#ff1f1f1f</color>
+    <color name="halo_text_color">#ffcccccc</color>
+    <color name="halo_number_text_color">#ffcccccc</color>
+    <color name="halo_number_container_color">#ffff0000</color>
+
 </resources>
