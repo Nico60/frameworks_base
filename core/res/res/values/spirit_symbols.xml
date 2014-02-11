@@ -4,6 +4,7 @@
 
   <!-- UI theme mode -->
   <java-symbol type="integer" name="config_uiThemeMode" />
+  <java-symbol type="string" name="theme_auto_switch_mode_error" />
 
   <!-- Active display -->
   <java-symbol type="dimen" name="system_bar_height" />
