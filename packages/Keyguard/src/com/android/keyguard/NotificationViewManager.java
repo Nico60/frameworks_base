@@ -191,8 +191,8 @@ public class NotificationViewManager {
             boolean added = mHostView.addNotification(sbn, (screenOffAndNotCovered || mIsScreenOn) && showNotification,
                     config.forceExpandedView);
             if (added && config.wakeOnNotification && screenOffAndNotCovered
-                      && showNotification && mTimeCovered == 0 
-                      && !QuietHoursUtils.inQuietHours(mContext, Settings.System.QUIET_HOURS_DIM)) {   
+                      && showNotification && mTimeCovered == 0
+                      && !QuietHoursUtils.inQuietHours(mContext, Settings.System.QUIET_HOURS_DIM)) {
                 wakeDevice();
             }
         }
