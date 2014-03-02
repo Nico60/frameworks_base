@@ -123,4 +123,7 @@
     <string name="app_float_item_title">Float view</string>
     <string name="app_stop_item_title">Kill app</string>
 
+    <!-- Active Display -->
+    <string name="active_display_privacy_content">Content message not showing because privacy mode enabled</string>
+
 </resources>
