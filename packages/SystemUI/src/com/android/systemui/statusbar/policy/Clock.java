@@ -16,8 +16,6 @@
 
 package com.android.systemui.statusbar.policy;
 
-import android.app.ActivityManagerNative;
-import android.app.StatusBarManager;
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
 import android.content.Context;
@@ -34,6 +32,7 @@ import android.text.format.DateFormat;
 import android.text.style.CharacterStyle;
 import android.text.style.RelativeSizeSpan;
 import android.util.AttributeSet;
+
 import android.view.View;
 
 import android.widget.TextView;
@@ -358,29 +357,6 @@ public class Clock extends TextView implements DemoMode {
             setVisibility(View.VISIBLE);
         else
             setVisibility(View.GONE);
-    }
-
-    private void collapseStartActivity(Intent what) {
-        // don't do anything if the activity can't be resolved (e.g. app disabled)
-        if (getContext().getPackageManager().resolveActivity(what, 0) == null) {
-            return;
-        }
-
-        // collapse status bar
-        StatusBarManager statusBarManager = (StatusBarManager) getContext().getSystemService(
-                Context.STATUS_BAR_SERVICE);
-        statusBarManager.collapsePanels();
-
-        // dismiss keyguard in case it was active and no passcode set
-        try {
-            ActivityManagerNative.getDefault().dismissKeyguardOnNextActivity();
-        } catch (Exception ex) {
-            // no action needed here
-        }
-
-        // start activity
-        what.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        mContext.startActivity(what);
     }
 
     private boolean mDemoMode;
