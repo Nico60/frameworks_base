@@ -4754,6 +4754,12 @@ public final class Settings {
                 "status_bar_circle_battery_animationspeed";
 
         /**
+         * Settings for clock font style
+         * @hide
+         */
+        public static final String STATUSBAR_CLOCK_FONT_STYLE = "statusbar_clock_font_style";
+
+        /**
          * Position of app sidebar
          *
          * @hide
