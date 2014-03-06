@@ -3156,6 +3156,13 @@ public final class Settings {
         public static final String QS_DYNAMIC_WIFI = "qs_dyanmic_wifi";
 
         /**
+         * Quick Settings Smart Pulldown
+         *
+         * @hide
+         */
+        public static final String QS_SMART_PULLDOWN = "qs_smart_pulldown";
+
+        /**
          * Quick Settings Quick Pulldown
          *
          * @hide
