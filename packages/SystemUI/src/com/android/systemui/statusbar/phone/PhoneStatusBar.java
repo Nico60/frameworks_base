@@ -1768,8 +1768,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mHaloButton != null) {
             mHaloButton.setImageDrawable(null);
             mHaloButton.setImageResource(mHaloActive
-                            ? R.drawable.ic_notify_halo_normal
-                            : R.drawable.ic_notify_halo_pressed);
+                            ? R.drawable.ic_notify_halo_pressed
+                            : R.drawable.ic_notify_halo_normal);
         }
 
         if (mSettingsButton != null) {
@@ -4053,6 +4053,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         updateExpandedViewPos(EXPANDED_LEAVE_ALONE);
 
         updateNavBar();
+
+        if (mHaloButton != null) {
+            mHaloButton.setImageResource(mHaloActive
+                            ? R.drawable.ic_notify_halo_pressed
+                            : R.drawable.ic_notify_halo_normal);
+        }
 
         mRecreating = false;
     }
