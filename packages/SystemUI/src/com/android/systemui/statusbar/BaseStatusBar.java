@@ -75,6 +75,7 @@ import com.android.internal.statusbar.StatusBarIcon;
 import com.android.internal.statusbar.StatusBarIconList;
 import com.android.internal.widget.SizeAdaptiveLayout;
 import com.android.systemui.R;
+import com.android.systemui.RecentsComponent;
 import com.android.systemui.AOKPSearchPanelView;
 import com.android.systemui.SystemUI;
 import com.android.systemui.recent.RecentTasksLoader;
@@ -176,11 +177,14 @@ public abstract class BaseStatusBar extends SystemUI implements
     private boolean mDeviceProvisioned = false;
     private int mAutoCollapseBehaviour;
 
-    private RecentController mRecents;
+    private RecentsComponent mRecents;
+    private RecentController mSlimRecents;
 
     private int mExpandedDesktopStyle = 0;
 
     protected ActiveDisplayView mActiveDisplayView;
+
+    private boolean mSlimRecentsEnabled;
 
     public IStatusBarService getStatusBarService() {
         return mBarService;
@@ -234,6 +238,8 @@ public abstract class BaseStatusBar extends SystemUI implements
                 mExpandedDesktopStyle = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.EXPANDED_DESKTOP_STYLE, 0, UserHandle.USER_CURRENT);
             }
+            mSlimRecentsEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.RECENTS_USE_SLIM, 0, UserHandle.USER_CURRENT) == 1;
         }
     };
 
@@ -299,10 +305,20 @@ public abstract class BaseStatusBar extends SystemUI implements
 
         mSettingsObserver.observe();
 
+        mContext.getContentResolver().registerContentObserver(
+                Settings.System.getUriFor(Settings.System.RECENTS_USE_SLIM), true,
+                mSettingsObserver, UserHandle.USER_ALL);
+
         mBarService = IStatusBarService.Stub.asInterface(
                 ServiceManager.getService(Context.STATUS_BAR_SERVICE));
 
-        mRecents = new RecentController(mContext);
+        mRecents = getComponent(RecentsComponent.class);
+
+        if (mSlimRecentsEnabled) {
+            mSlimRecents = new RecentController(mContext);
+        } else {
+            mRecents = getComponent(RecentsComponent.class);
+        }
 
         mLocale = mContext.getResources().getConfiguration().locale;
         mLayoutDirection = TextUtils.getLayoutDirectionFromLocale(mLocale);
@@ -638,33 +654,52 @@ public abstract class BaseStatusBar extends SystemUI implements
     };
 
     protected void toggleRecentsActivity() {
-        if (mRecents != null) {
-            mRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView(),
-                    mExpandedDesktopStyle);
+            if (mRecents != null || mSlimRecents != null) {
+                if (mSlimRecentsEnabled) {
+                    mSlimRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView());
+                } else {
+                    mRecents.toggleRecents(mDisplay, mLayoutDirection, getStatusBarView(),
+                            mExpandedDesktopStyle);
+                }
         }
     }
 
     protected void preloadRecentTasksList() {
-        if (mRecents != null) {
-            mRecents.preloadRecentTasksList();
+            if (mRecents != null || mSlimRecents != null) {
+                if (mSlimRecentsEnabled) {
+                    mSlimRecents.preloadRecentTasksList();
+                } else {
+                    mRecents.preloadRecentTasksList();
+                }
+
         }
     }
 
     protected void cancelPreloadingRecentTasksList() {
-        if (mRecents != null) {
-            mRecents.cancelPreloadingRecentTasksList();
+            if (mRecents != null || mSlimRecents != null) {
+                if (mSlimRecentsEnabled) {
+                    mSlimRecents.cancelPreloadingRecentTasksList();
+                } else {
+                    mRecents.cancelPreloadingRecentTasksList();
+                }
+
         }
     }
 
     protected void closeRecents() {
-        if (mRecents != null) {
-            mRecents.closeRecents();
+            if (mRecents != null || mSlimRecents != null) {
+                if (mSlimRecentsEnabled) {
+                    mSlimRecents.closeRecents();
+                } else {
+                    mRecents.closeRecents();
+                }
+
         }
     }
 
     protected void rebuildRecentsScreen() {
-        if (mRecents != null) {
-            mRecents.rebuildRecentsScreen();
+        if (mSlimRecents != null && mSlimRecentsEnabled) {
+            mSlimRecents.rebuildRecentsScreen();
         }
     }
 

@@ -3633,6 +3633,12 @@ public final class Settings {
         public static final String QUIET_HOURS_DIM = "quiet_hours_dim";
 
         /**
+         * Alternative recent apps integration using Slim recents
+         * @hide
+         */
+        public static final String RECENTS_USE_SLIM = "recents_use_slim";
+
+        /**
          * Sets the lockscreen background style
          * @hide
          */
