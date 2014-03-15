@@ -494,10 +494,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.ENABLE_NAVRING), false, this);
             updateSettings();
         }
-
         @Override
         public void onChange(boolean selfChange) {
-            onChange(selfChange, null);
+            updateSettings();
+            updateNavBar();
+            toggleNavigationBarOrNavRing(mWantsNavigationBar, mEnableNavring);
         }
     }
 
@@ -947,7 +948,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         updateShowSearchHoldoff();
 
-        updateSettings();
+        updateNavBar(); //Check for Navbar. This replace the Try/Catch Statement.
         if (DEBUG) Log.v(TAG, "hasNavigationBar=" + mWantsNavigationBar);
         if (mWantsNavigationBar && !mRecreating) {
             mNavigationBarView =
@@ -3821,18 +3822,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             toggleCarrierAndWifiLabelVisibility();
         }
 
-        //Default to mWindowManagerService.hasNavigationBar()
-        boolean hasNav = true; // If below fails then better show the navbar
-        try {
-            hasNav = mWindowManagerService.hasNavigationBar();
-        }
-        catch (RemoteException ex) {
-            //OH NO!
-        }
-        mWantsNavigationBar = Settings.System.getBoolean(resolver, Settings.System.ENABLE_NAVIGATION_BAR, hasNav);
-        mEnableNavring = Settings.System.getBoolean(mContext.getContentResolver(),
-                Settings.System.ENABLE_NAVRING, true);
-
         mFlipInterval = Settings.System.getIntForUser(mContext.getContentResolver(),
                         Settings.System.REMINDER_ALERT_INTERVAL, 1500, UserHandle.USER_CURRENT);
 
@@ -3854,6 +3843,21 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
 
         updateBatteryIcons();
+    }
+
+    private void updateNavBar() {
+        ContentResolver resolver = mContext.getContentResolver();
+        //Default to mWindowManagerService.hasNavigationBar()
+        boolean hasNav = true; // If below fails then better show the navbar
+        try {
+            hasNav = mWindowManagerService.hasNavigationBar();
+        }
+        catch (RemoteException ex) {
+            //OH NO!
+        }
+        mWantsNavigationBar = Settings.System.getBoolean(resolver, Settings.System.ENABLE_NAVIGATION_BAR, hasNav);
+        mEnableNavring = Settings.System.getBoolean(mContext.getContentResolver(),
+                Settings.System.ENABLE_NAVRING, true);
     }
 
     private void toggleNavigationBarOrNavRing(boolean showNavbar, boolean showNavring) {
@@ -3997,6 +4001,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mStatusBarContainer.addView(mStatusBarWindow);
 
         updateExpandedViewPos(EXPANDED_LEAVE_ALONE);
+
+        updateNavBar();
+
         mRecreating = false;
     }
 
