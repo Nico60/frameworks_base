@@ -85,4 +85,10 @@
   <!-- label for item that takes On-The-Go in the phone options dialog -->
   <string name="global_action_onthego">On-The-Go Mode</string>
 
+    <!-- Floating Window -->
+    <string name="floating_window_snap_top">Snap top</string>
+    <string name="floating_window_snap_bottom">Snap bottom</string>
+    <string name="floating_window_snap_left">Snap left</string>
+    <string name="floating_window_snap_right">Snap right</string>
+
 </resources>
