@@ -117,4 +117,7 @@
     <string name="halo_signal_bars_1">ONE BAR</string>
     <string name="halo_signal_bars_none">NO BARS</string>
 
+    <!-- App circle sidebar -->
+    <string name="app_stop_item_title">Kill app</string>
+
 </resources>
