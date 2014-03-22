@@ -141,7 +141,11 @@ import com.android.systemui.statusbar.policy.OnSizeChangedListener;
 import com.android.systemui.statusbar.policy.RotationLockController;
 
 import com.android.systemui.aokp.AokpSwipeRibbon;
+
 //import com.android.internal.util.slim.QuietHoursHelper; (Notification Reminder 1/2)
+import com.android.internal.util.slim.ButtonConfig;
+import com.android.internal.util.slim.ButtonsConstants;
+import com.android.internal.util.slim.ButtonsHelper;
 
 import java.io.FileDescriptor;
 import java.io.PrintWriter;
@@ -175,6 +179,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private static final int MSG_OPEN_NOTIFICATION_PANEL = 1000;
     private static final int MSG_CLOSE_PANELS = 1001;
     private static final int MSG_OPEN_SETTINGS_PANEL = 1002;
+    private static final int MSG_OPEN_QS_PANEL = 1003;
+    private static final int MSG_FLIP_TO_NOTIFICATION_PANEL = 1004;
+    private static final int MSG_FLIP_TO_QS_PANEL = 1005;
     // 1020-1030 reserved for BaseStatusBar
 
     private static final boolean CLOSE_PANEL_WHEN_EMPTIED = true;
@@ -327,6 +334,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // position
     int[] mPositionTmp = new int[2];
     boolean mExpandedVisible;
+    private boolean mNotificationPanelIsOpen = false;
+    private boolean mQSPanelIsOpen = false;
 
     // the date view
     DateView mDateView;
@@ -2145,7 +2154,16 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     animateExpandNotificationsPanel();
                     break;
                 case MSG_OPEN_SETTINGS_PANEL:
-                    animateExpandSettingsPanel();
+                    animateExpandSettingsPanel(true);
+                    break;
+                case MSG_OPEN_QS_PANEL:
+                    animateExpandSettingsPanel(false);
+                    break;
+                case MSG_FLIP_TO_NOTIFICATION_PANEL:
+                    flipToNotifications();
+                    break;
+                case MSG_FLIP_TO_QS_PANEL:
+                    flipToSettings();
                     break;
                 case MSG_CLOSE_PANELS:
                     animateCollapsePanels();
@@ -2233,6 +2251,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     public void animateCollapsePanels() {
+        mNotificationPanelIsOpen = false;
+        mQSPanelIsOpen = false;
         animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_NONE);
     }
 
@@ -2326,6 +2346,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         }
 
         mNotificationPanel.expand();
+        mNotificationPanelIsOpen = true;
+        mQSPanelIsOpen = false;
+
         if (mHasFlipSettings && mScrollView.getVisibility() != View.VISIBLE) {
             flipToNotifications();
         }
@@ -2334,6 +2357,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     }
 
     public void flipToNotifications() {
+
         if (mFlipSettingsViewAnim != null) mFlipSettingsViewAnim.cancel();
         if (mScrollViewAnim != null) mScrollViewAnim.cancel();
         if (mRibbonViewAnim != null) mRibbonViewAnim.cancel();
@@ -2411,10 +2435,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mNotificationShortcutsIsActive) {
             updateNotificationShortcutsVisibility(true);
         }
+        mNotificationPanelIsOpen = true;
+        mQSPanelIsOpen = false;
     }
 
     @Override
-    public void animateExpandSettingsPanel() {
+    public void animateExpandSettingsPanel(boolean flip) {
         if (SPEW) Log.d(TAG, "animateExpand: mExpandedVisible=" + mExpandedVisible);
         if (!panelsEnabled()) {
             return;
@@ -2426,8 +2452,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mHasFlipSettings) {
             mNotificationPanel.expand();
             if (mFlipSettingsView.getVisibility() != View.VISIBLE) {
-                flipToSettings();
+                if (flip) {
+                    flipToSettings();
+                } else {
+                    switchToSettings();
+                }
             }
+            mNotificationPanelIsOpen = false;
+            mQSPanelIsOpen = true;
         } else if (mSettingsPanel != null) {
             mSettingsPanel.expand();
         }
@@ -2617,6 +2649,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 }
             }, FLIP_DURATION - 150);
         }
+
+        mNotificationPanelIsOpen = false;
+        mQSPanelIsOpen = true;
+
     }
 
     public void flipPanels() {
@@ -2984,6 +3020,30 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         Settings.System.putInt(mContext.getContentResolver(),
                 Settings.System.ACCELEROMETER_ROTATION,
                 enabled ? 1 : 0);
+    }
+
+    @Override  // CommandQueue
+    public void toggleNotificationShade() {
+        int msg = (mExpandedVisible)
+                ? ((mQSPanelIsOpen) ? MSG_FLIP_TO_NOTIFICATION_PANEL : MSG_CLOSE_PANELS)
+                : MSG_OPEN_NOTIFICATION_PANEL;
+        mHandler.removeMessages(msg);
+        mHandler.sendEmptyMessage(msg);
+    }
+
+    @Override  // CommandQueue
+    public void toggleQSShade() {
+        int msg = 0;
+        if (mHasFlipSettings) {
+            msg = (mExpandedVisible)
+                ? ((mNotificationPanelIsOpen) ? MSG_FLIP_TO_QS_PANEL
+                : MSG_CLOSE_PANELS) : MSG_OPEN_QS_PANEL;
+        } else {
+            msg = (mExpandedVisible)
+                ? MSG_CLOSE_PANELS : MSG_OPEN_QS_PANEL;
+        }
+        mHandler.removeMessages(msg);
+        mHandler.sendEmptyMessage(msg);
     }
 
     private int computeBarMode(int oldVis, int newVis, BarTransitions transitions,
@@ -3532,7 +3592,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private View.OnClickListener mSettingsButtonListener = new View.OnClickListener() {
         public void onClick(View v) {
             if (mHasSettingsPanel) {
-                animateExpandSettingsPanel();
+                animateExpandSettingsPanel(true);
             } else {
                 startActivityDismissingKeyguard(
                         new Intent(android.provider.Settings.ACTION_SETTINGS), true);
