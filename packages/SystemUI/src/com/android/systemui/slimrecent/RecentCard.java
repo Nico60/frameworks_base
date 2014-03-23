@@ -34,6 +34,8 @@ public class RecentCard extends Card {
     private RecentAppIcon mRecentIcon;
     private RecentExpandedCard mExpandedCard;
 
+    private int mPersistentTaskId;
+
     public RecentCard(Context context, TaskDescription td, float scaleFactor) {
         this(context, R.layout.inner_base_main, td, scaleFactor);
     }
@@ -66,6 +68,8 @@ public class RecentCard extends Card {
         addCardHeader(mHeader);
         addCardThumbnail(mRecentIcon);
         addCardExpand(mExpandedCard);
+
+        mPersistentTaskId = td.persistentTaskId;
     }
 
     // Update content of our card.
@@ -83,6 +87,7 @@ public class RecentCard extends Card {
             // Update app screenshot.
             mExpandedCard.updateExpandedContent(td.persistentTaskId, td.getLabel(), scaleFactor);
         }
+        mPersistentTaskId = td.persistentTaskId;
     }
 
     // Set initial expanded state of our card.
@@ -116,6 +121,10 @@ public class RecentCard extends Card {
     public void setupInnerViewElements(ViewGroup parent, View view) {
         // Nothing to do here.
         return;
+    }
+
+    public int getPersistentTaskId() {
+        return mPersistentTaskId;
     }
 
 }
