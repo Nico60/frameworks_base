@@ -4359,6 +4359,9 @@ public final class Settings {
          */
         public static final String POWER_MENU_AIRPLANE_ENABLED = "power_menu_airplane_enabled";
 
+        /** @hide */
+        public static final String CUSTOM_STATUS_BAR_APPLY = "custom_status_bar_apply";
+
         /**
          * Whether power menu user switcher is enabled
          * @hide
