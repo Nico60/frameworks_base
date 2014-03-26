@@ -72,15 +72,24 @@ public class QuickRecordTile extends QuickSettingsTile {
                 }
                 switch (mRecordingState) {
                     case STATE_RECORDING:
+                        if (isFlipTilesEnabled()) {
+                            flipTile(0);
+                        }
                         stopRecording();
                         break;
                     case STATE_NO_RECORDING:
                         return;
                     case STATE_IDLE:
                     case STATE_JUST_RECORDED:
+                        if (isFlipTilesEnabled()) {
+                            flipTile(0);
+                        }
                         startPlaying();
                         break;
                     case STATE_PLAYING:
+                        if (isFlipTilesEnabled()) {
+                            flipTile(0);
+                        }
                         stopPlaying();
                         break;
                 }
@@ -94,6 +103,9 @@ public class QuickRecordTile extends QuickSettingsTile {
                     case STATE_NO_RECORDING:
                     case STATE_IDLE:
                     case STATE_JUST_RECORDED:
+                        if (isFlipTilesEnabled()) {
+                            flipTile(0);
+                        }
                         startRecording();
                         break;
                 }
@@ -149,6 +161,9 @@ public class QuickRecordTile extends QuickSettingsTile {
     final Runnable delayTileRevert = new Runnable () {
         public void run() {
             if (mRecordingState == STATE_JUST_RECORDED) {
+                if (isFlipTilesEnabled()) {
+                    flipTile(0);
+                }
                 mRecordingState = STATE_IDLE;
                 updateResources();
             }
@@ -158,6 +173,9 @@ public class QuickRecordTile extends QuickSettingsTile {
     final Runnable autoStopRecord = new Runnable() {
         public void run() {
             if (mRecordingState == STATE_RECORDING) {
+                if (isFlipTilesEnabled()) {
+                    flipTile(0);
+                }
                 stopRecording();
             }
         }
@@ -165,6 +183,9 @@ public class QuickRecordTile extends QuickSettingsTile {
 
     final OnCompletionListener stoppedPlaying = new OnCompletionListener(){
         public void onCompletion(MediaPlayer mp) {
+            if (isFlipTilesEnabled()) {
+                flipTile(0);
+            }
             mRecordingState = STATE_IDLE;
             updateResources();
         }
