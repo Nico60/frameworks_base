@@ -3373,11 +3373,6 @@ public final class Settings {
         /**
          * @hide
          */
-        public static final String SMART_PHONE_CALLER = "smart_phone_caller";
-
-        /**
-         * @hide
-         */
         public static final String WAKELOCK_BLOCKING_ENABLED = "wakelock_blocking_enabled";
 
         /**
