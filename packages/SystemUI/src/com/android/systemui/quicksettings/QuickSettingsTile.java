@@ -115,9 +115,9 @@ public class QuickSettingsTile implements OnClickListener {
             tv.setTextSize(TypedValue.COMPLEX_UNIT_PX, mTileTextSize);
             tv.setPadding(0, mTileTextPadding, 0, 0);
         }
-        View image = mTile.findViewById(R.id.image);
-        if (image != null && image instanceof ImageView) {
-            ((ImageView) image).setImageResource(mDrawable);
+        ImageView image = (ImageView) mTile.findViewById(R.id.image);
+        if (image != null) {
+            image.setImageResource(mDrawable);
         }
     }
 
