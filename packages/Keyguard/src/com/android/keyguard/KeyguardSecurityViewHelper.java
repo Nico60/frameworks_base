@@ -97,6 +97,14 @@ public class KeyguardSecurityViewHelper {
         }
     }
 
+
+    public static boolean hideWidgetFrame(Context context) {
+        return Settings.System.getIntForUser(
+                context.getContentResolver(),
+                Settings.System.LOCKSCREEN_WIDGET_FRAME_ENABLED, 0,
+                UserHandle.USER_CURRENT) == 1;
+    }
+
     public static Drawable colorizeFrame(Context context, Drawable frameDrawable) {
         int frameColor = Settings.Secure.getIntForUser(
                 context.getContentResolver(),
