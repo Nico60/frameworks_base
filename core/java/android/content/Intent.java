@@ -732,6 +732,20 @@ public class Intent implements Parcelable, Cloneable {
      */
     public static final String EXTRA_SHORTCUT_NAME = "android.intent.extra.shortcut.NAME";
     /**
+     *  Global Action: Shows 3-way reboot menu dialog
+     *  <p>Input: nothing
+     *  <p>Output: nothing
+     *  @hide
+     */
+    public static final String ACTION_REBOOTMENU = "android.intent.action.REBOOTMENU";
+    /**
+     * PhoneWindowManager: register updates to hardware key rebinding
+     *  <p>Input: nothing
+     *  <p>Output: nothing
+     * @hide
+     */
+    public static final String ACTION_UPDATE_KEYS = "android.intent.action.UPDATE_KEY_ASSIGNMENTS";
+    /**
      * The name of the extra used to define the icon, as a Bitmap, of a shortcut.
      *
      * @see #ACTION_CREATE_SHORTCUT
