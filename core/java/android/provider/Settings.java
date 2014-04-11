@@ -4921,6 +4921,14 @@ public final class Settings {
         public static final String DIALPAD_STATE = "dialpad_state";
 
         /**
+         * Recent panel expanded mode (auto = 0, always = 1, never = 2).
+         * default = 0.
+         *
+         * @hide
+         */
+        public static final String RECENT_PANEL_EXPANDED_MODE = "recent_panel_expanded_mode";
+
+        /**
          * Hover, default is 0 (off).
          * 0 = disabled
          * 1 = enabled
