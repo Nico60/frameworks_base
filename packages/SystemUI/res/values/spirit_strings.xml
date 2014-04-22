@@ -126,4 +126,8 @@
     <!-- Active Display -->
     <string name="active_display_privacy_content">Content message not showing because privacy mode enabled</string>
 
+    <!-- Navbar QS -->
+    <string name="quick_settings_navbar_on">Navbar on</string>
+    <string name="quick_settings_navbar_off">Navbar off</string>
+
 </resources>
