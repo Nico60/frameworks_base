@@ -108,11 +108,12 @@ import com.android.systemui.recent.RecentsActivity;
 import com.android.systemui.recent.TaskDescription;
 import com.android.systemui.aokp.AppWindow;
 import com.android.systemui.slimrecent.RecentController;
+import com.android.systemui.statusbar.halo.Halo;
 import com.android.systemui.statusbar.notification.Hover;
 import com.android.systemui.statusbar.notification.NotificationHelper;
+import com.android.systemui.statusbar.notification.NotificationPeek;
 import com.android.systemui.statusbar.phone.Ticker;
 import com.android.systemui.statusbar.phone.KeyguardTouchDelegate;
-import com.android.systemui.statusbar.halo.Halo;
 import com.android.systemui.statusbar.policy.NotificationRowLayout;
 import com.android.systemui.statusbar.policy.activedisplay.ActiveDisplayView;
 import com.android.systemui.statusbar.appcirclesidebar.AppCircleSidebar;
@@ -207,6 +208,9 @@ public abstract class BaseStatusBar extends SystemUI implements
     protected Hover mHover;
     protected boolean mHoverActive;
 
+    // Notification peek
+    protected NotificationPeek mNotificationPeek;
+
     // UI-specific methods
 
     /**
@@ -267,6 +271,14 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     public RemoteViews.OnClickHandler getNotificationClickHandler() {
         return mOnClickHandler;
+    }
+
+    public int getNotificationCount() {
+        return mNotificationData.size();
+    }
+
+    public NotificationData getNotifications() {
+        return mNotificationData;
     }
 
     private ContentObserver mProvisioningObserver = new ContentObserver(mHandler) {
@@ -429,6 +441,8 @@ public abstract class BaseStatusBar extends SystemUI implements
         mHover.setNotificationHelper(mNotificationHelper);
 
         mStatusBarContainer = new FrameLayout(mContext);
+
+        mNotificationPeek = new NotificationPeek(this, mContext);
 
         // Connect in to the status bar manager service
         StatusBarIconList iconList = new StatusBarIconList();
@@ -1173,18 +1187,34 @@ public abstract class BaseStatusBar extends SystemUI implements
         return new NotificationClicker(intent, pkg, tag, id);
     }
 
+    public NotificationClicker makeClicker(Intent intent) {
+        return new NotificationClicker(intent);
+    }
+
     public class NotificationClicker implements View.OnClickListener {
-        public PendingIntent mIntent;
+        private KeyguardTouchDelegate mKeyguard;
+        private PendingIntent mPendingIntent;
+        private Intent mIntent;
         public String mPkg;
         public String mTag;
         public int mId;
         public boolean mFloat;
 
         public NotificationClicker(PendingIntent intent, String pkg, String tag, int id) {
-            mIntent = intent;
+            this();
+            mPendingIntent = intent;
             mPkg = pkg;
             mTag = tag;
             mId = id;
+        }
+
+        public NotificationClicker(Intent intent) {
+            this();
+            mIntent = intent;
+        }
+
+        public NotificationClicker() {
+            mKeyguard = KeyguardTouchDelegate.getInstance(mContext);
         }
 
         public void makeFloating(boolean floating) {
@@ -1212,33 +1242,41 @@ public abstract class BaseStatusBar extends SystemUI implements
             } catch (android.os.RemoteException ex) {
                 // System is dead
             }
-
-            if (mIntent != null) {
+            if (mPendingIntent != null) {
                 int[] pos = new int[2];
                 v.getLocationOnScreen(pos);
                 Intent overlay = new Intent();
                 if (mFloat && allowed) overlay.addFlags(flags);
                 overlay.setSourceBounds(
-                        new Rect(pos[0], pos[1], pos[0]+v.getWidth(), pos[1]+v.getHeight()));
+                        new Rect(pos[0], pos[1], pos[0] + v.getWidth(), pos[1] + v.getHeight()));
                 try {
-                    mIntent.send(mContext, 0, overlay);
+                    mPendingIntent.send(mContext, 0, overlay);
                 } catch (PendingIntent.CanceledException e) {
                     // the stack trace isn't very helpful here.  Just log the exception message.
                     Log.w(TAG, "Sending contentIntent failed: " + e);
                 }
 
-                KeyguardTouchDelegate.getInstance(mContext).dismiss();
+                } else if(mIntent != null) {
+                //mIntent.addFlags(flags);
+                mContext.startActivity(mIntent);
             }
 
-            try {
-                mBarService.onNotificationClick(mPkg, mTag, mId);
-            } catch (RemoteException ex) {
-                // system process is dead if we're here.
+            if(mKeyguard.isShowingAndNotHidden()) mKeyguard.dismiss();
+
+            if(mPkg != null) { // check if we're dealing with a notification
+                try {
+                    mBarService.onNotificationClick(mPkg, mTag, mId);
+                } catch (RemoteException ex) {
+                    // system process is dead if we're here.
+                }
             }
 
             // close the shade if it was open
             animateCollapsePanels(CommandQueue.FLAG_EXCLUDE_NONE);
             visibilityChanged(false);
+
+            // hide notification peek screen
+            mNotificationPeek.dismissNotification();
         }
     }
     /**
@@ -1286,6 +1324,8 @@ public abstract class BaseStatusBar extends SystemUI implements
         updateExpansionStates();
         updateNotificationIcons();
         maybeCollapseAfterNotificationRemoval(entry.row.isUserDismissed());
+
+        mNotificationPeek.removeNotification(entry.notification);
 
         // If a notif is on hover list or currently showed in hover,
         // remove (hide) it if system does.
@@ -1448,6 +1488,7 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
         updateExpansionStates();
         updateNotificationIcons();
+        mNotificationPeek.showNotification(entry.notification, false);
         mHandler.removeCallbacks(mPanelCollapseRunnable);
 
         if (!mPowerManager.isScreenOn()) {
@@ -1667,6 +1708,8 @@ public abstract class BaseStatusBar extends SystemUI implements
         }
         // Update the roundIcon
         prepareHaloNotification(entry, notification, true);
+
+        mNotificationPeek.showNotification(entry.notification, true);
 
         if (!mPowerManager.isScreenOn()) {
             mHover.addStatusBarNotification(entry.notification);
