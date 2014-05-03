@@ -910,8 +910,6 @@ public class AppTransition implements Dump {
         mNoOverrides = Settings.System.getBoolean(resolver, Settings.System.ANIMATION_CONTROLS_NO_OVERRIDE, false);
         mExitOnly = Settings.System.getBoolean(resolver, Settings.System.ANIMATION_CONTROLS_EXIT_ONLY, true);
         mReverseExit = Settings.System.getBoolean(resolver, Settings.System.ANIMATION_CONTROLS_REVERSE_EXIT, false);
-
-        int temp = Settings.System.getInt(resolver, Settings.System.ANIMATION_CONTROLS_DURATION, 0);
-        mAnimationDuration = temp * 15;
+        mAnimationDuration = Settings.System.getInt(resolver, Settings.System.ANIMATION_CONTROLS_DURATION, 25);
     }
 }
