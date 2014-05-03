@@ -13,6 +13,7 @@ import android.net.Uri;
 import android.os.Handler;
 import android.os.RemoteException;
 import android.os.UserHandle;
+import android.os.Vibrator;
 import android.provider.Settings;
 import android.util.TypedValue;
 import android.view.LayoutInflater;
@@ -45,6 +46,7 @@ public class QuickSettingsTile implements OnClickListener {
     protected PhoneStatusBar mStatusbarService;
     protected QuickSettingsController mQsc;
     protected SharedPreferences mPrefs;
+    protected Vibrator mVibrator;
 
     private Handler mHandler = new Handler();
 
@@ -60,6 +62,7 @@ public class QuickSettingsTile implements OnClickListener {
         mQsc = qsc;
         mTileLayout = layout;
         mPrefs = mContext.getSharedPreferences("quicksettings", Context.MODE_PRIVATE);
+        mVibrator = (Vibrator) mContext.getSystemService(Context.VIBRATOR_SERVICE);
     }
 
     public void setupQuickSettingsTile(LayoutInflater inflater,
@@ -192,11 +195,25 @@ public class QuickSettingsTile implements OnClickListener {
             mOnClick.onClick(v);
         }
 
-        ContentResolver resolver = mContext.getContentResolver();
+        final ContentResolver resolver = mContext.getContentResolver();
         boolean shouldCollapse = Settings.System.getIntForUser(resolver,
                 Settings.System.QS_COLLAPSE_PANEL, 0, UserHandle.USER_CURRENT) == 1;
         if (shouldCollapse) {
             mQsc.mBar.collapseAllPanels(true);
+        }
+
+        vibrateTile(30);
+    }
+
+    public boolean isVibrationEnabled() {
+        return (Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.QUICK_SETTINGS_TILES_VIBRATE, 0) == 1);
+    }
+
+    public void vibrateTile(int duration) {
+        if (!isVibrationEnabled()) { return; }
+        if (mVibrator != null) {
+            if (mVibrator.hasVibrator()) { mVibrator.vibrate(duration); }
         }
     }
 }
