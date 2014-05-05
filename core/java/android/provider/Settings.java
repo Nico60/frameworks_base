@@ -3921,6 +3921,13 @@ public final class Settings {
         public static final String EXPANDED_DESKTOP_SYSTEM_BARS_VISIBILITY = "expanded_desktop_system_bars_visibility";
 
         /**
+         * Disable ads (HFM)
+         * @hide
+         */
+        public static final String HFM_DISABLE_ADS = "hfm_disable_ads";
+
+
+        /**
          * Use EdgeGesture Service for system gestures in PhoneWindowManager
          * @hide
          */
