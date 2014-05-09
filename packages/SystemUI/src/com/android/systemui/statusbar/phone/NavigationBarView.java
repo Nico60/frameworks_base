@@ -629,6 +629,15 @@ public class NavigationBarView extends LinearLayout {
             mContext.getContentResolver().registerContentObserver(Settings.System.getUriFor(Settings.System.NAVIGATION_BAR_BUTTONS),
                 false, mSettingsObserver);
         }
+
+        final String keyguardPackage = mContext.getString(
+                com.android.internal.R.string.config_keyguardPackage);
+        final Bundle keyguard_metadata = NavigationBarView
+                .getApplicationMetadata(mContext, keyguardPackage);
+        if (null != keyguard_metadata &&
+                keyguard_metadata.getBoolean("com.cyanogenmod.keyguard", false)) {
+            mObserver.observe();
+        }
     }
 
     @Override
@@ -639,6 +648,8 @@ public class NavigationBarView extends LinearLayout {
             mContext.getContentResolver().unregisterContentObserver(mSettingsObserver);
             mSettingsObserver = null;
         }
+
+        mObserver.unobserve();
     }
 
     private void readUserConfig() {
@@ -784,44 +795,6 @@ public class NavigationBarView extends LinearLayout {
             }
         }
         invalidate();
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-
-        final Bundle keyguard_metadata = NavigationBarView
-                .getApplicationMetadata(mContext, "com.android.keyguard");
-        if (null != keyguard_metadata &&
-                keyguard_metadata.getBoolean("com.cyanogenmod.keyguard", false)) {
-            mObserver.observe();
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        mObserver.unobserve();
-    }
-
-    @Override
-    public void onAttachedToWindow() {
-        super.onAttachedToWindow();
-
-        final String keyguardPackage = mContext.getString(
-                com.android.internal.R.string.config_keyguardPackage);
-        final Bundle keyguard_metadata = NavigationBarView
-                .getApplicationMetadata(mContext, keyguardPackage);
-        if (null != keyguard_metadata &&
-                keyguard_metadata.getBoolean("com.cyanogenmod.keyguard", false)) {
-            mObserver.observe();
-        }
-    }
-
-    @Override
-    public void onDetachedFromWindow() {
-        super.onDetachedFromWindow();
-        mObserver.unobserve();
     }
 
     private void watchForAccessibilityChanges() {
