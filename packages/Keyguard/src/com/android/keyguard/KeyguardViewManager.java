@@ -788,8 +788,10 @@ public class KeyguardViewManager {
             mKeyguardView.onScreenTurnedOff();
         }
 
-        if (mNotificationViewManager != null) {
-            mNotificationViewManager.onScreenTurnedOff();
+        if (mLockscreenNotifications) {
+            if (mNotificationViewManager != null) {
+                mNotificationViewManager.onScreenTurnedOff();
+            }
         }
     }
 
