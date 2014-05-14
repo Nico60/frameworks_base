@@ -73,6 +73,8 @@ public class NotificationHelper {
     public static final int HOVER_ALPHA = 175;
     public static final int DEFAULT_ALPHA = 255;
 
+    private static final String PEEK_SHOWING_BROADCAST = "com.jedga.peek.PEEK_SHOWING";
+    private static final String PEEK_HIDING_BROADCAST = "com.jedga.peek.PEEK_HIDING";
     private static final String FONT_FAMILY_DEFAULT = "sans-serif";
     private static final String FONT_FAMILY_LIGHT = "sans-serif-light";
     private static final String FONT_FAMILY_CONDENSED = "sans-serif-condensed";
@@ -83,10 +85,14 @@ public class NotificationHelper {
     private BaseStatusBar mStatusBar;
     private Context mContext;
     private Hover mHover;
+    private IntentFilter mPeekAppFilter;
+    private Peek mPeek;
+    private PeekAppReceiver mPeekAppReceiver;
     private TelephonyManager mTelephonyManager;
     private ActivityManager mActivityManager;
 
     public boolean mRingingOrConnected = false;
+    public boolean mPeekAppOverlayShowing = false;
 
     /**
      * Creates a new instance
@@ -97,11 +103,23 @@ public class NotificationHelper {
         mContext = context;
         mStatusBar = statusBar;
         mHover = mStatusBar.getHoverInstance();
+        mPeek = mStatusBar.getPeekInstance();
         mTelephonyManager = (TelephonyManager) mContext.getSystemService(Context.TELEPHONY_SERVICE);
         mTelephonyManager.listen(new CallStateListener(), PhoneStateListener.LISTEN_CALL_STATE);
 
         // we need to know which is the foreground app
         mActivityManager = (ActivityManager) mContext.getSystemService(Context.ACTIVITY_SERVICE);
+
+        // create peek app receiver if null
+        if (mPeekAppReceiver == null) {
+            mPeekAppReceiver = new PeekAppReceiver();
+        }
+        if (mPeekAppFilter == null) {
+            mPeekAppFilter = new IntentFilter();
+            mPeekAppFilter.addAction(PEEK_SHOWING_BROADCAST);
+            mPeekAppFilter.addAction(PEEK_HIDING_BROADCAST);
+            mContext.registerReceiver(mPeekAppReceiver, mPeekAppFilter);
+        }
     }
 
     public String getForegroundPackageName() {
@@ -114,12 +132,41 @@ public class NotificationHelper {
         return mHover;
     }
 
+    public Peek getPeek() {
+        return mPeek;
+    }
+
     public boolean isHoverEnabled() {
         return mHover.mHoverActive;
     }
 
     public boolean isHoverShowing() {
         return mHover.isShowing();
+    }
+
+    public boolean isPeekEnabled() {
+        return mPeek.mEnabled;
+    }
+
+    public boolean isPeekShowing() {
+        return mPeek.isShowing();
+    }
+
+    public boolean isPeekAppShowing() {
+        return mPeekAppOverlayShowing;
+    }
+
+    public class PeekAppReceiver extends BroadcastReceiver {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            String action = intent.getAction();
+            if (action.equals(PEEK_SHOWING_BROADCAST)) {
+                mPeekAppOverlayShowing = true;
+                mHover.dismissHover(false, false);
+            } else if (action.equals(PEEK_HIDING_BROADCAST)) {
+                mPeekAppOverlayShowing = false;
+            }
+        }
     }
 
     /**
@@ -286,6 +333,41 @@ public class NotificationHelper {
             if (s.equals(packageName)) return true;
         }
         return false;
+    }
+
+    /**
+     * <!-- Peek -->
+     * Touch brigde
+     */
+    public static View.OnTouchListener getHighlightTouchListener(final int color) {
+        return new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View view, MotionEvent event) {
+                Drawable drawable = ((ImageView) view).getDrawable();
+                switch (event.getAction()) {
+                    case MotionEvent.ACTION_DOWN:
+                        LightingColorFilter lighten
+                                = new LightingColorFilter(color, color);
+                        drawable.setColorFilter(lighten);
+                        break;
+                    case MotionEvent.ACTION_UP:
+                        drawable.clearColorFilter();
+                        break;
+                    case MotionEvent.ACTION_MOVE:
+                        Rect rect = new Rect();
+                        view.getLocalVisibleRect(rect);
+                        if (!rect.contains((int) event.getX(), (int) event.getY())) {
+                            drawable.clearColorFilter();
+                        }
+                        break;
+                    case MotionEvent.ACTION_OUTSIDE:
+                    case MotionEvent.ACTION_CANCEL:
+                        drawable.clearColorFilter();
+                        break;
+                }
+                return false;
+            }
+        };
     }
 
     /**
