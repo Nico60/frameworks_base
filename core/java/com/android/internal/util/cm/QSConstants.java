@@ -38,6 +38,8 @@ public class QSConstants {
         public static final String TILE_QUICKRECORD = "toggleQuickRecord";
         public static final String TILE_MUSIC = "toggleMusic";
         public static final String TILE_NAVBAR = "toggleNavbar";
+        public static final String TILE_COMPASS = "toggleCompass";
+
         public static final String TILE_DELIMITER = "|";
         public static ArrayList<String> TILES_DEFAULT = new ArrayList<String>();
 
