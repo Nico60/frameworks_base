@@ -280,6 +280,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     int mSettingsPanelGravity;
     private TilesChangedObserver mTilesChangedObserver;
     private SettingsObserver mSettingsObserver;
+    boolean mDoubleTapToSleep;
 
     // Ribbon settings
     private boolean mHasQuickAccessSettings;
@@ -491,7 +492,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.REMINDER_ALERT_INTERVAL), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.ENABLE_NAVRING), false, this);
+                    Settings.System.ENABLE_NAVRING), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.DOUBLE_TAP_SLEEP_GESTURE), false, this,
+                    UserHandle.USER_ALL);
             updateSettings();
         }
         @Override
@@ -3901,7 +3906,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             enableOrDisableReminder();
         }
 
+        mDoubleTapToSleep = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.DOUBLE_TAP_SLEEP_GESTURE, 0) == 1;
+
         updateBatteryIcons();
+    }
+
+    protected boolean isDoubleTapEnabled() {
+        return mDoubleTapToSleep;
     }
 
     private void updateNavBar() {
