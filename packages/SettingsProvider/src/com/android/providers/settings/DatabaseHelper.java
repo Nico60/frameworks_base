@@ -2122,6 +2122,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                         R.string.def_lockscreen_targets_no_telephony);
             }
 
+            loadIntegerSetting(stmt, Settings.System.DOUBLE_TAP_SLEEP_GESTURE,
+                    R.integer.def_double_tap_sleep_gesture);
+
             loadRibbonSetting(stmt);
 
         } finally {
