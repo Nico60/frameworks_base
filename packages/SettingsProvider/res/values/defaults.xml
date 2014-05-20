@@ -210,4 +210,7 @@
     <!-- Default theme -->
     <string name="def_theme_package"></string>
     <string name="def_theme_components"></string>
+
+    <!-- Default value of Settings.System.QUICK_SETTINGS_RIBBON_TILES -->
+    <string name="def_quick_settings_ribbon_tiles"></string>
 </resources>
