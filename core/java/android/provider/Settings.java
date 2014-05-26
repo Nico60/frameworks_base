@@ -3484,13 +3484,6 @@ public final class Settings {
         public static final String PROGRESSBAR_COLOR_4 = "progressbar_color_4";
 
         /**
-         * Display style of AM/PM next to clock in status bar
-         * 0: Normal display (Eclair stock)
-         * 1: Small display (Froyo stock)
-         * 2: No display (Gingerbread/ICS stock)
-         * default: 2
-
-        /**
          * ToastAnimation
          * @hide
          */
@@ -3576,11 +3569,17 @@ public final class Settings {
         */
         public static final String STATUSBAR_CLOCK_DATE_STYLE = "statusbar_clock_date_style";
 
-        /**
+       /**
         * @hide
         * Stores the java DateFormat string for the date
         */
         public static final String STATUSBAR_CLOCK_DATE_FORMAT = "statusbar_clock_date_format";
+
+        /**
+         * Display second in the Clock
+         * @hide
+         */
+        public static final String CLOCK_USE_SECOND = "clock_use_second";
 
         /**
          * Display style of the status bar battery information
