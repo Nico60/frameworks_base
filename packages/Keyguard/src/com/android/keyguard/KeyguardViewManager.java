@@ -143,17 +143,18 @@ public class KeyguardViewManager {
                     Settings.System.LOCKSCREEN_SEE_THROUGH), false, this);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.LOCKSCREEN_NOTIFICATIONS), false, this);
+            updateSettings();
         }
 
         @Override
         public void onChange(boolean selfChange) {
             setKeyguardParams();
-            updateSettings();
             try {
                 mViewManager.updateViewLayout(mKeyguardHost, mWindowLayoutParams);
             } catch(IllegalArgumentException e) {
                 // Call yo mom call yo dad!
             }
+            updateSettings();
         }
     }
 
