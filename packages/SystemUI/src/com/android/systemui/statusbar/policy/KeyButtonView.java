@@ -26,6 +26,7 @@ import android.graphics.RectF;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
 import android.net.Uri;
+import android.os.PowerManager;
 import android.os.SystemClock;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -74,6 +75,8 @@ public class KeyButtonView extends ImageView {
 
     boolean mHasSingleAction = true, mHasDoubleAction, mHasLongAction;
 
+    private PowerManager mPm;
+
     Runnable mCheckLongPress = new Runnable() {
         public void run() {
             if (isPressed()) {
@@ -111,6 +114,7 @@ public class KeyButtonView extends ImageView {
 
         setClickable(true);
         mTouchSlop = ViewConfiguration.get(context).getScaledTouchSlop();
+        mPm = (PowerManager) context.getSystemService(Context.POWER_SERVICE);
         mSinglePressTimeout = 200;
         mDoubleTapTimeout = 200;
         mLongPressTimeout = ViewConfiguration.getLongPressTimeout();
@@ -251,6 +255,10 @@ public class KeyButtonView extends ImageView {
     public void setPressed(boolean pressed) {
         if (mGlowBG != null) {
             if (pressed != isPressed()) {
+
+                // A lot of stuff is about to happen. Lets get ready.
+                mPm.cpuBoost(750000);
+
                 if (mPressedAnim != null && mPressedAnim.isRunning()) {
                     mPressedAnim.cancel();
                 }
