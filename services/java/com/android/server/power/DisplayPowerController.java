@@ -782,7 +782,6 @@ final class DisplayPowerController {
                         && mProximity == PROXIMITY_POSITIVE) {
                     mScreenOffBecauseOfProximity = true;
                     sendOnProximityPositiveWithWakelock();
-                    setScreenOn(false);
                 }
             } else if (mWaitingForNegativeProximity
                     && mScreenOffBecauseOfProximity
@@ -873,10 +872,10 @@ final class DisplayPowerController {
                                     mElectronBeamOnAnimator.end();
                                 }
                             }
-                        } else {
-                            mPowerState.setElectronBeamLevel(1.0f);
-                            mPowerState.dismissElectronBeam();
                         }
+                    } else {
+                        mPowerState.setElectronBeamLevel(1.0f);
+                        mPowerState.dismissElectronBeam();
                     }
                 }
             } else {
@@ -938,15 +937,15 @@ final class DisplayPowerController {
     private void unblockScreenOn() {
         if (mScreenOnWasBlocked) {
             mScreenOnWasBlocked = false;
-            if (DEBUG) {
-                Slog.d(TAG, "Unblocked screen on after " +
-                        (SystemClock.elapsedRealtime() - mScreenOnBlockStartRealTime) + " ms");
+            long delay = SystemClock.elapsedRealtime() - mScreenOnBlockStartRealTime;
+            if (delay > 1000 || DEBUG) {
+                Slog.d(TAG, "Unblocked screen on after " + delay + " ms");
             }
         }
     }
 
     private void setScreenOn(boolean on) {
-        if (!mPowerState.isScreenOn() == on) {
+        if (mPowerState.isScreenOn() != on) {
             mPowerState.setScreenOn(on);
             if (on) {
                 mNotifier.onScreenOn();
