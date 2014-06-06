@@ -204,12 +204,13 @@ public class NotificationManagerService extends INotificationManager.Stub
     private HashSet<String> mEnabledListenerPackageNames = new HashSet<String>();
 
     // Notification control database. For now just contains disabled packages.
-    private AtomicFile mPolicyFile, mHaloPolicyFile, mFloatingModePolicyFile;
+    private AtomicFile mPolicyFile, mHaloPolicyFile, mFloatingModePolicyFile, mHoverPolicyFile;
     private HashSet<String> mBlockedPackages = new HashSet<String>();
     private HashSet<String> mHaloBlacklist = new HashSet<String>();
     private HashSet<String> mHaloWhitelist = new HashSet<String>();
     private boolean mHaloPolicyisBlack = true;
     private HashSet<String> mFloatingModeBlacklist = new HashSet<String>();
+    private HashSet<String> mHoverBlacklist = new HashSet<String>();
 
     private static final int DB_VERSION = 1;
 
@@ -225,6 +226,7 @@ public class NotificationManagerService extends INotificationManager.Stub
     private static final String HALO_POLICY = "halo_policy.xml";
     private static final String NOTIFICATION_POLICY = "notification_policy.xml";
     private static final String FLOATING_MODE_POLICY = "floating_mode_policy.xml";
+    private static final String HOVER_POLICY = "hover_policy.xml";
 
     private final ArrayList<NotificationScorer> mScorers = new ArrayList<NotificationScorer>();
 
@@ -478,6 +480,16 @@ public class NotificationManagerService extends INotificationManager.Stub
         }
     }
 
+    private void loadHoverBlockDb() {
+        synchronized(mHoverBlacklist) {
+            if (mHoverPolicyFile == null) {
+                mHoverPolicyFile = new AtomicFile(new File(SYSTEM_FOLDER, HOVER_POLICY));
+                mHoverBlacklist.clear();
+                readPolicy(mHoverPolicyFile, TAG_BLOCKED_PKGS, mHoverBlacklist);
+            }
+        }
+    }
+
     private void writeBlockDb() {
         synchronized(mBlockedPackages) {
             FileOutputStream outfile = null;
@@ -630,6 +642,40 @@ public class NotificationManagerService extends INotificationManager.Stub
         }
     }
 
+    private void writeHoverBlockDb() {
+        synchronized(mHoverBlacklist) {
+            FileOutputStream outfile = null;
+            try {
+                outfile = mHoverPolicyFile.startWrite();
+
+                XmlSerializer out = new FastXmlSerializer();
+                out.setOutput(outfile, "utf-8");
+
+                out.startDocument(null, true);
+
+                out.startTag(null, TAG_BODY); {
+                    out.attribute(null, ATTR_VERSION, String.valueOf(DB_VERSION));
+                    out.startTag(null, TAG_BLOCKED_PKGS); {
+                        // write all known network policies
+                        for (String pkg : mHoverBlacklist) {
+                            out.startTag(null, TAG_PACKAGE); {
+                                out.attribute(null, ATTR_NAME, pkg);
+                            } out.endTag(null, TAG_PACKAGE);
+                        }
+                    } out.endTag(null, TAG_BLOCKED_PKGS);
+                } out.endTag(null, TAG_BODY);
+
+                out.endDocument();
+
+                mHoverPolicyFile.finishWrite(outfile);
+            } catch (IOException e) {
+                if (outfile != null) {
+                    mHoverPolicyFile.failWrite(outfile);
+                }
+            }
+        }
+    }
+
     public void setFloatingModeBlacklistStatus(String pkg, boolean status) {
         if (status) {
             mFloatingModeBlacklist.add(pkg);
@@ -639,8 +685,21 @@ public class NotificationManagerService extends INotificationManager.Stub
         writeFloatingModeBlockDb();
     }
 
+    public void setHoverBlacklistStatus(String pkg, boolean status) {
+        if (status) {
+            mHoverBlacklist.add(pkg);
+        } else {
+            mHoverBlacklist.remove(pkg);
+        }
+        writeHoverBlockDb();
+    }
+
     public boolean isPackageAllowedForFloatingMode(String pkg) {
         return !mFloatingModeBlacklist.contains(pkg);
+    }
+
+    public boolean isPackageAllowedForHover(String pkg) {
+        return !mHoverBlacklist.contains(pkg);
     }
 
     /**
@@ -679,6 +738,7 @@ public class NotificationManagerService extends INotificationManager.Stub
         }
         writeBlockDb();
         writeFloatingModeBlockDb();
+        writeHoverBlockDb();
     }
 
 
@@ -1771,6 +1831,7 @@ public class NotificationManagerService extends INotificationManager.Stub
         loadBlockDb();
         loadHaloBlockDb();
         loadFloatingModeBlockDb();
+        loadHoverBlockDb();
 
         PackageManager pm = mContext.getPackageManager();
         for (String pkg : mBlockedPackages) {
