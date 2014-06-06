@@ -2260,10 +2260,6 @@ public abstract class AbsListView extends AdapterView<ListAdapter> implements Te
             if (params.viewType == mAdapter.getItemViewType(position)) {
                 final View updatedView = mAdapter.getView(position, transientView, this);
 
-            if (mIsScrolling && !mIsWidget) {
-                child = setAnimation(child);
-            }
-
                 // If we failed to re-bind the data, scrap the obtained view.
                 if (updatedView != transientView) {
                     mRecycler.addScrapView(updatedView, position);
@@ -2276,8 +2272,13 @@ public abstract class AbsListView extends AdapterView<ListAdapter> implements Te
         }
 
         final View scrapView = mRecycler.getScrapView(position);
-        final View child = mAdapter.getView(position, scrapView, this);
+        View child = mAdapter.getView(position, scrapView, this);
+
         if (scrapView != null) {
+            if (mIsScrolling && !mIsWidget) {
+                child = setAnimation(child);
+            }
+
             if (child != scrapView) {
                 // Failed to re-bind the data, return scrap to the heap.
                 mRecycler.addScrapView(scrapView, position);
