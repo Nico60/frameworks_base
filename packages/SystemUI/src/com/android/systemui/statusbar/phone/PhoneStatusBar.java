@@ -4038,7 +4038,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             addNotificationViews(createNotificationViews(notifData.first, notifData.second));
         }
 
-        updateSettings();
         setAreThereNotifications();
 
         mStatusBarContainer.addView(mStatusBarWindow);
@@ -4053,7 +4052,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                             : R.drawable.ic_notify_halo_normal);
         }
 
+        checkBarModes();
         mRecreating = false;
+
+        updateSettings();
     }
 
     private void removeAllViews(ViewGroup parent) {
