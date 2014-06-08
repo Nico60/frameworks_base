@@ -120,6 +120,9 @@ public class CompassTile extends QuickSettingsTile implements
 
     @Override
     public void onClick(View v) {
+        if (isFlipTilesEnabled()) {
+            flipTile(0);
+        }
         mActive = !mActive;
         updateResources();
     }
