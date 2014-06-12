@@ -2563,6 +2563,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mSettingsButtonAnim != null) mSettingsButtonAnim.cancel();
         if (mNotificationButtonAnim != null) mNotificationButtonAnim.cancel();
         if (mClearButtonAnim != null) mClearButtonAnim.cancel();
+        if (mHaloButtonAnim != null) mHaloButtonAnim.cancel();
 
         progress = Math.min(Math.max(progress, -1f), 1f);
         if (progress < 0f) { // notifications side
@@ -2581,6 +2582,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 mBrightnessView.setScaleX(-progress);
             }
             mNotificationButton.setVisibility(View.GONE);
+            mHaloButton.setVisibility(View.VISIBLE);
+            mHaloButton.setAlpha(-progress);
         } else { // settings side
             mFlipSettingsView.setScaleX(progress);
             mFlipSettingsView.setVisibility(View.VISIBLE);
@@ -2597,6 +2600,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
             mNotificationButton.setVisibility(View.VISIBLE);
             mNotificationButton.setAlpha(progress);
+            mHaloButton.setVisibility(View.GONE);
         }
         mClearButton.setVisibility(View.GONE);
 

@@ -20,6 +20,8 @@ import static android.view.KeyEvent.ACTION_DOWN;
 import static android.view.KeyEvent.KEYCODE_BACK;
 
 import android.app.AlarmManager;
+
+import android.app.INotificationManager;
 import android.app.PendingIntent;
 import android.content.ActivityNotFoundException;
 import android.content.BroadcastReceiver;
@@ -36,6 +38,7 @@ import android.database.Cursor;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.os.Handler;
+import android.os.ServiceManager;
 import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.KeyEvent;
@@ -89,6 +92,8 @@ public class AppSidebar extends TriggerOverlayView {
             1.0f
     );
 
+    private INotificationManager mNotificationManager;
+
     private int mTriggerColor;
     private LinearLayout mAppContainer;
     private SnappingScrollView mScrollView;
@@ -101,7 +106,6 @@ public class AppSidebar extends TriggerOverlayView {
     private boolean mFirstTouch = false;
     private boolean mHideTextLabels = false;
     private boolean mUseTab = false;
-    private boolean mFloatingWindow = false;
     private int mPosition = SIDEBAR_POSITION_RIGHT;
 
     private TranslateAnimation mSlideIn;
@@ -251,6 +255,11 @@ public class AppSidebar extends TriggerOverlayView {
     private void showAppContainer(boolean show) {
         if (mScrollView == null)
             return;
+        // initialize if null
+        if (mNotificationManager == null) {
+            mNotificationManager = INotificationManager.Stub.asInterface(
+                    ServiceManager.getService(Context.NOTIFICATION_SERVICE));
+        }
         mState = show ? SIDEBAR_STATE.OPENING : SIDEBAR_STATE.CLOSING;
         if (show) {
             mScrollView.setVisibility(View.VISIBLE);
@@ -432,16 +441,29 @@ public class AppSidebar extends TriggerOverlayView {
         return super.dispatchKeyEventPreIme(event);
     }
 
-    private void launchApplication(AppItemInfo ai) {
+    private void launchApplication(AppItemInfo ai, boolean floating) {
         dismissFolderView();
         updateAutoHideTimer(500);
         ComponentName cn = new ComponentName(ai.packageName, ai.className);
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (mFloatingWindow) {
-            intent.addFlags(Intent.FLAG_FLOATING_WINDOW);
-            mFloatingWindow = false;
+        if (floating) {
+            boolean allowed = true;
+            try {
+                // preloaded apps are added to the blacklist array when is recreated, handled in the notification manager
+                allowed = mNotificationManager.isPackageAllowedForFloatingMode(ai.packageName);
+            } catch (android.os.RemoteException ex) {
+                // System is dead
+            }
+            if (allowed) {
+                intent.addFlags(Intent.FLAG_FLOATING_WINDOW);
+            } else {
+                String text = mContext.getResources().getString(R.string.floating_mode_blacklisted_app);
+                int duration = Toast.LENGTH_LONG;
+                Toast.makeText(mContext, text, duration).show();
+                return;
+            }
         }
         intent.setComponent(cn);
         try {
@@ -458,8 +480,7 @@ public class AppSidebar extends TriggerOverlayView {
                 mFirstTouch = false;
                 return false;
             }
-            mFloatingWindow = true;
-            launchApplication((AppItemInfo)view.getTag());
+            launchApplication((AppItemInfo)view.getTag(), true);
             return true;
         }
     };
@@ -472,7 +493,7 @@ public class AppSidebar extends TriggerOverlayView {
                 return;
             }
 
-            launchApplication((AppItemInfo)view.getTag());
+            launchApplication((AppItemInfo)view.getTag(), false);
         }
     };
 
