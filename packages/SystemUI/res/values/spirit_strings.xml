@@ -148,4 +148,11 @@
     <!-- Title shown when app provides no interface -->
     <string name="status_bar_floating_no_interface">App provides no interface</string>
 
+    <!-- Screenshot Tile -->
+    <string name="quick_settings_screenshot_label">Screenshot</string>
+    <string name="screenshot_toast">Screenshot in %1$d seconds</string>
+    <string name="permdesc_screenshot">Capture screenshot</string>
+    <string name="permlab_screenshot">Allows the app to cature a screenshot. This is protected by SystemUI.</string>
+
+
 </resources>
