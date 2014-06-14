@@ -391,6 +391,8 @@ public abstract class BaseStatusBar extends SystemUI implements
                 Settings.Global.getUriFor(Settings.Global.DEVICE_PROVISIONED), true,
                 mProvisioningObserver);
 
+        mSettingsObserver.observe();
+
         mContext.getContentResolver().registerContentObserver(
                 Settings.System.getUriFor(Settings.System.RECENTS_USE_SLIM), true,
                 mSettingsObserver, UserHandle.USER_ALL);
