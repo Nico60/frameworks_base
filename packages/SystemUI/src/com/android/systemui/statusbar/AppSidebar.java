@@ -101,6 +101,7 @@ public class AppSidebar extends TriggerOverlayView {
     private boolean mFirstTouch = false;
     private boolean mHideTextLabels = false;
     private boolean mUseTab = false;
+    private boolean mFloatingWindow = false;
     private int mPosition = SIDEBAR_POSITION_RIGHT;
 
     private TranslateAnimation mSlideIn;
@@ -431,18 +432,16 @@ public class AppSidebar extends TriggerOverlayView {
         return super.dispatchKeyEventPreIme(event);
     }
 
-    private void launchApplication(AppItemInfo ai, boolean floating) {
+    private void launchApplication(AppItemInfo ai) {
         dismissFolderView();
         updateAutoHideTimer(500);
         ComponentName cn = new ComponentName(ai.packageName, ai.className);
         Intent intent = new Intent(Intent.ACTION_MAIN);
         intent.addCategory(Intent.CATEGORY_LAUNCHER);
         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        if (floating) {
-            Intent transparent = new Intent(mContext, com.android.systemui.Transparent.class);
-            transparent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_FLOATING_WINDOW | Intent.FLAG_ACTIVITY_EXCLUDE_FROM_RECENTS);
-            mContext.startActivity(transparent);
+        if (mFloatingWindow) {
             intent.addFlags(Intent.FLAG_FLOATING_WINDOW);
+            mFloatingWindow = false;
         }
         intent.setComponent(cn);
         try {
@@ -459,7 +458,8 @@ public class AppSidebar extends TriggerOverlayView {
                 mFirstTouch = false;
                 return false;
             }
-            launchApplication((AppItemInfo)view.getTag(), true);
+            mFloatingWindow = true;
+            launchApplication((AppItemInfo)view.getTag());
             return true;
         }
     };
@@ -472,7 +472,7 @@ public class AppSidebar extends TriggerOverlayView {
                 return;
             }
 
-            launchApplication((AppItemInfo)view.getTag(), false);
+            launchApplication((AppItemInfo)view.getTag());
         }
     };
 
