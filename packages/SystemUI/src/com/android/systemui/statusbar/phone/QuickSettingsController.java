@@ -39,7 +39,6 @@ import static com.android.internal.util.cm.QSConstants.TILE_PROFILE;
 import static com.android.internal.util.cm.QSConstants.TILE_PERFORMANCE_PROFILE;
 import static com.android.internal.util.cm.QSConstants.TILE_QUICKRECORD;
 import static com.android.internal.util.cm.QSConstants.TILE_QUIETHOURS;
-import static com.android.internal.util.cm.QSConstants.TILE_REBOOT;
 import static com.android.internal.util.cm.QSConstants.TILE_RINGER;
 import static com.android.internal.util.cm.QSConstants.TILE_SCREENTIMEOUT;
 import static com.android.internal.util.cm.QSConstants.TILE_SETTINGS;
@@ -109,7 +108,6 @@ import com.android.systemui.quicksettings.TorchTile;
 import com.android.systemui.quicksettings.UsbTetherTile;
 import com.android.systemui.quicksettings.UserTile;
 import com.android.systemui.quicksettings.VolumeTile;
-import com.android.systemui.quicksettings.RebootTile;
 import com.android.systemui.quicksettings.RemoteDisplayTile;
 import com.android.systemui.quicksettings.WiFiTile;
 import com.android.systemui.quicksettings.WifiAPTile;
@@ -296,8 +294,6 @@ public class QuickSettingsController {
                 qs = new ThemeTile(mContext, this); 
             } else if (tile.equals(TILE_ONTHEGO)) {
                 qs = new OnTheGoTile(mContext, this);
-            } else if (tile.equals(TILE_REBOOT)) {
-                qs = new RebootTile(mContext, this);
             } else if (tile.equals(TILE_QUICKRECORD)) {
                 qs = new QuickRecordTile(mContext, this);
             } else if (tile.equals(TILE_NAVBAR)) {
@@ -305,7 +301,7 @@ public class QuickSettingsController {
             } else if (tile.equals(TILE_COMPASS)) {
                 qs = new CompassTile(mContext, this);
 	    } else if (tile.equals(TILE_POWER)) {
-                qs = new PowerMenuTile(mContext, this);     
+                qs = new PowerMenuTile(mContext, this);
             }
 
             if (qs != null) {
