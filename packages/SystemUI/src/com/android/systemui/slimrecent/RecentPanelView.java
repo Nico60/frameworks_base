@@ -90,7 +90,6 @@ public class RecentPanelView {
     private static final int MENU_APP_STOP_ID      = 3;
     private static final int MENU_APP_PLAYSTORE_ID = 4;
     private static final int MENU_APP_AMAZON_ID    = 5;
-    private static final int MENU_APP_POPUP_ID     = 6;
 
     private static final String PLAYSTORE_REFERENCE = "com.android.vending";
     private static final String AMAZON_REFERENCE    = "com.amazon.venezia";
@@ -306,9 +305,6 @@ public class RecentPanelView {
         // Add app detail menu entry.
         popup.getMenu().add(0, MENU_APP_DETAILS_ID, 0,
                 mContext.getResources().getString(R.string.status_bar_recent_inspect_item_title));
-        popup.getMenu().add(0, MENU_APP_POPUP_ID, 0,
-                mContext.getResources().getString(R.string.status_bar_recent_floating_item_title));
-
 
         popup.getMenu().add(0, MENU_APP_FLOATING_ID, 0,
                 mContext.getResources().getString(R.string.status_bar_recent_floating_item_title));
@@ -386,8 +382,6 @@ public class RecentPanelView {
                 } else if (item.getItemId() == MENU_APP_AMAZON_ID) {
                     startApplicationDetailsActivity(null,
                             AMAZON_APP_URI_QUERY + td.packageName, AMAZON_REFERENCE);
-                } else if (item.getItemId() == MENU_APP_POPUP_ID) {
-                    startApplicationPopup(td);
                 }
                 return true;
             }
@@ -550,33 +544,6 @@ public class RecentPanelView {
             final Intent intent = td.intent;
             intent.addFlags(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY
                     | Intent.FLAG_ACTIVITY_TASK_ON_HOME
-                    | Intent.FLAG_ACTIVITY_NEW_TASK);
-            if (DEBUG) Log.v(TAG, "Starting activity " + intent);
-            try {
-                mContext.startActivityAsUser(intent, getAnimation(),
-                        new UserHandle(UserHandle.USER_CURRENT));
-            } catch (SecurityException e) {
-                Log.e(TAG, "Recents does not have the permission to launch " + intent, e);
-            } catch (ActivityNotFoundException e) {
-                Log.e(TAG, "Error launching activity " + intent, e);
-            }
-        }
-        exit();
-    }
-
-    private void startApplicationPopup(TaskDescription td) {
-        // Starting app is requested by the user.
-        // Move it to foreground or start it with custom animation.
-        final ActivityManager am = (ActivityManager)
-                mContext.getSystemService(Context.ACTIVITY_SERVICE);
-        if (td.taskId >= 0) {
-            // This is an active task; it should just go to the foreground.
-            am.moveTaskToFront(td.taskId, ActivityManager.MOVE_TASK_WITH_HOME, getAnimation());
-        } else {
-            final Intent intent = td.intent;
-            intent.addFlags(Intent.FLAG_ACTIVITY_LAUNCHED_FROM_HISTORY
-                    | Intent.FLAG_ACTIVITY_TASK_ON_HOME
-                    | Intent.FLAG_FLOATING_WINDOW
                     | Intent.FLAG_ACTIVITY_NEW_TASK);
             if (DEBUG) Log.v(TAG, "Starting activity " + intent);
             try {
