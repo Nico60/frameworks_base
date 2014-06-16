@@ -5370,7 +5370,7 @@ public class WindowManagerService extends IWindowManager.Stub
     @Override
     public void rebootTile() {
         ShutdownThread.reboot(mContext, null, true);
-    } 
+    }
 
     public void setCurrentUser(final int newUserId) {
         synchronized (mWindowMap) {

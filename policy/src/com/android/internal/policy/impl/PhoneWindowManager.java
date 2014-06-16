@@ -619,7 +619,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
             if (action.equals(Intent.ACTION_POWERMENU_REBOOT)) {
-                mWindowManagerFuncs.rebootTile(); 
+                mWindowManagerFuncs.rebootTile();
             }
         }
 
@@ -639,7 +639,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 mContext.unregisterReceiver(this);
             }
         }
-    } 
+    }
 
     class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
@@ -1162,12 +1162,12 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         showGlobalActionsDialog(false);
     }
     
-    void showGlobalActionsDialog(boolean showRebootMenu) { 
+    void showGlobalActionsDialog(boolean showRebootMenu) {
         if (mGlobalActions == null) {
             mGlobalActions = new GlobalActions(mContext, mWindowManagerFuncs);
         }
         final boolean keyguardLocked = getKeyguardManager().isKeyguardLocked();
-        mGlobalActions.showDialog(keyguardLocked, isDeviceProvisioned(), showRebootMenu); 
+        mGlobalActions.showDialog(keyguardLocked, isDeviceProvisioned(), showRebootMenu);
         if (keyguardLocked) {
             // since it took two seconds of long press to bring this up,
             // poke the wake lock so they have some time to see the dialog.

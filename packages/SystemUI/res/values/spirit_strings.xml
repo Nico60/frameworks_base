@@ -143,6 +143,6 @@
     <string name="hover_cling_text">Hover is now enabled.\n\nWhen a new notification arrives, an overlay will show allowing you to respond to it without leaving current app.</string>
 
     <!-- Power menu -->
-    <string name="quick_settings_powermenu_label">Power Menu</string> 
+    <string name="quick_settings_powermenu_label">Power Menu</string>
 
 </resources>

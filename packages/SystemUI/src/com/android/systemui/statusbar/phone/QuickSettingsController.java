@@ -291,7 +291,7 @@ public class QuickSettingsController {
                     qs = new NetworkAdbTile(mContext, this);
                 }
             } else if (tile.equals(TILE_THEME)) {
-                qs = new ThemeTile(mContext, this); 
+                qs = new ThemeTile(mContext, this);
             } else if (tile.equals(TILE_ONTHEGO)) {
                 qs = new OnTheGoTile(mContext, this);
             } else if (tile.equals(TILE_QUICKRECORD)) {
