@@ -235,7 +235,7 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     private RecentController mSlimRecents;
 
-    private int mExpandedDesktopStyle = 0;
+    protected int mExpandedDesktopStyle = 0;
 
     protected ActiveDisplayView mActiveDisplayView;
 
