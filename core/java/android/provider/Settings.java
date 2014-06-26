@@ -4876,6 +4876,11 @@ public final class Settings {
         public static final String RECENT_PANEL_SCALE_FACTOR = "recent_panel_scale_factor";
 
         /**
+         * @hide
+         */
+        public static final String PROXIMITY_ON_WAKE = "proximity_on_wake";
+
+        /**
          * Override and forcefully disable the fullscreen keyboard
          * @hide
          */
