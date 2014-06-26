@@ -515,6 +515,9 @@ public class RecentController implements RecentPanelView.OnExitListener,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.RECENT_PANEL_SHOW_TOPMOST),
                     false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.RECENT_PANEL_BG_COLOR),
+                    false, this, UserHandle.USER_ALL);
             update();
         }
 
@@ -559,6 +562,11 @@ public class RecentController implements RecentPanelView.OnExitListener,
                     resolver, Settings.System.RECENT_PANEL_SHOW_TOPMOST, 0,
                     UserHandle.USER_CURRENT) == 1);
             }
+
+            //Update colors in RecentPanelView
+            final int color = Settings.System.getIntForUser(resolver,
+                Settings.System.RECENT_PANEL_BG_COLOR, 0, UserHandle.USER_CURRENT);
+            mRecentContent.setBackgroundColor(color);
         }
     }
 
