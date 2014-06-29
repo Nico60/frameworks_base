@@ -1229,179 +1229,179 @@
     <item quantity="one" msgid="1634101450343277345">Rede Wi-Fi abierta disponible</item>
     <item quantity="other" msgid="7915895323644292768">Redes Wi-Fi abiertes disponibles</item>
   </plurals>
-    <string name="wifi_available_sign_in" msgid="4029489716605255386">Aniciar sesión en rede Wi-Fi</string>
-    <string name="network_available_sign_in" msgid="8495155593358054676">Aniciar sesión na rede</string>
-    <!-- no translation found for network_available_sign_in_detailed (8000081941447976118) -->
-    <skip />
-    <string name="wifi_watchdog_network_disabled" msgid="7904214231651546347">Nun pudo afitase conexón cola rede Wi-Fi.</string>
-    <string name="wifi_watchdog_network_disabled_detailed" msgid="5548780776418332675"> tien una conexón inestable a Internet.</string>
-    <string name="wifi_p2p_dialog_title" msgid="97611782659324517">Wi-Fi Direct</string>
-    <string name="wifi_p2p_turnon_message" msgid="2909250942299627244">Aniciar Wi-Fi Direct. Va desactivase\'l funcionamientu de la zona o del cliente Wi-Fi.</string>
-    <string name="wifi_p2p_failed_message" msgid="3763669677935623084">Nun pudo aniciase Wi-Fi Direct.</string>
-    <string name="wifi_p2p_enabled_notification_title" msgid="2068321881673734886">Wi-Fi Direct activáu</string>
-    <string name="wifi_p2p_enabled_notification_message" msgid="1638949953993894335">Toca p\'acceder a Axustes</string>
-    <string name="accept" msgid="1645267259272829559">Aceutar</string>
-    <string name="decline" msgid="2112225451706137894">Refugar</string>
-    <string name="wifi_p2p_invitation_sent_title" msgid="1318975185112070734">Invitación unviada</string>
-    <string name="wifi_p2p_invitation_to_connect_title" msgid="4958803948658533637">Invitación pa coneutase</string>
-    <string name="wifi_p2p_from_message" msgid="570389174731951769">De:</string>
-    <string name="wifi_p2p_to_message" msgid="248968974522044099">Pa:</string>
-    <string name="wifi_p2p_enter_pin_message" msgid="5920929550367828970">Escribi\'l PIN solicitáu:</string>
-    <string name="wifi_p2p_show_pin_message" msgid="8530563323880921094">PIN:</string>
-    <string name="wifi_p2p_frequency_conflict_message" product="tablet" msgid="8012981257742232475">La tablet va desconeutase temporalmente de la rede Wi-Fi mientres teas coneutáu a  <xliff:g id="DEVICE_NAME">%1$s</xliff:g></string>
-    <string name="wifi_p2p_frequency_conflict_message" product="default" msgid="7363907213787469151">El teléfonu va desconeutase temporalmente de la rede Wi-Fi mientres teas coneutáu a <xliff:g id="DEVICE_NAME">%1$s</xliff:g>.</string>
-    <string name="select_character" msgid="3365550120617701745">Inxertar carácter</string>
-    <string name="sms_control_title" msgid="7296612781128917719">Unviando mensaxes SMS\u2026</string>
-    <string name="sms_control_message" msgid="3867899169651496433">&lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ta unviando un gran númberu de mensaxes SMS. ¿Quies permitir que l\'aplicación siga unviando mensaxes?</string>
-    <string name="sms_control_yes" msgid="3663725993855816807">Permitir</string>
-    <string name="sms_control_no" msgid="625438561395534982">Refugar</string>
-    <string name="sms_short_code_confirm_message" msgid="1645436466285310855">&lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; quier unviar un mensaxe a &lt;b&gt;<xliff:g id="DEST_ADDRESS">%2$s</xliff:g>&lt;/b&gt;.</string>
-    <string name="sms_short_code_details" msgid="3492025719868078457"><font fgcolor="#ffffb060">Ye dable que s\'apliquen cargos</font> na cuenta móvil.</string>
-    <string name="sms_premium_short_code_details" msgid="5523826349105123687"><font fgcolor="#ffffb060">Van aplicase cargos na cuenta móvil.</font></string>
-    <string name="sms_short_code_confirm_allow" msgid="4458878637111023413">Unviar</string>
-    <string name="sms_short_code_confirm_deny" msgid="2927389840209170706">Encaboxar</string>
-    <string name="sms_short_code_remember_choice" msgid="5289538592272218136">Recordar opción esbillada</string>
-    <string name="sms_short_code_remember_undo_instruction" msgid="4960944133052287484">Pues cambiar esta opción más tarde en Axustes &gt; Aplicaciones.</string>
-    <string name="sms_short_code_confirm_always_allow" msgid="3241181154869493368">Permitir siempre</string>
-    <string name="sms_short_code_confirm_never_allow" msgid="446992765774269673">Nun permitir enxamás</string>
-    <string name="sim_removed_title" msgid="6227712319223226185">Tarxeta SIM desaniciada</string>
-    <string name="sim_removed_message" msgid="2333164559970958645">La rede móvil nun va tar disponible hasta que reanicies el preséu con una tarxeta SIM válida.</string>
-    <string name="sim_done_button" msgid="827949989369963775">Fecho</string>
-    <string name="sim_added_title" msgid="3719670512889674693">Tarxeta SIM amestada</string>
-    <string name="sim_added_message" msgid="6599945301141050216">Reanicia\'l preséu p\'acceder a la rede móvil.</string>
-    <string name="sim_restart_button" msgid="4722407842815232347">Reaniciar</string>
-    <string name="time_picker_dialog_title" msgid="8349362623068819295">Afitar hora</string>
-    <string name="date_picker_dialog_title" msgid="5879450659453782278">Afitar data</string>
-    <string name="date_time_set" msgid="5777075614321087758">Afitar</string>
-    <string name="date_time_done" msgid="2507683751759308828">Fecho</string>
-    <string name="perms_new_perm_prefix" msgid="8257740710754301407"><font size="12" fgcolor="#ff33b5e5">NUEVU:</font></string>
-    <string name="perms_description_app" msgid="5139836143293299417">Proporcionáu por <xliff:g id="APP_NAME">%1$s</xliff:g></string>
-    <string name="no_permissions" msgid="7283357728219338112">Nun fai falta nengún permisu</string>
-    <string name="perm_costs_money" msgid="4902470324142151116">ye dable que se cobre por usar l\'aplicación.</string>
-    <string name="usb_storage_activity_title" msgid="4465055157209648641">Almacenamientu USB masivu</string>
-    <string name="usb_storage_title" msgid="5901459041398751495">Conexón por USB</string>
-    <string name="usb_storage_message" product="nosdcard" msgid="3308538094316477839">Coneutóse\'l preséu al ordenador por USB. Toca\'l siguiente botón si quies tresferir ficheros ente l\'ordenador y l\'almacenamientu USB del preséu.</string>
-    <string name="usb_storage_message" product="default" msgid="805351000446037811">Coneutóse\'l preséu al ordenador por USB. Toca\'l siguiente botón si quies tresferir ficheros ente l\'ordenador y la tarxeta SD del preséu.</string>
-    <string name="usb_storage_button_mount" msgid="1052259930369508235">Activar almacenamientu USB</string>
-    <string name="usb_storage_error_message" product="nosdcard" msgid="3017045217365540658">Hebo un fallu al usar l\'almacenamientu USB como almacenamientu USB masivu.</string>
-    <string name="usb_storage_error_message" product="default" msgid="2876018512716970313">Hebo un fallu al usar la tarxeta SD pal almacenamientu USB masivu.</string>
-    <string name="usb_storage_notification_title" msgid="8175892554757216525">Conexón por USB</string>
-    <string name="usb_storage_notification_message" msgid="939822783828183763">Toca pa tresferir ficheros</string>
-    <string name="usb_storage_stop_notification_title" msgid="2336058396663516017">Desactivar almacenamientu USB</string>
-    <string name="usb_storage_stop_notification_message" msgid="1656852098555623822">Toca pa desactivar l\'almacenamientu USB.</string>
-    <string name="usb_storage_stop_title" msgid="660129851708775853">L\'almacenamientu USB ta n\'usu</string>
-    <string name="usb_storage_stop_message" product="nosdcard" msgid="4264025280777219521">Enantes de desactivar l\'almacenamientu USB, desactiva l\'almacenamientu USB del preséu Android del ordenador.</string>
-    <string name="usb_storage_stop_message" product="default" msgid="8043969782460613114">Enantes de desactivar l\'almacenamientu USB, desactiva la tarxeta SD del preséu Android del ordenador.</string>
-    <string name="usb_storage_stop_button_mount" msgid="7060218034900696029">Desactivar almacenamientu USB</string>
-    <string name="usb_storage_stop_error_message" msgid="1970374898263063836">Hebo un fallu al desactivar l\'almacenamientu USB. Comprueba que desactivasti\'l host USB, y darréu, vuelvi a intentalo.</string>
-    <string name="dlg_confirm_kill_storage_users_title" msgid="963039033470478697">Activar almacenamientu USB</string>
-    <string name="dlg_confirm_kill_storage_users_text" msgid="5100428757107469454">Si actives l\'almacenamientu USB, van parase dalgunes aplicaciones que tas usando y ye dable que nun tean disponibles hasta que lu desactives.</string>
-    <string name="dlg_error_title" msgid="7323658469626514207">Fallu de funcionamientu de USB</string>
-    <string name="dlg_ok" msgid="7376953167039865701">Aceutar</string>
-    <string name="usb_mtp_notification_title" msgid="3699913097391550394">Coneutáu como preséu multimedia</string>
-    <string name="usb_ptp_notification_title" msgid="1960817192216064833">Coneutáu como una cámara</string>
-    <string name="usb_cd_installer_notification_title" msgid="6774712827892090754">Coneutáu como instalador</string>
-    <string name="usb_accessory_notification_title" msgid="7848236974087653666">Coneutáu a un accesoriu USB</string>
-    <string name="usb_notification_message" msgid="2290859399983720271">Toca p\'acceder a otres opciones de USB</string>
-    <string name="extmedia_format_title" product="nosdcard" msgid="9020092196061007262">¿Formatiar USB?</string>
-    <string name="extmedia_format_title" product="default" msgid="3648415921526526069">¿Formatiar la tarxeta SD?</string>
-    <string name="extmedia_format_message" product="nosdcard" msgid="3934016853425761078">Van desaniciase tolos ficheros almacenaos nel almacenamientu USB. Esta aición nun pue desfacese.</string>
-    <string name="extmedia_format_message" product="default" msgid="14131895027543830">Van desaniciase tolos datos de la to tarxeta.</string>
-    <string name="extmedia_format_button_format" msgid="4131064560127478695">Formatu</string>
-    <string name="adb_active_notification_title" msgid="6729044778949189918">Depuración USB habilitada</string>
-    <string name="adb_active_notification_message" msgid="1016654627626476142">Toca pa inhabilitar la depuración USB</string>
-    <string name="select_input_method" msgid="4653387336791222978">Seleiciona un métodu d\'entrada</string>
-    <string name="configure_input_methods" msgid="9091652157722495116">Configurar métodos d\'entrada</string>
-    <string name="use_physical_keyboard" msgid="6203112478095117625">Tecláu físicu</string>
-    <string name="hardware" msgid="7517821086888990278">Hardware</string>
-    <string name="select_keyboard_layout_notification_title" msgid="1407367017263030773">Seleiciona un diseñu de tecláu</string>
-    <string name="select_keyboard_layout_notification_message" msgid="4465907700449257063">Toca pa seleicionar un diseñu de tecláu.</string>
-    <string name="fast_scroll_alphabet" msgid="5433275485499039199"> ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
-    <string name="fast_scroll_numeric_alphabet" msgid="4030170524595123610"> 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
-    <string name="candidates_style" msgid="4333913089637062257"><u>candidatos</u></string>
-    <string name="ext_media_checking_notification_title" product="nosdcard" msgid="3449816005351468560">Tresnando almacenamientu USB</string>
-    <string name="ext_media_checking_notification_title" product="default" msgid="5457603418970994050">Tresnando tarxeta SD</string>
-    <string name="ext_media_checking_notification_message" msgid="8287319882926737053">Comprobando fallos\u2026</string>
-    <string name="ext_media_nofs_notification_title" product="nosdcard" msgid="7788040745686229307">Almacenamientu USB baleru</string>
-    <string name="ext_media_nofs_notification_title" product="default" msgid="780477838241212997">Tarxeta SD balera</string>
-    <string name="ext_media_nofs_notification_message" product="nosdcard" msgid="7840121067427269500">Almacenamientu USB baleru o con sistema de ficheros non almitíu</string>
-    <string name="ext_media_nofs_notification_message" product="default" msgid="8641065641786923604">La tarxeta SD ta balera o\'l so sistema de ficheros ye incompatible.</string>
-    <string name="ext_media_unmountable_notification_title" product="nosdcard" msgid="2090046769532713563">Almacenamientu USB dañáu</string>
-    <string name="ext_media_unmountable_notification_title" product="default" msgid="6410723906019100189">Tarxeta SD dañada</string>
-    <string name="ext_media_unmountable_notification_message" product="nosdcard" msgid="1795917578395333280">L\'almacenamientu USB ta dañáu. Prueba a formatialu de nueves.</string>
-    <string name="ext_media_unmountable_notification_message" product="default" msgid="1753898567525568253">La tarxeta SD ta dañada. Prueba a formatiala de nueves.</string>
-    <string name="ext_media_badremoval_notification_title" product="nosdcard" msgid="1661683031330951073">USB estrayíu d\'esmenu</string>
-    <string name="ext_media_badremoval_notification_title" product="default" msgid="6872152882604407837">La tarxeta SD estráxose d\'esmenu.</string>
-    <string name="ext_media_badremoval_notification_message" product="nosdcard" msgid="4329848819865594241">Desactiva l\'almacenamientu USB enantes d\'estrayelu pa evitar la perda de datos.</string>
-    <string name="ext_media_badremoval_notification_message" product="default" msgid="7260183293747448241">Desactiva la tarxeta SD enantes d\'estrayela pa evitar la perda de datos.</string>
-    <string name="ext_media_safe_unmount_notification_title" product="nosdcard" msgid="3967973893270360230">USB estrayíu de mou seguru</string>
-    <string name="ext_media_safe_unmount_notification_title" product="default" msgid="6729801130790616200">Ye seguro estrayer la tarxeta SD.</string>
-    <string name="ext_media_safe_unmount_notification_message" product="nosdcard" msgid="6142195361606493530">Pues estrayer l\'almacenamientu USB de forma segura.</string>
-    <string name="ext_media_safe_unmount_notification_message" product="default" msgid="568841278138377604">Pues estrayer la tarxeta SD de forma segura.</string>
-    <string name="ext_media_nomedia_notification_title" product="nosdcard" msgid="4486377230140227651">Almacenamientu USB estrayíu</string>
-    <string name="ext_media_nomedia_notification_title" product="default" msgid="8902518030404381318">Tarxeta SD estrayida</string>
-    <string name="ext_media_nomedia_notification_message" product="nosdcard" msgid="6921126162580574143">Almacenamientu USB estrayíu. Inxerta un mediu nuevu.</string>
-    <string name="ext_media_nomedia_notification_message" product="default" msgid="3870120652983659641">Estráxose la tarxeta SD. Inxerta una nueva.</string>
-    <string name="activity_list_empty" msgid="1675388330786841066">Nun s\'atopó nenguna actividá coincidente.</string>
-    <string name="permlab_pkgUsageStats" msgid="8787352074326748892">anovar estadístiques d\'usu de componentes</string>
-    <string name="permdesc_pkgUsageStats" msgid="1106612424254277630">Permite que l\'aplicación modifique les estadístiques recopilaes sobre l\'usu de componentes. Les aplicaciones normales nun tendríen d\'usar esti permisu.</string>
-    <string name="permlab_copyProtectedData" msgid="4341036311211406692">copiar conteníu</string>
-    <string name="permdesc_copyProtectedData" msgid="4390697124288317831">Permite que l\'aplicación execute\'l serviciu de contenedor predetermináu pa copiar conteníu. Les aplicaciones normales nun tendríen d\'usar esti permisu.</string>
-    <string name="permlab_route_media_output" msgid="1642024455750414694">Dirixir salida de mediu</string>
-    <string name="permdesc_route_media_output" msgid="4932818749547244346">Permite que l\'aplicación dirixa salides de medios a otros preseos esternos.</string>
-    <string name="permlab_access_keyguard_secure_storage" msgid="7565552237977815047">Acceder al almacenamientu seguru de bloqueos</string>
-    <string name="permdesc_access_keyguard_secure_storage" msgid="5866245484303285762">Permite qu\'una aplicación acceda al almacenamientu seguru de bloqueos.</string>
-    <string name="permlab_control_keyguard" msgid="172195184207828387">Remanar cuándo s\'amuesa y s\'anubre\'l bloquéu</string>
-    <string name="permdesc_control_keyguard" msgid="3043732290518629061">Permite qu\'una aplicación remane los bloqueos.</string>
-    <string name="tutorial_double_tap_to_zoom_message_short" msgid="4070433208160063538">Toca dos vegaes p\'acceder al control de zoom.</string>
-    <string name="gadget_host_error_inflating" msgid="4882004314906466162">Nun pudo amestase\'l widget.</string>
-    <string name="ime_action_go" msgid="8320845651737369027">Dir</string>
-    <string name="ime_action_search" msgid="658110271822807811">Guetar</string>
-    <string name="ime_action_send" msgid="2316166556349314424">Unviar</string>
-    <string name="ime_action_next" msgid="3138843904009813834">Siguiente</string>
-    <string name="ime_action_done" msgid="8971516117910934605">Fecho</string>
-    <string name="ime_action_previous" msgid="1443550039250105948">Anterior</string>
-    <string name="ime_action_default" msgid="2840921885558045721">Executar</string>
-    <string name="dial_number_using" msgid="5789176425167573586">Marcar númberu\ncon <xliff:g id="NUMBER">%s</xliff:g></string>
-    <string name="create_contact_using" msgid="4947405226788104538">Crear un contautu\na partir de <xliff:g id="NUMBER">%s</xliff:g></string>
-    <string name="grant_credentials_permission_message_header" msgid="2106103817937859662">Les siguientes aplicaciones soliciten permisu p\'acceder a la to cuenta agora y nel futuru.</string>
-    <string name="grant_credentials_permission_message_footer" msgid="3125211343379376561">¿Quies permitir esta solicitú?</string>
-    <string name="grant_permissions_header_text" msgid="6874497408201826708">Solicitú d\'accesu</string>
-    <string name="allow" msgid="7225948811296386551">Permitir</string>
-    <string name="deny" msgid="2081879885755434506">Refugar</string>
-    <string name="permission_request_notification_title" msgid="6486759795926237907">Permisu solicitáu</string>
-    <string name="permission_request_notification_with_subtitle" msgid="8530393139639560189">Permisu solicitáu\npa la cuenta <xliff:g id="ACCOUNT">%s</xliff:g></string>
-    <string name="input_method_binding_label" msgid="1283557179944992649">Métodu d\'introducción de testu</string>
-    <string name="sync_binding_label" msgid="3687969138375092423">Sincronización</string>
-    <string name="accessibility_binding_label" msgid="4148120742096474641">Accesibilidá</string>
-    <string name="wallpaper_binding_label" msgid="1240087844304687662">Fondu de pantalla</string>
-    <string name="chooser_wallpaper" msgid="7873476199295190279">Camudar fondu de pantalla</string>
-    <string name="notification_listener_binding_label" msgid="2014162835481906429">Deteutor de notificaciones</string>
-    <string name="vpn_title" msgid="19615213552042827">VPN activada</string>
-    <string name="vpn_title_long" msgid="6400714798049252294">VPN activada por <xliff:g id="APP">%s</xliff:g></string>
-    <string name="vpn_text" msgid="3011306607126450322">Toca p\'alministrar la rede.</string>
-    <string name="vpn_text_long" msgid="6407351006249174473">Coneutáu a <xliff:g id="SESSION">%s</xliff:g>. Toca p\'alministrar la rede.</string>
-    <string name="vpn_lockdown_connecting" msgid="6443438964440960745">Coneutando VPN siempre activada…</string>
-    <string name="vpn_lockdown_connected" msgid="8202679674819213931">VPN siempre activada coneutada</string>
-    <string name="vpn_lockdown_error" msgid="6009249814034708175">Fallu de VPN siempre activada</string>
-    <string name="vpn_lockdown_config" msgid="6415899150671537970">Toca pa configurar</string>
-    <string name="upload_file" msgid="2897957172366730416">Esbillar ficheru</string>
-    <string name="no_file_chosen" msgid="6363648562170759465">Ficheru non esbilláu</string>
-    <string name="reset" msgid="2448168080964209908">Restablecer</string>
-    <string name="submit" msgid="1602335572089911941">Unviar</string>
-    <string name="car_mode_disable_notification_title" msgid="3164768212003864316">Habilitóse\'l mou coche.</string>
-    <string name="car_mode_disable_notification_message" msgid="8035230537563503262">Toca pa salir del mou coche.</string>
-    <string name="tethered_notification_title" msgid="3146694234398202601">Anclaxe a rede/Zona Wi-Fi activu</string>
-    <string name="tethered_notification_message" msgid="6857031760103062982">Toca pa configurar</string>
-    <string name="back_button_label" msgid="2300470004503343439">Atrás</string>
-    <string name="next_button_label" msgid="1080555104677992408">Siguiente</string>
-    <string name="skip_button_label" msgid="1275362299471631819">Saltar</string>
-    <string name="throttle_warning_notification_title" msgid="4890894267454867276">Usu eleváu datos móviles</string>
-    <string name="throttle_warning_notification_message" msgid="3340822228599337743">Toca pa obtener más información sobre l\'usu de datos móviles.</string>
-    <string name="throttled_notification_title" msgid="6269541897729781332">Llímite datos superáu</string>
-    <string name="throttled_notification_message" msgid="5443457321354907181">Toca pa obtener más información sobre l\'usu de datos móviles.</string>
-    <string name="no_matches" msgid="8129421908915840737">Nun hai coincidencies.</string>
-    <string name="find_on_page" msgid="1946799233822820384">Guetar na páxina</string>
+  <string name="wifi_available_sign_in">Aniciar sesión en rede Wi-Fi</string>
+  <string name="network_available_sign_in">Aniciar sesión na rede</string>
+  <string name="network_available_sign_in_detailed"><xliff:g id="network_ssid">%1$s</xliff:g></string>
+  <string name="wifi_watchdog_network_disabled">Nun pudo afitase conexón cola rede Wi-Fi.</string>
+  <string name="wifi_watchdog_network_disabled_detailed"> tien una conexón inestable a Internet.</string>
+  <string name="wifi_p2p_dialog_title">Wi-Fi Direutu</string>
+  <string name="wifi_p2p_turnon_message">Aniciar Wi-Fi Direct. Va desactivase\'l funcionamientu de la zona o del cliente Wi-Fi.</string>
+  <string name="wifi_p2p_failed_message">Nun pudo aniciase Wi-Fi Direct.</string>
+  <string name="wifi_p2p_enabled_notification_title">Wi-Fi Direct activáu</string>
+  <string name="wifi_p2p_enabled_notification_message">Toca p\'acceder a Axustes</string>
+  <string name="accept">Aceutar</string>
+  <string name="decline">Refugar</string>
+  <string name="wifi_p2p_invitation_sent_title">Invitación unviada</string>
+  <string name="wifi_p2p_invitation_to_connect_title">Invitación pa coneutase</string>
+  <string name="wifi_p2p_from_message">De:</string>
+  <string name="wifi_p2p_to_message">Pa:</string>
+  <string name="wifi_p2p_enter_pin_message">Escribi\'l PIN solicitáu:</string>
+  <string name="wifi_p2p_show_pin_message">PIN:</string>
+  <string name="wifi_p2p_frequency_conflict_message" product="tablet">La tablet va desconeutase temporalmente de la rede Wi-Fi mientres teas coneutáu a  <xliff:g id="DEVICE_NAME">%1$s</xliff:g></string>
+  <string name="wifi_p2p_frequency_conflict_message" product="default">El teléfonu va desconeutase temporalmente de la rede Wi-Fi mientres teas coneutáu a <xliff:g id="DEVICE_NAME">%1$s</xliff:g>.</string>
+  <string name="select_character">Inxertar carácter</string>
+  <string name="sms_control_title">Unviando mensaxes SMS\u2026</string>
+  <string name="sms_control_message">&lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; ta unviando un gran númberu de mensaxes SMS. ¿Quies permitir que l\'aplicación siga unviando mensaxes?</string>
+  <string name="sms_control_yes">Permitir</string>
+  <string name="sms_control_no">Refugar</string>
+  <string name="sms_short_code_confirm_message">&lt;b&gt;<xliff:g id="APP_NAME">%1$s</xliff:g>&lt;/b&gt; quier unviar un mensaxe a &lt;b&gt;<xliff:g id="DEST_ADDRESS">%2$s</xliff:g>&lt;/b&gt;.</string>
+  <string name="sms_short_code_details"><font fgcolor="#ffffb060">Ye dable que s\'apliquen cargos</font> na cuenta móvil.</string>
+  <string name="sms_premium_short_code_details"><font fgcolor="#ffffb060">Van aplicase cargos na cuenta móvil.</font></string>
+  <string name="sms_short_code_confirm_allow">Unviar</string>
+  <string name="sms_short_code_confirm_deny">Encaboxar</string>
+  <string name="sms_short_code_remember_choice">Recordar opción esbillada</string>
+  <string name="sms_short_code_remember_undo_instruction">Pues cambiar esta opción más tarde en Axustes &gt; Aplicaciones.</string>
+  <string name="sms_short_code_confirm_always_allow">Permitir siempre</string>
+  <string name="sms_short_code_confirm_never_allow">Nun permitir enxamás</string>
+  <string name="sim_removed_title">Tarxeta SIM desaniciada</string>
+  <string name="sim_removed_message">La rede móvil nun va tar disponible hasta que reanicies el preséu con una tarxeta SIM válida.</string>
+  <string name="sim_done_button">Fecho</string>
+  <string name="sim_added_title">Tarxeta SIM amestada</string>
+  <string name="sim_added_message">Reanicia\'l preséu p\'acceder a la rede móvil.</string>
+  <string name="sim_restart_button">Reaniciar</string>
+  <string name="time_picker_dialog_title">Afitar hora</string>
+  <string name="date_picker_dialog_title">Afitar data</string>
+  <string name="date_time_set">Afitar</string>
+  <string name="date_time_done">Fecho</string>
+  <string name="perms_new_perm_prefix"><font size="12" fgcolor="#ff33b5e5">NUEVU:</font></string>
+  <string name="perms_description_app">Proporcionáu por <xliff:g id="APP_NAME">%1$s</xliff:g></string>
+  <string name="no_permissions">Nun fai falta nengún permisu</string>
+  <string name="perm_costs_money">ye dable que se cobre por usar l\'aplicación.</string>
+  <string name="usb_storage_activity_title">Almacenamientu USB masivu</string>
+  <string name="usb_storage_title">Conexón por USB</string>
+  <string name="usb_storage_message" product="nosdcard">Coneutóse\'l preséu al ordenador por USB. Toca\'l siguiente botón si quies tresferir ficheros ente l\'ordenador y l\'almacenamientu USB del preséu.</string>
+  <string name="usb_storage_message" product="default">Coneutóse\'l preséu al ordenador por USB. Toca\'l siguiente botón si quies tresferir ficheros ente l\'ordenador y la tarxeta SD del preséu.</string>
+  <string name="usb_storage_button_mount">Activar almacenamientu USB</string>
+  <string name="usb_storage_error_message" product="nosdcard">Hebo un fallu al usar l\'almacenamientu USB como almacenamientu USB masivu.</string>
+  <string name="usb_storage_error_message" product="default">Hebo un fallu al usar la tarxeta SD pal almacenamientu USB masivu.</string>
+  <string name="usb_storage_notification_title">Conexón por USB</string>
+  <string name="usb_storage_notification_message">Toca pa tresferir ficheros</string>
+  <string name="usb_storage_stop_notification_title">Desactivar almacenamientu USB</string>
+  <string name="usb_storage_stop_notification_message">Toca pa desactivar l\'almacenamientu USB.</string>
+  <string name="usb_storage_stop_title">L\'almacenamientu USB ta n\'usu</string>
+  <string name="usb_storage_stop_message" product="nosdcard">Enantes de desactivar l\'almacenamientu USB, desactiva l\'almacenamientu USB del preséu Android del ordenador.</string>
+  <string name="usb_storage_stop_message" product="default">Enantes de desactivar l\'almacenamientu USB, desactiva la tarxeta SD del preséu Android del ordenador.</string>
+  <string name="usb_storage_stop_button_mount">Desactivar almacenamientu USB</string>
+  <string name="usb_storage_stop_error_message">Hebo un fallu al desactivar l\'almacenamientu USB. Comprueba que desactivasti\'l host USB, y darréu, vuelvi a intentalo.</string>
+  <string name="dlg_confirm_kill_storage_users_title">Activar almacenamientu USB</string>
+  <string name="dlg_confirm_kill_storage_users_text">Si actives l\'almacenamientu USB, van parase dalgunes aplicaciones que tas usando y ye dable que nun tean disponibles hasta que lu desactives.</string>
+  <string name="dlg_error_title">Fallu de funcionamientu de USB</string>
+  <string name="dlg_ok">Aceutar</string>
+  <string name="usb_mtp_notification_title">Coneutáu como preséu multimedia</string>
+  <string name="usb_ptp_notification_title">Coneutáu como una cámara</string>
+  <string name="usb_cd_installer_notification_title">Coneutáu como instalador</string>
+  <string name="usb_accessory_notification_title">Coneutáu a un accesoriu USB</string>
+  <string name="usb_notification_message">Toca p\'acceder a otres opciones de USB</string>
+  <string name="extmedia_format_title" product="nosdcard">¿Formatiar USB?</string>
+  <string name="extmedia_format_title" product="default">¿Formatiar la tarxeta SD?</string>
+  <string name="extmedia_format_message" product="nosdcard">Van desaniciase tolos ficheros almacenaos nel almacenamientu USB. Esta aición nun pue desfacese.</string>
+  <string name="extmedia_format_message" product="default">Van desaniciase tolos datos de la to tarxeta.</string>
+  <string name="extmedia_format_button_format">Formatu</string>
+  <string name="adb_active_notification_title">Depuración USB coneutada</string>
+  <string name="adb_active_notification_message">Toca pa desactivar la depuración USB.</string>
+  <string name="select_input_method">Seleiciona un métodu d\'entrada</string>
+  <string name="configure_input_methods">Configurar métodos d\'entrada</string>
+  <string name="use_physical_keyboard">Tecláu físicu</string>
+  <string name="hardware">Hardware</string>
+  <string name="select_keyboard_layout_notification_title">Seleiciona un diseñu de tecláu</string>
+  <string name="select_keyboard_layout_notification_message">Toca pa seleicionar un diseñu de tecláu.</string>
+  <string name="fast_scroll_alphabet"> ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+  <string name="fast_scroll_numeric_alphabet"> 0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZ</string>
+  <string name="candidates_style"><u>candidatos</u></string>
+  <string name="ext_media_checking_notification_title" product="nosdcard">Tresnando almacenamientu USB</string>
+  <string name="ext_media_checking_notification_title" product="default">Tresnando tarxeta SD</string>
+  <string name="ext_media_checking_notification_message">Comprobando fallos\u2026</string>
+  <string name="ext_media_nofs_notification_title" product="nosdcard">Almacenamientu USB baleru</string>
+  <string name="ext_media_nofs_notification_title" product="default">Tarxeta SD balera</string>
+  <string name="ext_media_nofs_notification_message" product="nosdcard">Almacenamientu USB baleru o con sistema de ficheros non almitíu</string>
+  <string name="ext_media_nofs_notification_message" product="default">La tarxeta SD ta balera o\'l so sistema de ficheros ye incompatible.</string>
+  <string name="ext_media_unmountable_notification_title" product="nosdcard">Almacenamientu USB dañáu</string>
+  <string name="ext_media_unmountable_notification_title" product="default">Tarxeta SD dañada</string>
+  <string name="ext_media_unmountable_notification_message" product="nosdcard">L\'almacenamientu USB ta dañáu. Prueba a formatialu de nueves.</string>
+  <string name="ext_media_unmountable_notification_message" product="default">La tarxeta SD ta dañada. Prueba a formatiala de nueves.</string>
+  <string name="ext_media_badremoval_notification_title" product="nosdcard">USB estrayíu d\'esmenu</string>
+  <string name="ext_media_badremoval_notification_title" product="default">La tarxeta SD estráxose d\'esmenu.</string>
+  <string name="ext_media_badremoval_notification_message" product="nosdcard">Desactiva l\'almacenamientu USB enantes d\'estrayelu pa evitar la perda de datos.</string>
+  <string name="ext_media_badremoval_notification_message" product="default">Desactiva la tarxeta SD enantes d\'estrayela pa evitar la perda de datos.</string>
+  <string name="ext_media_safe_unmount_notification_title" product="nosdcard">USB estrayíu de mou seguru</string>
+  <string name="ext_media_safe_unmount_notification_title" product="default">Ye seguro estrayer la tarxeta SD.</string>
+  <string name="ext_media_safe_unmount_notification_message" product="nosdcard">Pues estrayer l\'almacenamientu USB de forma segura.</string>
+  <string name="ext_media_safe_unmount_notification_message" product="default">Pues estrayer la tarxeta SD de forma segura.</string>
+  <string name="ext_media_nomedia_notification_title" product="nosdcard">Almacenamientu USB estrayíu</string>
+  <string name="ext_media_nomedia_notification_title" product="default">Tarxeta SD estrayida</string>
+  <string name="ext_media_nomedia_notification_message" product="nosdcard">Almacenamientu USB estrayíu. Inxerta un mediu nuevu.</string>
+  <string name="ext_media_nomedia_notification_message" product="default">Estráxose la tarxeta SD. Inxerta una nueva.</string>
+  <string name="activity_list_empty">Nun s\'atopó nenguna actividá coincidente.</string>
+  <string name="permlab_pkgUsageStats">anovar estadístiques d\'usu de componentes</string>
+  <string name="permdesc_pkgUsageStats">Permite que l\'aplicación modifique les estadístiques recopilaes sobre l\'usu de componentes. Les aplicaciones normales nun tendríen d\'usar esti permisu.</string>
+  <string name="permlab_copyProtectedData">copiar conteníu</string>
+  <string name="permdesc_copyProtectedData">Permite que l\'aplicación execute\'l serviciu de contenedor predetermináu pa copiar conteníu. Les aplicaciones normales nun tendríen d\'usar esti permisu.</string>
+  <string name="permlab_route_media_output">Dirixir salida de mediu</string>
+  <string name="permdesc_route_media_output">Permite que l\'aplicación dirixa salides de medios a otros preseos esternos.</string>
+  <string name="permlab_access_keyguard_secure_storage">Acceder al almacenamientu seguru de bloqueos</string>
+  <string name="permdesc_access_keyguard_secure_storage">Permite qu\'una aplicación acceda al almacenamientu seguru de bloqueos.</string>
+  <string name="permlab_control_keyguard">Remanar cuándo s\'amuesa y s\'anubre\'l bloquéu</string>
+  <string name="permdesc_control_keyguard">Permite qu\'una aplicación remane los bloqueos.</string>
+  <string name="tutorial_double_tap_to_zoom_message_short">Toca dos vegaes p\'acceder al control de zoom.</string>
+  <string name="gadget_host_error_inflating">Nun pudo amestase\'l widget.</string>
+  <string name="ime_action_go">Dir</string>
+  <string name="ime_action_search">Guetar</string>
+  <string name="ime_action_send">Unviar</string>
+  <string name="ime_action_next">Siguiente</string>
+  <string name="ime_action_done">Fecho</string>
+  <string name="ime_action_previous">Anterior</string>
+  <string name="ime_action_default">Executar</string>
+  <string name="dial_number_using">Marcar númberu\ncon <xliff:g id="NUMBER">%s</xliff:g></string>
+  <string name="create_contact_using">Crear un contautu\na partir de <xliff:g id="NUMBER">%s</xliff:g></string>
+  <string name="grant_credentials_permission_message_header">Les siguientes aplicaciones soliciten permisu p\'acceder a la to cuenta agora y nel futuru.</string>
+  <string name="grant_credentials_permission_message_footer">¿Quies permitir esta solicitú?</string>
+  <string name="grant_permissions_header_text">Solicitú d\'accesu</string>
+  <string name="allow">Permitir</string>
+  <string name="deny">Refugar</string>
+  <string name="permission_request_notification_title">Permisu solicitáu</string>
+  <string name="permission_request_notification_with_subtitle">Permisu solicitáu\npa la cuenta <xliff:g id="ACCOUNT">%s</xliff:g></string>
+  <string name="input_method_binding_label">Métodu d\'introducción de testu</string>
+  <string name="sync_binding_label">Sincronización</string>
+  <string name="accessibility_binding_label">Accesibilidá</string>
+  <string name="wallpaper_binding_label">Fondu de pantalla</string>
+  <string name="chooser_wallpaper">Camudar fondu de pantalla</string>
+  <string name="notification_listener_binding_label">Deteutor de notificaciones</string>
+  <string name="alternate_eri_file">/data/eri.xml</string>
+  <string name="vpn_title">VPN activada</string>
+  <string name="vpn_title_long">VPN activada por <xliff:g id="APP">%s</xliff:g></string>
+  <string name="vpn_text">Toca p\'alministrar la rede.</string>
+  <string name="vpn_text_long">Coneutáu a <xliff:g id="SESSION">%s</xliff:g>. Toca p\'alministrar la rede.</string>
+  <string name="vpn_lockdown_connecting">Coneutando VPN siempre activada…</string>
+  <string name="vpn_lockdown_connected">VPN siempre activada coneutada</string>
+  <string name="vpn_lockdown_error">Fallu de VPN siempre activada</string>
+  <string name="vpn_lockdown_config">Toca pa configurar</string>
+  <string name="upload_file">Esbillar ficheru</string>
+  <string name="no_file_chosen">Ficheru non esbilláu</string>
+  <string name="reset">Restablecer</string>
+  <string name="submit">Unviar</string>
+  <string name="car_mode_disable_notification_title">Habilitóse\'l mou coche.</string>
+  <string name="car_mode_disable_notification_message">Toca pa salir del mou coche.</string>
+  <string name="tethered_notification_title">Anclaxe a rede/Zona Wi-Fi activu</string>
+  <string name="tethered_notification_message">Toca pa configurar</string>
+  <string name="back_button_label">Atrás</string>
+  <string name="next_button_label">Siguiente</string>
+  <string name="skip_button_label">Saltar</string>
+  <string name="throttle_warning_notification_title">Usu eleváu datos móviles</string>
+  <string name="throttle_warning_notification_message">Toca pa obtener más información sobre l\'usu de datos móviles.</string>
+  <string name="throttled_notification_title">Llende datos superada</string>
+  <string name="throttled_notification_message">Toca pa obtener más información sobre l\'usu de datos móviles.</string>
+  <string name="no_matches">Nun hai coincidencies.</string>
+  <string name="find_on_page">Guetar na páxina</string>
   <plurals name="matches_found">
     <item quantity="one" msgid="8167147081136579439">Una coincidencia</item>
     <item quantity="other" msgid="4641872797067609177"><xliff:g id="INDEX">%d</xliff:g> de <xliff:g id="TOTAL">%d</xliff:g></item>
