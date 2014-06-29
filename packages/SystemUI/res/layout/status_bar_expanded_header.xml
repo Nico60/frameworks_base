@@ -93,7 +93,6 @@
     <FrameLayout android:id="@+id/action_button_holder"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="4dp"
         >
 
         <ImageView android:id="@+id/hover_button"
@@ -109,7 +108,6 @@
     <FrameLayout android:id="@+id/settings_button_holder"
         android:layout_width="50dp"
         android:layout_height="50dp"
-        android:layout_marginStart="4dp"
         >
         <ImageView android:id="@+id/settings_button"
             android:layout_width="50dp"
