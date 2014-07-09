@@ -4945,7 +4945,7 @@ public final class Settings {
          * 1 = enabled
          * @hide
          */
-        public static final String HOVER_STATE = "hover_state";
+        public static final String HOVER_ACTIVE = "hover_active";
 
         /**
          * Hover: long fade out delay, default is 5000ms (5s).
@@ -7146,9 +7146,6 @@ public final class Settings {
 
         /** @hide */
         public static final String IMMERSIVE_MODE_CONFIRMATIONS = "immersive_mode_confirmations";
-
-        /** @hide */
-        public static final String HOVER_FIRST_TIME = "hover_first_time";
 
         /**
          * This is the query URI for finding a print service to install.
