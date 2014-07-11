@@ -4023,6 +4023,15 @@ public final class Settings {
         public static final String QUIET_HOURS_DIM = "quiet_hours_dim";
 
         /**
+         * Whether to remove the system sounds during quiet hours.
+         * 0 = Setting disabled
+         * 1 = Setting enabled but inactive
+         * 2 = Setting enabled and active
+         * @hide
+         */
+        public static final String QUIET_HOURS_SYSTEM = "quiet_hours_system";
+
+        /**
          * Alternative recent apps integration using Slim recents
          * @hide
          */
@@ -5361,6 +5370,7 @@ public final class Settings {
             QUIET_HOURS_START,
             QUIET_HOURS_END,
             QUIET_HOURS_MUTE,
+            QUIET_HOURS_SYSTEM,
             QUIET_HOURS_STILL,
             QUIET_HOURS_DIM,
             SYSTEM_PROFILES_ENABLED,
