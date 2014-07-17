@@ -47,7 +47,7 @@ public class PlatLogoActivity extends Activity {
     int mCount;
     final Handler mHandler = new Handler();
     private boolean mIsCM;
-    static final int BGCOLOR = 0xffed1d24;
+    static final int BGCOLOR = 0xff000000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,7 +61,7 @@ public class PlatLogoActivity extends Activity {
         Typeface light = Typeface.create("sans-serif-light", Typeface.NORMAL);
 
         mContent = new FrameLayout(this);
-        mContent.setBackgroundColor(0xC0000000);
+        mContent.setBackgroundColor(0xff000000);
 
         final FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(
                 FrameLayout.LayoutParams.WRAP_CONTENT,
@@ -90,9 +90,9 @@ public class PlatLogoActivity extends Activity {
         letter.setTextSize(mIsCM ? 150 : 300);
         letter.setTextColor(0xFFFFFFFF);
         letter.setGravity(Gravity.CENTER);
-        letter.setText(mIsCM ? "CM" : "K");
+        letter.setText(mIsCM ? "SR" : "K");
 
-        String cmVersion = SystemProperties.get("ro.cm.version");
+        String cmVersion = SystemProperties.get("ro.spirit.version");
         if (cmVersion != null) {
             cmVersion = cmVersion.replaceAll("([0-9\\.]+?)-.*", "$1");
         }
@@ -105,7 +105,7 @@ public class PlatLogoActivity extends Activity {
         tv.setPadding(p, p, p, p);
         tv.setTextColor(0xFFFFFFFF);
         tv.setGravity(Gravity.CENTER);
-        tv.setText(mIsCM ? "CyanogenMod " + cmVersion : "ANDROID " + Build.VERSION.RELEASE);
+        tv.setText(mIsCM ? "Spirit ROM " + cmVersion : "ANDROID " + Build.VERSION.RELEASE);
         tv.setVisibility(View.INVISIBLE);
 
         mContent.addView(bg);
