@@ -32,4 +32,8 @@
     <color name="halo_number_text_color">#ffcccccc</color>
     <color name="halo_number_container_color">#ffff0000</color>
 
+    <!-- Quick Settings -->
+    <color name="qs_background_pressed_color">#FF161616</color>
+    <color name="qs_background_color">#FF212121</color>
+
 </resources>

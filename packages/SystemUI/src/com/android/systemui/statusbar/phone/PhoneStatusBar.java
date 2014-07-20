@@ -4579,7 +4579,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             } else if (uri != null && uri.equals(Settings.System.getUriFor(
                         Settings.System.QUICK_TILES_BG_COLOR))
                     || uri.equals(Settings.System.getUriFor(
-                        Settings.System.QUICK_TILES_BG_PRESSED_COLOR))) {
+                        Settings.System.QUICK_TILES_BG_PRESSED_COLOR))
+                    || uri.equals(Settings.System.getUriFor(
+                        Settings.System.QUICK_TILES_TEXT_COLOR))
+                    || uri.equals(Settings.System.getUriFor(
+                        Settings.System.QUICK_TILES_BG_ALPHA))) {
                 if (mSettingsContainer != null) {
                     mQS.setupQuickSettings();
                 }
@@ -4618,6 +4622,14 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
             cr.registerContentObserver(
                     Settings.System.getUriFor(Settings.System.QUICK_TILES_BG_PRESSED_COLOR),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QUICK_TILES_TEXT_COLOR),
+                    false, this, UserHandle.USER_ALL);
+
+            cr.registerContentObserver(
+                    Settings.System.getUriFor(Settings.System.QUICK_TILES_BG_ALPHA),
                     false, this, UserHandle.USER_ALL);
 
             cr.registerContentObserver(
