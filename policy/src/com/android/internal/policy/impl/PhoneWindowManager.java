@@ -200,6 +200,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
     private static final int KEY_ACTION_HOME = 11;
     private static final int KEY_ACTION_BACK = 12;
     private static final int KEY_ACTION_LASTAPP = 13;
+    private static final int KEY_ACTION_SLEEP = 14;
 
     // Masks for checking presence of hardware keys.
     // Must match values in core/res/res/values/config.xml
@@ -1272,6 +1273,10 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                 break;
             case KEY_ACTION_POWERMENU:
                 mContext.sendBroadcast(new Intent(Intent.ACTION_POWERMENU_REBOOT));
+                break;
+            case KEY_ACTION_SLEEP:
+                mPowerManager.goToSleep(SystemClock.uptimeMillis());
+                break;
             default:
                 break;
         }
