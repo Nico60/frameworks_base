@@ -107,4 +107,7 @@
     <dimen name="clock_padding">10dp</dimen>
     <dimen name="clock_size">15dp</dimen>
 
+    <!-- Heads up -->
+    <dimen name="heads_up_bottom_gap">5dp</dimen>
+
 </resources>
