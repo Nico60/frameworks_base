@@ -4560,7 +4560,20 @@ public final class Settings {
          * 1 = enabled
          * @hide
          */
-        public static final String PEEK_STATE = "peek_state";
+         public static final String PEEK_STATE = "peek_state";
+
+        /**
+	 * Set the timeout of peek when pikcing up the device
+	 * @hide
+	 */
+         public static final String PEEK_PICKUP_TIMEOUT = "peek_pickup_timeout";
+
+        /**
+	 * Time to show notification
+	 * 5000ms = default
+	 * @hide
+	 */
+         public static final String PEEK_WAKE_TIMEOUT = "peek_wake_timeout";
 
         /**
          * Enables/disables lockscreen notifications
