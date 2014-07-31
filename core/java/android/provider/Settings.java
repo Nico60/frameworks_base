@@ -5059,6 +5059,13 @@ public final class Settings {
         public static final String RECENT_PANEL_EXPANDED_MODE = "recent_panel_expanded_mode";
 
         /**
+         * Heads Up in Floating Window
+         *
+         * @hide
+         */
+        public static final String HEADS_UP_FLOATING_WINDOW = "heads_up_floating_window";
+
+        /**
          * Hover, default is 0 (off).
          * 0 = disabled
          * 1 = enabled
