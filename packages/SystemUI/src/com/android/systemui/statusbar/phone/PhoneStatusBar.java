@@ -1062,6 +1062,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 (NavigationBarView) View.inflate(context, R.layout.navigation_bar, null);
 
             mNavigationBarView.setDisabledFlags(mDisabled);
+            mNavigationBarView.updateResources(getNavbarThemedResources());
             mNavigationBarView.setBar(this);
             mNavigationBarView.setOnTouchListener(new View.OnTouchListener() {
                 @Override
@@ -1769,6 +1770,18 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         lp.setTitle("NavigationBar");
         lp.windowAnimations = 0;
         return lp;
+    }
+
+    private Resources getNavbarThemedResources() {
+        String pkgName = mCurrentTheme.getOverlayPkgNameForApp(ThemeConfig.SYSTEMUI_NAVBAR_PKG);
+        Resources res = null;
+        try {
+            res = mContext.getPackageManager().getThemedResourcesForApplication(
+                    mContext.getPackageName(), pkgName);
+        } catch (PackageManager.NameNotFoundException e) {
+            res = mContext.getResources();
+        }
+        return res;
     }
 
     private void addHeadsUpView() {
@@ -4203,6 +4216,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                 if (DEBUG) Log.d(TAG, "Enabling navigation bar now 1");
                 mNavigationBarView = (NavigationBarView) View.inflate(mContext, R.layout.navigation_bar, null);
                 mNavigationBarView.setDisabledFlags(mDisabled);
+                mNavigationBarView.updateResources(getNavbarThemedResources());
                 mNavigationBarView.setBar(this);
                 mNavigationBarView.setOnTouchListener(new View.OnTouchListener() {
                     @Override
