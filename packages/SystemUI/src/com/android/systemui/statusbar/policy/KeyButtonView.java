@@ -126,6 +126,7 @@ public class KeyButtonView extends ImageView {
         if (mGlowBgId != 0) {
             mGlowBG = res.getDrawable(mGlowBgId);
         }
+        resetImage(res);
     }
 
     public void setButtonActions(AwesomeButtonInfo actions) {
@@ -141,13 +142,19 @@ public class KeyButtonView extends ImageView {
         setLongClickable(mHasLongAction);
     }
 
+    /* @hide */
     public void resetImage() {
+        resetImage(getResources());
+    }
+
+    /* @hide */
+    public void resetImage(final Resources res) {
         // set image
         if (mActions.iconUri != null && mActions.iconUri.length() > 0) {
             // custom icon from the URI here
             File f = new File(Uri.parse(mActions.iconUri).getPath());
             if (f.exists()) {
-                setImageDrawable(new BitmapDrawable(getResources(), f.getAbsolutePath()));
+                setImageDrawable(new BitmapDrawable(res, f.getAbsolutePath()));
             }
         } else if (mActions.singleAction != null) {
             setImageDrawable(NavBarHelpers.getIconImage(mContext, mActions.singleAction));
