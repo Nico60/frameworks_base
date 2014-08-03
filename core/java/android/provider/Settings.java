@@ -3673,6 +3673,12 @@ public final class Settings {
         public static final int STATUS_BAR_COLLAPSE_IF_NO_CLEARABLE = 2;
 
         /**
+         * Whether to scramble a pin unlock layout
+         * @hide
+         */
+        public static final String LOCKSCREEN_PIN_SCRAMBLE_LAYOUT = "lockscreen_scramble_pin_layout";
+
+        /**
          * Whether to show the network status in the status bar
          * @hide
          */
