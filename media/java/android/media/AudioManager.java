@@ -1836,10 +1836,6 @@ public class AudioManager {
             return;
         }
 
-        if (Settings.System.getInt(mContext.getContentResolver(), Settings.System.QUIET_HOURS_SYSTEM, 0) == 2) {
-            return;
-        }
-
         if (!querySoundEffectsEnabled()) {
             return;
         }
@@ -1888,7 +1884,10 @@ public class AudioManager {
      * Settings has an in memory cache, so this is fast.
      */
     private boolean querySoundEffectsEnabled() {
-        return Settings.System.getInt(mContext.getContentResolver(), Settings.System.SOUND_EFFECTS_ENABLED, 0) != 0;
+        return Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.SOUND_EFFECTS_ENABLED, 0) != 0
+                && Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.QUIET_HOURS_SYSTEM, 0) != 2;
     }
 
 
