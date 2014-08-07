@@ -381,6 +381,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private int mShortcutsDrawerMargin;
     private int mShortcutsSpacingHeight;
 
+    // Status bar carrier
+    private boolean mShowStatusBarCarrier;
+
     // drag bar
     private int mCloseViewHeight;
 
@@ -540,6 +543,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.HEADS_UP_GRAVITY_BOTTOM), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_CARRIER), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -2347,6 +2353,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if ((diff & StatusBarManager.DISABLE_CLOCK) != 0) {
             boolean show = (state & StatusBarManager.DISABLE_CLOCK) == 0;
             showClock(show);
+            showStatusBarCarrierLabel(show);
         }
         if ((diff & StatusBarManager.DISABLE_EXPAND) != 0) {
             if ((state & StatusBarManager.DISABLE_EXPAND) != 0) {
@@ -4158,6 +4165,10 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             enableOrDisableWeather();
         }
 
+        mShowStatusBarCarrier = Settings.System.getInt(resolver,
+                Settings.System.STATUS_BAR_CARRIER, 0) == 1;
+                showStatusBarCarrierLabel(mShowStatusBarCarrier);
+
         updateBatteryIcons();
     }
 
@@ -4220,6 +4231,15 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
         }
         updateSearchPanel();
+    }
+
+    public void showStatusBarCarrierLabel(boolean show) {
+        if (mStatusBarView == null) return;
+        ContentResolver resolver = mContext.getContentResolver();
+        View statusBarCarrierLabel = mStatusBarView.findViewById(R.id.status_bar_carrier_label);
+        if (statusBarCarrierLabel != null) {
+            statusBarCarrierLabel.setVisibility(show ? (mShowStatusBarCarrier ? View.VISIBLE : View.GONE) : View.GONE);
+        }
     }
 
     private void resetUserSetupObserver() {
