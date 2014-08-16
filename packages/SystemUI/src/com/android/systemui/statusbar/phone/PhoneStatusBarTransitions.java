@@ -34,7 +34,6 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
 
     private View mLeftSide, mStatusIcons, mSignalCluster;
     private View mBattery, mClock, mCenterClock;
-    private View mStatsUp, mStatsDown;
     private Animator mCurrentAnimation;
 
     public PhoneStatusBarTransitions(PhoneStatusBarView view) {
@@ -51,8 +50,6 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
         mBattery = mView.findViewById(R.id.battery);
         mCenterClock = mView.findViewById(R.id.center_clock);
         mClock = mView.findViewById(R.id.clock);
-        mStatsUp = mView.findViewById(R.id.bytes_tx);
-        mStatsDown = mView.findViewById(R.id.bytes_rx);
         applyModeBackground(-1, getMode(), false /*animate*/);
         applyMode(getMode(), false /*animate*/);
     }
@@ -97,8 +94,6 @@ public final class PhoneStatusBarTransitions extends BarTransitions {
                     animateTransitionTo(mSignalCluster, newAlpha),
                     animateTransitionTo(mBattery, newAlphaBC),
                     animateTransitionTo(mClock, newAlphaBC),
-                    animateTransitionTo(mStatsUp, newAlphaBC),
-                    animateTransitionTo(mStatsDown, newAlphaBC),
                     animateTransitionTo(mCenterClock, newAlphaBC)
                     );
             if (mode == MODE_LIGHTS_OUT) {

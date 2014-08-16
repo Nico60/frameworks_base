@@ -88,17 +88,11 @@
             android:layout_height="match_parent"
             android:orientation="horizontal">
 
-            <include layout="@layout/network_stats"
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:gravity="center"
-                />
-
             <LinearLayout android:id="@+id/statusIcons"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:gravity="center_vertical"
-                android:orientation="horizontal"/>    
+                android:orientation="horizontal"/>
     
             <LinearLayout
                 android:id="@+id/signal_battery_cluster"
@@ -108,7 +102,7 @@
                 android:orientation="horizontal"
                 android:gravity="center"
                 >
-                <include layout="@layout/signal_cluster_view" 
+                <include layout="@layout/signal_cluster_view"
                     android:id="@+id/signal_cluster"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
