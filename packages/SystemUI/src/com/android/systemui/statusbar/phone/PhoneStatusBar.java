@@ -312,10 +312,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     View mClearButton;
     ImageView mSettingsButton, mNotificationButton;
 
-    //Weather header
-    private View mWeatherHeader;
-    private boolean mWeatherEnabled;
-
     // Notification reminder
     private View mReminderHeader;
     private ImageView mSpacer;
@@ -1107,8 +1103,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mHeaderOverlay = res.getDrawable(R.drawable.bg_custom_header_overlay);
         updateCustomHeaderStatus();
 
-        mWeatherHeader = mStatusBarWindow.findViewById(R.id.weather_text);
-
         mReminderHeader = mStatusBarWindow.findViewById(R.id.reminder_header);
         mReminderHeader.setOnClickListener(mReminderButtonListener);
         mReminderHeader.setOnLongClickListener(mReminderLongButtonListener);
@@ -1127,9 +1121,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         mReminderEnabled = Settings.System.getIntForUser(mContext.getContentResolver(),
                     Settings.System.REMINDER_ALERT_ENABLED, 0, UserHandle.USER_CURRENT) != 0;
-
-        mWeatherEnabled = Settings.System.getBoolean(mContext.getContentResolver(),
-                    Settings.System.SYSTEMUI_WEATHER_HEADER_VIEW, false);
 
         View view = View.inflate(mContext, R.layout.reminder_entry, null);
         mTextHolder = (TextView) view.findViewById(R.id.message_content);
@@ -4167,13 +4158,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mDoubleTapToSleep = Settings.System.getInt(mContext.getContentResolver(),
                 Settings.System.DOUBLE_TAP_SLEEP_GESTURE, 0) == 1;
 
-        boolean weatherHolder = Settings.System.getBoolean(resolver,
-                Settings.System.SYSTEMUI_WEATHER_HEADER_VIEW, false);
-        if (weatherHolder != mWeatherEnabled) {
-            mWeatherEnabled = weatherHolder;
-            enableOrDisableWeather();
-        }
-
         mShowStatusBarCarrier = Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CARRIER, 0) == 1;
                 showStatusBarCarrierLabel(mShowStatusBarCarrier);
@@ -4387,16 +4371,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             }
         }
         parent.removeAllViews();
-    }
-
-    private void enableOrDisableWeather() {
-        if (mWeatherEnabled) {
-            mWeatherHeader.setVisibility(View.VISIBLE);
-            mWeatherHeader.setEnabled(true);
-        } else {
-            mWeatherHeader.setVisibility(View.GONE);
-            mWeatherHeader.setEnabled(false);
-        }
     }
 
     /**

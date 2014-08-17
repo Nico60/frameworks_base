@@ -4529,16 +4529,6 @@ public final class Settings {
          */
         public static final String SYSTEM_POWER_CRT_MODE = "system_power_crt_mode";
 
-        /**
-         * @hide
-         */
-        public static final String SYSTEMUI_WEATHER_HEADER_VIEW = "cfx_systemui_header_weather_view";
-
-        /**
-         * @hide
-         */
-        public static final String SYSTEMUI_WEATHER_NOTIFICATION = "cfx_weather_notification";
-
        /**
         *
         * @hide
