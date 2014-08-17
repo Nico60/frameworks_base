@@ -525,12 +525,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     Settings.System.DOUBLE_TAP_SLEEP_GESTURE), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SYSTEMUI_WEATHER_HEADER_VIEW), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
-                    Settings.System.SYSTEMUI_WEATHER_NOTIFICATION), false, this);
-	    resolver.registerContentObserver(Settings.System.getUriFor(
-		    Settings.System.SYSTEMUI_WEATHER_ICON), false, this);
-            resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.HEADS_UP_EXPANDED), false, this,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
