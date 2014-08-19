@@ -17,18 +17,21 @@
 
 package com.android.keyguard;
 
-import java.io.File;
-
-import android.app.PendingIntent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.ColorDrawable;
 import android.graphics.drawable.TransitionDrawable;
 
+import android.os.Handler;
+import android.telephony.TelephonyManager;
+import android.util.DisplayMetrics;
+import android.view.Gravity;
+import android.view.WindowManagerPolicy;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import com.android.internal.policy.IKeyguardShowCallback;
 import com.android.internal.widget.LockPatternUtils;
 
-import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.WallpaperManager;
 import android.appwidget.AppWidgetManager;
@@ -38,11 +41,9 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.ActivityInfo;
-import android.content.pm.PackageManager.NameNotFoundException;
 import android.content.res.Configuration;
 import android.content.res.Resources;
 import android.database.ContentObserver;
-import android.graphics.BitmapFactory;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
 import android.graphics.PixelFormat;
@@ -119,12 +120,49 @@ public class KeyguardViewManager {
     private NotificationViewManager mNotificationViewManager;
     private boolean mLockscreenNotifications = false;
 
-    private KeyguardUpdateMonitorCallback mBackgroundChanger = new KeyguardUpdateMonitorCallback() {
+    private WindowManager.LayoutParams mWindowCoverLayoutParams;
+    private SmartCoverView mCoverView;
+    private int[] mSmartCoverCoords;
+    private int mLidState = WindowManagerPolicy.WindowManagerFuncs.LID_ABSENT;
+    private int mPhoneState;
+    private Handler mHandler = new Handler();
+    private Runnable mSmartCoverTimeout = new Runnable() {
+        @Override
+        public void run() {
+            sendToSleep(mContext);
+        };
+    };
+
+    private KeyguardUpdateMonitorCallback mUpdateMonitorCallback = new KeyguardUpdateMonitorCallback() {
         @Override
         public void onSetBackground(Bitmap bmp) {
             mKeyguardHost.setCustomBackground(bmp != null ?
                     new BitmapDrawable(mContext.getResources(), bmp) : null);
             updateShowWallpaper(mKeyguardHost.shouldShowWallpaper());
+        }
+
+        @Override
+        void onPhoneStateChanged(int phoneState) {
+            mPhoneState = phoneState;
+            resetSmartCoverState();
+        }
+
+        @Override
+        public void onLidStateChanged(int state) {
+            if(mSmartCoverCoords == null) return;
+
+            if(DEBUG) Log.e(TAG, "onLidStateChanged(): " + state + ", screenOn: " + mScreenOn);
+            mLidState = state;
+            if (!mScreenOn) {
+                resetSmartCoverState();
+            } else {
+                mHandler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        resetSmartCoverState();
+                    }
+                }, HIDE_KEYGUARD_DELAY);
+            }
         }
     };
 
@@ -187,6 +225,13 @@ public class KeyguardViewManager {
         mViewMediatorCallback = callback;
         mLockPatternUtils = lockPatternUtils;
 
+        mSmartCoverCoords = mContext.getResources().getIntArray(
+                com.android.internal.R.array.config_smartCoverWindowCoords);
+        if(mSmartCoverCoords.length != 4) {
+            // make sure there are exactly 4 dimensions provided, or ignore the values
+            mSmartCoverCoords = null;
+        }
+
         SettingsObserver observer = new SettingsObserver(new Handler());
         observer.observe();
         updateSettings();
@@ -209,7 +254,7 @@ public class KeyguardViewManager {
         // useful on any keyguard screen but can be re-shown by dialogs or SHOW_WHEN_LOCKED
         // activities. Other disabled bits are handled by the KeyguardViewMediator talking
         // directly to the status bar service.
-        int visFlags = View.STATUS_BAR_DISABLE_HOME;
+        int visFlags = View.STATUS_BAR_DISABLE_HOME | View.SYSTEM_UI_FLAG_LAYOUT_STABLE;
         if (shouldEnableTranslucentDecor()) {
             mWindowLayoutParams.flags |= WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS
                                        | WindowManager.LayoutParams.FLAG_TRANSLUCENT_NAVIGATION;
@@ -688,7 +733,7 @@ public class KeyguardViewManager {
             mWindowLayoutParams = lp;
             mViewManager.addView(mKeyguardHost, lp);
 
-            KeyguardUpdateMonitor.getInstance(mContext).registerCallback(mBackgroundChanger);
+            KeyguardUpdateMonitor.getInstance(mContext).registerCallback(mUpdateMonitorCallback);
             mKeyguardHost.postDelayed(new Runnable() {
                 @Override
                 public void run() {
@@ -719,7 +764,11 @@ public class KeyguardViewManager {
         if (v != null) {
             mKeyguardHost.removeView(v);
         }
-
+        // cover view
+        View cover = mKeyguardHost.findViewById(R.id.keyguard_cover_layout);
+        if (cover != null) {
+            mKeyguardHost.removeView(cover);
+        }
         final LayoutInflater inflater = LayoutInflater.from(mContext);
         View view = inflater.inflate(R.layout.keyguard_host_view, mKeyguardHost, true);
         mKeyguardView = (KeyguardHostView) view.findViewById(R.id.keyguard_host_view);
@@ -758,6 +807,44 @@ public class KeyguardViewManager {
             if (widgetToShow != AppWidgetManager.INVALID_APPWIDGET_ID) {
                 mKeyguardView.goToWidget(widgetToShow);
             }
+        }
+
+        if (mSmartCoverCoords != null) {
+            view = inflater.inflate(R.layout.smart_cover, mKeyguardHost, true);
+            mCoverView = (SmartCoverView) view.findViewById(R.id.keyguard_cover_layout);
+
+            int flags =  WindowManager.LayoutParams.FLAG_FULLSCREEN
+                    | WindowManager.LayoutParams.FLAG_NOT_TOUCHABLE
+                    | WindowManager.LayoutParams.FLAG_LAYOUT_IN_SCREEN
+                    ;
+
+            final int type = WindowManager.LayoutParams.TYPE_KEYGUARD;
+
+            /**
+             * top/left/bottom/right
+             */
+            int[] coverWindowCoords = mSmartCoverCoords;
+            DisplayMetrics metrics = mContext.getResources().getDisplayMetrics();
+            final int windowHeight = coverWindowCoords[2] - coverWindowCoords[0];
+            final int windowWidth = metrics.widthPixels - coverWindowCoords[1] -
+                    (metrics.widthPixels - coverWindowCoords[3]);
+            final int stretch = ViewGroup.LayoutParams.MATCH_PARENT;
+
+            WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
+                    stretch, stretch, type, flags, PixelFormat.TRANSLUCENT);
+            lp.gravity = Gravity.TOP | Gravity.CENTER_HORIZONTAL;
+            lp.screenOrientation = ActivityInfo.SCREEN_ORIENTATION_NOSENSOR;
+            lp.setTitle("SmartCover");
+
+            mWindowCoverLayoutParams = lp;
+
+            mCoverView.setAlpha(0f);
+            mCoverView.setVisibility(View.VISIBLE);
+            LinearLayout.LayoutParams contentParams = (LinearLayout.LayoutParams) mCoverView
+                    .findViewById(R.id.frame).getLayoutParams();
+            contentParams.height = windowHeight;
+            contentParams.width = windowWidth;
+            contentParams.leftMargin = coverWindowCoords[1];
         }
     }
 
@@ -847,6 +934,7 @@ public class KeyguardViewManager {
                 mNotificationViewManager.onScreenTurnedOff();
             }
         }
+        mHandler.removeCallbacks(mSmartCoverTimeout);
     }
 
     public synchronized void onScreenTurnedOn(final IKeyguardShowCallback callback) {
@@ -867,6 +955,7 @@ public class KeyguardViewManager {
 
         if (mKeyguardView != null) {
             mKeyguardView.onScreenTurnedOn();
+            resetSmartCoverState();
 
             // Caller should wait for this window to be shown before turning
             // on the screen.
@@ -1000,6 +1089,74 @@ public class KeyguardViewManager {
     public void launchCamera() {
         if (mKeyguardView != null) {
             mKeyguardView.launchCamera();
+        }
+    }
+
+    public void showCover() {
+        if(DEBUG) Log.v(TAG, "showCover()");
+
+        if (mSmartCoverCoords == null) {
+            return;
+        }
+
+        KeyguardUpdateMonitor updateMonitor = KeyguardUpdateMonitor.getInstance(mContext);
+        if (!updateMonitor.isDeviceProvisioned() || !updateMonitor.hasBootCompleted()) {
+            // don't start the cover if the device hasn't booted, or completed
+            // setup
+            return;
+        }
+
+        mCoverView.setAlpha(1f);
+        mCoverView.setSystemUiVisibility(mCoverView.getSystemUiVisibility()
+                | SmartCoverView.SYSTEM_UI_FLAGS);
+        mViewManager.updateViewLayout(mKeyguardHost, mWindowCoverLayoutParams);
+        mCoverView.requestLayout();
+        mCoverView.requestFocus();
+    }
+
+    public void hideCover(boolean force) {
+        if(DEBUG) Log.v(TAG, "hideCover()");
+
+        if (mSmartCoverCoords == null) {
+            return;
+        }
+
+        KeyguardUpdateMonitor updateMonitor = KeyguardUpdateMonitor.getInstance(mContext);
+        if (!updateMonitor.isDeviceProvisioned() || !updateMonitor.hasBootCompleted()) {
+            return;
+        }
+
+        if(force) {
+            mCoverView.setAlpha(0f);
+        } else {
+            mCoverView.animate().alpha(0);
+        }
+
+        mCoverView.setSystemUiVisibility(mCoverView.getSystemUiVisibility()
+                & ~SmartCoverView.SYSTEM_UI_FLAGS);
+        mViewManager.updateViewLayout(mKeyguardHost, mWindowLayoutParams);
+    }
+
+    private void resetSmartCoverState() {
+        if(DEBUG) Log.v(TAG, "resetSmartCoverState()");
+        if(mSmartCoverCoords == null) return;
+
+        if(DEBUG) Log.v(TAG, "resetCoverRunnable run()");
+        mHandler.removeCallbacks(mSmartCoverTimeout);
+
+        if(mPhoneState == TelephonyManager.CALL_STATE_RINGING
+                || mPhoneState == TelephonyManager.CALL_STATE_OFFHOOK) {
+            hideCover(true);
+            return;
+        }
+
+        if (mLidState == WindowManagerPolicy.WindowManagerFuncs.LID_OPEN) {
+            hideCover(mScreenOn);
+        } else if (mLidState == WindowManagerPolicy.WindowManagerFuncs.LID_CLOSED) {
+            if(mScreenOn) {
+                showCover();
+                mHandler.postDelayed(mSmartCoverTimeout, SmartCoverView.SMART_COVER_TIMEOUT);
+            }
         }
     }
 }
