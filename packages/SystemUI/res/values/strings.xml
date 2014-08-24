@@ -515,4 +515,8 @@
          linebreak to position it correctly.  [CHAR LIMIT=45] -->
     <string name="ssl_ca_cert_warning">Network may\nbe monitored</string>
 
+    <!-- PIE Tile -->
+    <string name="quick_settings_pie_on_label">Pie On</string>
+    <string name="quick_settings_pie_off_label">Pie Off</string>
+
 </resources>

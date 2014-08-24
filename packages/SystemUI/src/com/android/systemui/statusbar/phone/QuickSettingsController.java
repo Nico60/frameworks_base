@@ -36,6 +36,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_NAVBAR;
 import static com.android.internal.util.cm.QSConstants.TILE_NETWORKADB;
 import static com.android.internal.util.cm.QSConstants.TILE_NETWORKMODE;
 import static com.android.internal.util.cm.QSConstants.TILE_NFC;
+import static com.android.internal.util.cm.QSConstants.TILE_PIE;
 import static com.android.internal.util.cm.QSConstants.TILE_PROFILE;
 import static com.android.internal.util.cm.QSConstants.TILE_PERFORMANCE_PROFILE;
 import static com.android.internal.util.cm.QSConstants.TILE_ONTHEGO;
@@ -101,6 +102,7 @@ import com.android.systemui.quicksettings.NavbarTile;
 import com.android.systemui.quicksettings.NetworkAdbTile;
 import com.android.systemui.quicksettings.NfcTile;
 import com.android.systemui.quicksettings.PerformanceProfileTile;
+import com.android.systemui.quicksettings.PieTile;
 import com.android.systemui.quicksettings.PreferencesTile;
 import com.android.systemui.quicksettings.ProfileTile;
 import com.android.systemui.quicksettings.QuickSettingsTile;
@@ -322,6 +324,8 @@ public class QuickSettingsController {
                 }
             } else if (tile.equals(TILE_HOVER)) {
                 qs = new HoverTile(mContext, this);
+            } else if (tile.equals(TILE_PIE)) {
+                qs = new PieTile(mContext, this);
             }
 
             if (qs != null) {
