@@ -4904,6 +4904,18 @@ public final class Settings {
         public static final String PIE_POWER = "pie_power";
 
         /**
+         * Pie screenshot
+         * @hide
+         */
+        public static final String PIE_SCREENSHOT = "pie_screenshot";
+
+        /**
+         * Pie toggles torch
+         * @hide
+         */
+        public static final String PIE_TORCH = "pie_torch";
+
+        /**
          * Whether to enable the navbar for hw key devices
          * @hide
          */
