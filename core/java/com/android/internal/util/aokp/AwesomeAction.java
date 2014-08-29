@@ -57,7 +57,7 @@ import com.vanir.util.TaskUtils;
 
 public class AwesomeAction {
 
-    public final static String TAG = "AwesomeAction";
+    public static final String TAG = "AwesomeAction";
 
     private static boolean wtf = true;
     private static boolean ftw;
@@ -275,6 +275,9 @@ public class AwesomeAction {
                         break;
                     case ACTION_DPAD_RIGHT:
                         injectKeyDelayed(KeyEvent.KEYCODE_DPAD_RIGHT);
+                        break;
+                    case GESTURE_ACTIONS:
+                        mContext.sendBroadcast(new Intent(Intent.TOGGLE_GESTURE_ACTIONS));
                         break;
                 }
 

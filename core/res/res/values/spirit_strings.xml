@@ -62,6 +62,7 @@
     <string name="action_app">Custom App/Shortcut</string>
     <string name="action_dpad_left">Arrow left </string>
     <string name="action_dpad_right">Arrow right</string>
+    <string name="gesture_actions">Gesture panel</string>
 
     <!-- Animation Strings -->
     <string name="animation_fade">Fade</string>

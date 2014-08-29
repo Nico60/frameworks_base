@@ -120,6 +120,7 @@ import com.android.systemui.statusbar.policy.NotificationRowLayout;
 import com.android.systemui.statusbar.policy.activedisplay.ActiveDisplayView;
 import com.android.systemui.statusbar.view.PieExpandPanel;
 import com.android.systemui.statusbar.view.PieStatusPanel;
+import com.android.systemui.vanir.GesturePanelView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -188,6 +189,9 @@ public abstract class BaseStatusBar extends SystemUI implements
     // Search panel
     protected AOKPSearchPanelView mSearchPanelView;
     protected AppWindow mAppWindow;
+
+    // Gesture panel
+    protected GesturePanelView mGesturePanelView = null;
 
     protected PopupMenu mNotificationBlamePopup;
 
@@ -2458,5 +2462,36 @@ public abstract class BaseStatusBar extends SystemUI implements
                 && flags == CommandQueue.FLAG_EXCLUDE_NONE) {
             mPieControlPanel.animateCollapsePanels();
         }
+    }
+
+    protected void addGesturePanelView() {
+        if (mGesturePanelView == null) {
+            mGesturePanelView = (GesturePanelView)View.inflate(
+            mContext, R.layout.gesture_action_overlay, null);
+            mWindowManager.addView(mGesturePanelView, getGesturePanelViewLayoutParams());
+            mGesturePanelView.setStatusBar(this);
+            mGesturePanelView.switchToOpenState();
+        }
+    }
+
+    public void removeGesturePanelView() {
+        if (mGesturePanelView != null) {
+            mWindowManager.removeView(mGesturePanelView);
+            mGesturePanelView = null;
+        }
+    }
+
+    protected WindowManager.LayoutParams getGesturePanelViewLayoutParams() {
+        boolean useGFX = ActivityManager.isHighEndGfx();
+        WindowManager.LayoutParams lp = new WindowManager.LayoutParams(
+                LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT,
+                WindowManager.LayoutParams.TYPE_STATUS_BAR_SUB_PANEL,
+                WindowManager.LayoutParams.FLAG_NOT_TOUCH_MODAL,
+                useGFX ? PixelFormat.TRANSLUCENT : PixelFormat.OPAQUE);
+        if (useGFX) lp.flags |= WindowManager.LayoutParams.FLAG_HARDWARE_ACCELERATED;
+        lp.gravity = Gravity.BOTTOM;
+        lp.setTitle("GesturePanelView");
+
+        return lp;
     }
 }

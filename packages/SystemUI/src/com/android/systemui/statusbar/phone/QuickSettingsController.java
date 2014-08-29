@@ -57,6 +57,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_WIMAX;
 import static com.android.internal.util.cm.QSConstants.TILE_POWER;
 import static com.android.internal.util.cm.QSConstants.TILE_THEME;
 import static com.android.internal.util.cm.QSConstants.TILE_HOVER;
+import static com.android.internal.util.cm.QSConstants.TILE_GESTUREPANEL;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -126,6 +127,7 @@ import com.android.systemui.quicksettings.WifiAPTile;
 import com.android.systemui.quicksettings.PowerMenuTile;
 import com.android.systemui.quicksettings.OnTheGoTile;
 import com.android.systemui.quicksettings.HoverTile;
+import com.android.systemui.quicksettings.GesturePanelTile;
 import com.android.systemui.statusbar.phone.QuickSettingsContainerView.QSSize;
 
 import java.util.ArrayList;
@@ -343,6 +345,8 @@ public class QuickSettingsController {
                 qs = new HoverTile(mContext, this);
             } else if (tile.equals(TILE_PIE)) {
                 qs = new PieTile(mContext, this);
+            } else if (tile.equals(TILE_GESTUREPANEL)) {
+                qs = new GesturePanelTile(mContext, this);
             }
 
             if (qs != null) {

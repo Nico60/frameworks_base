@@ -69,7 +69,8 @@ public class AwesomeConstants {
         ACTION_DPAD_LEFT     { @Override public String value() { return "**dpad_left**";}},
         ACTION_DPAD_RIGHT    { @Override public String value() { return "**dpad_right**";}},
         ACTION_NULL          { @Override public String value() { return "**null**";}},
-        ACTION_APP           { @Override public String value() { return "**app**";}};
+        ACTION_APP           { @Override public String value() { return "**app**";}},
+        GESTURE_ACTIONS      { @Override public String value() { return "**gesture_actions**";}};
         public String value() { return this.value(); }
     }
 
@@ -221,6 +222,9 @@ public class AwesomeConstants {
             case ACTION_APP:
                 value = res.getString(com.android.internal.R.string.action_app);
                 break;
+            case GESTURE_ACTIONS:
+                value = res.getString(com.android.internal.R.string.gesture_actions);
+                break;
             case ACTION_NULL:
             default:
                 value = res.getString(com.android.internal.R.string.action_null);
@@ -318,6 +322,9 @@ public class AwesomeConstants {
                 break;
             case ACTION_DPAD_RIGHT:
                 value = getSystemUIDrawable(context, "com.android.systemui:drawable/ic_sysbar_ime_right");
+                break;
+            case GESTURE_ACTIONS:
+                value = getSystemUIDrawable(context, "com.android.systemui:drawable/ic_sysbar_gesture");
                 break;
             case ACTION_APP: // APP doesn't really have an icon - it should look up
                         //the package icon - we'll return the 'null' on just in case

@@ -169,4 +169,7 @@
     <string name="pie_hour_format_24">HH:mm</string>
     <string name="pie_am_pm">a</string>
 
+    <!-- Gesture panel -->
+    <string name="gesture_panel_add">Add</string>
+
 </resources>

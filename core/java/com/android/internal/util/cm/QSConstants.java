@@ -43,6 +43,7 @@ public class QSConstants {
         public static final String TILE_CPUFREQ = "toggleCPUFreq";
         public static final String TILE_HOVER = "toggleHover";
         public static final String TILE_PIE = "togglePie";
+        public static final String TILE_GESTUREPANEL = "toggleGesturePanel";
         public static final String TILE_DELIMITER = "|";
         public static ArrayList<String> TILES_DEFAULT = new ArrayList<String>();
 
