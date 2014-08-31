@@ -119,6 +119,7 @@ public class NavigationBarView extends LinearLayout {
     private DelegateViewHelper mDelegateHelper;
     private DeadZone mDeadZone;
     private final NavigationBarTransitions mBarTransitions;
+    private StatusBarBlockerTransitions mStatusBarBlockerTransitions;
 
     private boolean mModLockDisabled = true;
     private SettingsObserver mObserver;
@@ -295,6 +296,10 @@ public class NavigationBarView extends LinearLayout {
         return mBarTransitions;
     }
 
+    public BarTransitions getStatusBarBlockerTransitions() {
+        return mStatusBarBlockerTransitions;
+    }
+
     public void setDelegateView(View view) {
         mDelegateHelper.setDelegateView(view);
     }
@@ -367,6 +372,7 @@ public class NavigationBarView extends LinearLayout {
 
     public void updateResources(Resources res) {
         mThemedResources = res;
+        mStatusBarBlockerTransitions.updateResources(res);
         for (int i = 0; i < mRotatedViews.length; i++) {
             ViewGroup container = (ViewGroup) mRotatedViews[i];
             if (container != null) {
@@ -636,6 +642,9 @@ public class NavigationBarView extends LinearLayout {
                 : findViewById(R.id.rot270);
 
         mCurrentView = mRotatedViews[Surface.ROTATION_0];
+
+        mStatusBarBlockerTransitions = new StatusBarBlockerTransitions(
+                findViewById(R.id.status_bar_blocker));
 
         watchForAccessibilityChanges();
         setupNavigationButtons();
@@ -938,6 +947,7 @@ public class NavigationBarView extends LinearLayout {
 
         // force the low profile & disabled states into compliance
         mBarTransitions.init(mVertical);
+        mStatusBarBlockerTransitions.init();
         setDisabledFlags(mDisabledFlags, true /* force */);
         setMenuVisibility(mShowMenu, true /* force */);
 
@@ -1183,6 +1193,23 @@ public class NavigationBarView extends LinearLayout {
             mModLockDisabled = Settings.System.getInt(mContext.getContentResolver(),
                     Settings.System.LOCKSCREEN_MODLOCK_ENABLED, 1) == 0;
             setDisabledFlags(mDisabledFlags, true /* force */);
+        }
+    }
+
+    private static class StatusBarBlockerTransitions extends BarTransitions {
+        public StatusBarBlockerTransitions(View statusBarBlocker) {
+            super(statusBarBlocker, R.drawable.status_background,
+                    R.color.status_bar_background_opaque,
+                    R.color.status_bar_background_semi_transparent);
+        }
+
+        public void init() {
+            applyModeBackground(-1, getMode(), false /*animate*/);
+        }
+
+        @Override
+        protected void onTransition(int oldMode, int newMode, boolean animate) {
+            super.onTransition(oldMode, newMode, animate);
         }
     }
 }
