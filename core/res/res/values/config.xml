@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <!--
 /*
+** Copyright (c) 2013 The Linux Foundation. All rights reserved.
+** Not a Contribution.
 ** Copyright 2009, The Android Open Source Project
 **
 ** Licensed under the Apache License, Version 2.0 (the "License");
@@ -35,6 +37,7 @@
        <item><xliff:g id="id">volume</xliff:g></item>
        <item><xliff:g id="id">wifi</xliff:g></item>
        <item><xliff:g id="id">cdma_eri</xliff:g></item>
+       <item><xliff:g id="id">phone_signal_second_sub</xliff:g></item>
        <item><xliff:g id="id">data_connection</xliff:g></item>
        <item><xliff:g id="id">phone_evdo_signal</xliff:g></item>
        <item><xliff:g id="id">phone_signal</xliff:g></item>
@@ -136,6 +139,9 @@
          your device's memory use without going to the point of causing applications to turn
          off features. -->
     <bool name="config_avoidGfxAccel">false</bool>
+
+    <!-- Whether to enable auto provisioning the app for new SIM card on boot.-->
+    <bool name="config_auto_provision_enable">false</bool>
 
     <!-- Device configuration setting the minfree tunable in the lowmemorykiller in the kernel.
          A high value will cause the lowmemorykiller to fire earlier, keeping more memory
@@ -604,7 +610,7 @@
     <integer name="config_defaultNotificationLedOn">500</integer>
 
     <!-- Default LED off time for notification LED in milliseconds. -->
-    <integer name="config_defaultNotificationLedOff">2000</integer>
+    <integer name="config_defaultNotificationLedOff">1000</integer>
 
     <!-- Default value for led color when battery is low on charge -->
     <integer name="config_notificationsBatteryLowARGB">0xFFFF0000</integer>
@@ -795,8 +801,18 @@
          to false.
          -->
     <bool name="config_enableFusedLocationOverlay" translatable="false">true</bool>
+    <!-- Whether to enable fused hardware provider overlay which allows fused
+         hardware provider to be replaced by an app at run-time. When disabled,
+         only the config_fusedLocationProviderPackageName package will be
+         searched for fused location provider, otherwise packages whose
+         signature matches the signatures of config_locationProviderPackageNames
+         will be searched, and the service with the highest version number will
+         be picked. Anyone who wants to disable the overlay mechanism can set it
+         to false.
+         -->
+    <bool name="config_enableHwFlpOverlay" translatable="false">true</bool>
     <!-- Package name providing fused location support. Used only when
-         config_enableFusedLocationOverlay is false. -->
+         config_enableFusedLocationOverlay or config_enableHwFlpOverlay is false. -->
     <string name="config_fusedLocationProviderPackageName" translatable="false">com.android.location.fused</string>
 
     <!-- Whether to enable geocoder overlay which allows geocoder to be replaced
@@ -843,8 +859,11 @@
         <item>com.android.location.fused</item>
     </string-array>
 
-    <!-- Component name of the service providing geofence API support. -->
-    <string name="config_geofenceProvider" translatable="false">com.qualcomm.location</string>
+    <!-- Component name of the geofence services provider. -->
+    <string name="config_geofenceServicesProvider" translatable="false">com.qualcomm.location</string>
+
+    <!-- Component name of the combo network location provider. -->
+    <string name="config_comboNetworkLocationProvider" translatable="false">com.qualcomm.location</string>
 
     <!-- Boolean indicating if current platform supports bluetooth SCO for off call
     use cases -->
@@ -1516,6 +1535,13 @@
 
     <!-- Configuration to enable non-default PDP during IWLAN -->
     <bool name="config_feature_iwlan_enabled">false</bool>
+
+    <!-- Flag indicating whether the RIL_REQUEST_SEND_SMS_EXPECT_MORE
+         API should be used or not. The usage of the API is added
+         by CodeAurora and may not be supported by certain RIL.
+
+         The default value is false which represents AOSP behavior. -->
+    <bool name="config_smsUseExpectMore">false</bool>
 
     <!-- Automatic power profile management per app.
          Each item should list the fully-qualified activity
