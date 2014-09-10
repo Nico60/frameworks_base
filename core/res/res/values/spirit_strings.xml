@@ -88,6 +88,7 @@
     <string name="floating_window_snap_bottom">Snap bottom</string>
     <string name="floating_window_snap_left">Snap left</string>
     <string name="floating_window_snap_right">Snap right</string>
+    <string name="floating_window_minimize">Minimize</string>
 
     <!-- Heads up -->
     <string name="permlab_changeHeadsUpState">enable or disable heads up</string>

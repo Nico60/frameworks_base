@@ -109,6 +109,18 @@ public class TvStatusBar extends BaseStatusBar {
     public void toggleSmartPulldown() {
     }
 
+    @Override // CommandQueue
+    public void sendActionColorBroadcast(int st_color, int ic_color) {
+    }
+
+    @Override // CommandQueue
+    public void sendAppColorBroadcast(int duration) {
+    }
+
+    @Override // CommandQueue
+    public void sendAppImmersiveMode(int whats) {
+    }
+
     @Override
     protected void createAndAddWindows() {
     }

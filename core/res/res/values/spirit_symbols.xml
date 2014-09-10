@@ -105,6 +105,7 @@
   <java-symbol type="string" name="floating_window_snap_bottom"/>
   <java-symbol type="string" name="floating_window_snap_left"/>
   <java-symbol type="string" name="floating_window_snap_right"/>
+  <java-symbol type="string" name="floating_window_minimize"/>
 
   <!-- Boot message dialog -->
   <java-symbol type="drawable" name="busy_dlg_animation" />
