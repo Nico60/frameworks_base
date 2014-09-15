@@ -128,7 +128,7 @@ public class QuickSettingsTile implements OnClickListener {
 
     public boolean isFlipTilesEnabled() {
         return (Settings.System.getInt(mContext.getContentResolver(),
-                Settings.System.QUICK_SETTINGS_TILES_FLIP, 1) == 1);
+                Settings.System.QUICK_SETTINGS_TILES_FLIP, 0) == 1);
     }
 
     public void flipTile(int delay){
