@@ -437,6 +437,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     DisplayMetrics mDisplayMetrics = new DisplayMetrics();
 
+    private boolean mForceShowClockOnLockscreen = false;
+
     private BatteryMeterView mBattery;
     private BatteryCircleMeterView mCircleBattery;
 
@@ -562,6 +564,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     UserHandle.USER_ALL);
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.RECENT_CARD_TEXT_COLOR), false, this,
+                    UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_FORCE_CLOCK_LOCKSCREEN), false, this,
                     UserHandle.USER_ALL);
             updateSettings();
         }
@@ -2434,6 +2439,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
     public void showClock(boolean show) {
         if (mStatusBarView == null) return;
+        if (mForceShowClockOnLockscreen) {
+            show = true;
+        }
         ContentResolver resolver = mContext.getContentResolver();
         View clock = mStatusBarView.findViewById(R.id.clock);
         View cclock = mStatusBarView.findViewById(R.id.center_clock);
@@ -4374,6 +4382,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mShowStatusBarCarrier = Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CARRIER, 0) == 1;
                 showStatusBarCarrierLabel(mShowStatusBarCarrier);
+
+        mForceShowClockOnLockscreen = Settings.System.getIntForUser(resolver,
+                Settings.System.STATUS_BAR_FORCE_CLOCK_LOCKSCREEN, 0, UserHandle.USER_CURRENT) == 1;
 
         updateBatteryIcons();
     }
