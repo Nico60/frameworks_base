@@ -310,6 +310,9 @@ public class AwesomeAction {
             if (SysUIPackage.equals(packageName)) return; // don't kill SystemUI
             if (!defaultHomePackage.equals(packageName)) {
                 am.removeTask(info.id, ActivityManager.REMOVE_TASK_KILL_PROCESS);
+                Toast.makeText(mContext,
+                com.android.internal.R.string.app_killed_message,
+                Toast.LENGTH_SHORT).show();
             }
         }
     }
