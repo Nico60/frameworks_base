@@ -17,7 +17,6 @@
 package com.android.systemui.statusbar.phone;
 
 import android.animation.LayoutTransition;
-import android.content.ContentResolver;
 import android.content.Context;
 import android.content.res.Configuration;
 import android.content.res.Resources;
@@ -56,11 +55,6 @@ public class QuickSettingsContainerView extends FrameLayout {
 
     private boolean mFirstStartUp = true;
 
-    // Cell width for single row
-    private int mCellWidth = -1;
-    private int mMinCellWidth = 0;
-    private int mMaxCellWidth = 0;
-
     public QuickSettingsContainerView(Context context, AttributeSet attrs) {
         super(context, attrs);
         TypedArray a = context.obtainStyledAttributes(attrs, R.styleable.QuickSettingsContainer, 0, 0);
@@ -82,25 +76,15 @@ public class QuickSettingsContainerView extends FrameLayout {
     }
 
     public void updateResources() {
-        Resources r = getContext().getResources();
-        ContentResolver resolver = mContext.getContentResolver();
         mCellGap = mResources.getDimension(R.dimen.quick_settings_cell_gap);
-        mNumColumns = Settings.System.getIntForUser(resolver,
+        mNumColumns = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.QUICK_TILES_PER_ROW, 3, UserHandle.USER_CURRENT);
         // do not allow duplication on tablets or any device which do not have
         // flipsettings
-        mDuplicateColumnsLandscape = Settings.System.getIntForUser(resolver,
+        mDuplicateColumnsLandscape = Settings.System.getIntForUser(mContext.getContentResolver(),
                 Settings.System.QUICK_TILES_PER_ROW_DUPLICATE_LANDSCAPE,
                 1, UserHandle.USER_CURRENT) == 1
                         && mResources.getBoolean(R.bool.config_hasFlipSettingsPanel);
-        QSSize size = getRibbonSize();
-        mMinCellWidth = r.getDimensionPixelSize(R.dimen.qs_ribbon_width_min);
-        mMaxCellWidth = r.getDimensionPixelSize(R.dimen.qs_ribbon_width_max);
-        if (size == QSSize.Auto || size == QSSize.AutoNarrow) {
-            mCellWidth = -1;
-        } else {
-            mCellWidth = r.getDimensionPixelSize(R.dimen.qs_ribbon_width_big);
-        }
         requestLayout();
     }
 
@@ -114,48 +98,23 @@ public class QuickSettingsContainerView extends FrameLayout {
         // Calculate the cell width dynamically
         int width = MeasureSpec.getSize(widthMeasureSpec);
         int height = MeasureSpec.getSize(heightMeasureSpec);
-        float availableWidth = width - getPaddingLeft() - getPaddingRight();
-        float cellWidth;
-        int cellHeight;
+        int availableWidth = (int) (width - getPaddingLeft() - getPaddingRight() -
+                (mNumFinalColumns - 1) * mCellGap);
+        float cellWidth = (float) Math.ceil(((float) availableWidth) / mNumFinalColumns);        
+        int cellHeight = 0;
         float cellGap = mCellGap;
 
-        int N = getChildCount();
         if (mSingleRow) {
+            cellWidth = MeasureSpec.getSize(heightMeasureSpec);
+            cellHeight = (int) cellWidth;
             cellGap /= 2;
-            cellHeight = MeasureSpec.getSize(heightMeasureSpec);
-            if (mCellWidth > 0) {
-                cellWidth = mCellWidth;
-            } else {
-                if (width <= 0) {
-                    // On first layout pass the parent width is 0
-                    // So set the maximum width possible here
-                    cellWidth = mMaxCellWidth;
-                } else {
-                    int numColumns = 0;
-                    for (int i = 0; i < N; ++i) {
-                        QuickSettingsTileView v = (QuickSettingsTileView) getChildAt(i);
-                        if (v.getVisibility() != View.GONE) {
-                            numColumns += v.getColumnSpan();
-                        }
-                    }
-                    if (numColumns == 0)
-                        numColumns = 1; // Avoid division by zero
-                    availableWidth -= (numColumns - 1) * cellGap;
-                    cellWidth = (float) Math.floor(availableWidth / numColumns);
-                    if (cellWidth < mMinCellWidth)
-                        cellWidth = mMinCellWidth;
-                    else if (cellWidth > mMaxCellWidth)
-                        cellWidth = mMaxCellWidth;
-                }
-            }
         } else {
-            availableWidth -= (mNumColumns - 1) * cellGap;
-            cellWidth = (float) Math.floor(availableWidth / mNumColumns);
-            cellHeight = getResources().getDimensionPixelSize(R.dimen.quick_settings_cell_height);
+            cellHeight = (int) getResources().getDimension(R.dimen.quick_settings_cell_height);
         }
 
         // Update each of the children's widths accordingly to the cell width
-        int totalWidth = 0;
+        int N = getChildCount();        
+        int totalWidth = 0;        
         int cursor = 0;
         for (int i = 0; i < N; ++i) {
             // Update the child's width
@@ -186,18 +145,15 @@ public class QuickSettingsContainerView extends FrameLayout {
             }
         }
 
-        // Set the measured dimensions.
+        // Set the measured dimensions.  We always fill the tray width, but wrap to the height of
+        // all the tiles.
+        int numRows = (int) Math.ceil((float) cursor / mNumColumns);
+        int newHeight = (int) ((numRows * cellHeight) + ((numRows - 1) * cellGap)) +
+                getPaddingTop() + getPaddingBottom();
         if (mSingleRow) {
             int totalHeight = cellHeight + getPaddingTop() + getPaddingBottom();
-            if (totalWidth > 0)
-                totalWidth -= cellGap; // No space at the end
             setMeasuredDimension(totalWidth, totalHeight);
         } else {
-            // We always fill the tray width, but wrap to the height of all the
-            // tiles.
-            int numRows = (int) Math.ceil((float) cursor / mNumColumns);
-            int newHeight = (int) ((numRows * cellHeight) + ((numRows - 1) * cellGap)) +
-                    getPaddingTop() + getPaddingBottom();
             setMeasuredDimension(width, newHeight);
         }
     }
@@ -296,26 +252,4 @@ public class QuickSettingsContainerView extends FrameLayout {
         }
     }
 
-    public enum QSSize {
-        Auto,
-        AutoNarrow,
-        Big,
-        Narrow
-    }
-
-    public QSSize getRibbonSize() {
-        int size = Settings.System.getIntForUser(mContext.getContentResolver(),
-                Settings.System.QS_QUICK_ACCESS_SIZE, 0, UserHandle.USER_CURRENT);
-        switch (size) {
-            case 0:
-                return QSSize.Auto;
-            case 1:
-                return QSSize.AutoNarrow;
-            case 2:
-                return QSSize.Big;
-            case 3:
-                return QSSize.Narrow;
-        }
-        return QSSize.Auto;
-    }
 }
