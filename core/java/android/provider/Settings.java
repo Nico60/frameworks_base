@@ -5517,6 +5517,13 @@ public final class Settings {
         public static final String HEADS_UP_EXCLUDE_FROM_LOCK_SCREEN = "heads_up_exclude_from_lock_screen";
 
         /**
+         * Heads Up Master Switch
+         *
+         * @hide
+         */
+        public static final String HEADS_UP_MASTER_SWITCH = "heads_up_master_switch";
+
+        /**
          * Hover, default is 0 (off).
          * 0 = disabled
          * 1 = enabled
