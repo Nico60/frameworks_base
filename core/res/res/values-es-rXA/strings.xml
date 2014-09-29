@@ -17,42 +17,42 @@
 ** See the License for the specific language governing permissions and
 ** limitations under the License.
 */
- -->
+-->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="byteShort" msgid="8340973892742019101">B</string>
-    <string name="kilobyteShort" msgid="5973789783504771878">KB</string>
-    <string name="megabyteShort" msgid="6355851576770428922">MB</string>
-    <string name="gigabyteShort" msgid="3259882455212193214">GB</string>
-    <string name="terabyteShort" msgid="231613018159186962">TB</string>
-    <string name="petabyteShort" msgid="5637816680144990219">PB</string>
-    <string name="fileSizeSuffix" msgid="9164292791500531949"><xliff:g id="NUMBER">%1$s</xliff:g> <xliff:g id="UNIT">%2$s</xliff:g></string>
-    <string name="untitled" msgid="4638956954852782576">&lt;Ensin títulu&gt;</string>
-    <string name="ellipsis" msgid="7899829516048813237">…</string>
-    <string name="ellipsis_two_dots" msgid="1228078994866030736">\u2026</string>
-    <string name="emptyPhoneNumber" msgid="7694063042079676517">(Ensin númberu de teléfonu)</string>
-    <string name="unknownName" msgid="2277556546742746522">Desconocíu</string>
-    <string name="defaultVoiceMailAlphaTag" msgid="2660020990097733077">Buzón de voz</string>
-    <string name="defaultMsisdnAlphaTag" msgid="2850889754919584674">MSISDN1</string>
-    <string name="mmiError" msgid="5154499457739052907">Hebo un fallu de conexón o\'l códigu MMI nun ye válidu.</string>
-    <string name="mmiFdnError" msgid="5224398216385316471">La operación namái ye válida pa númberos de marcación fixa.</string>
-    <string name="serviceEnabled" msgid="8147278346414714315">El serviciu habilitóse.</string>
-    <string name="serviceEnabledFor" msgid="6856228140453471041">Habilitóse\'l serviciu pa:</string>
-    <string name="serviceDisabled" msgid="1937553226592516411">El serviciu inhabilitóse.</string>
-    <string name="serviceRegistered" msgid="6275019082598102493">El rexistru féxose correutamente.</string>
-    <string name="serviceErased" msgid="1288584695297200972">L\'elementu desanicióse correutamente.</string>
-    <string name="passwordIncorrect" msgid="7612208839450128715">Contraseña incorreuta</string>
-    <string name="mmiComplete" msgid="8232527495411698359">MMI completu</string>
-    <string name="badPin" msgid="9015277645546710014">El códigu PIN antiguu qu\'introduxisti ye correutu.</string>
-    <string name="badPuk" msgid="5487257647081132201">El códigu PUK qu\'introduxisti nun ye correutu.</string>
-    <string name="mismatchPin" msgid="609379054496863419">Los códigos PIN inxertaos nun concasen.</string>
-    <string name="invalidPin" msgid="3850018445187475377">Introduz un códigu PIN con una llonxitú ente cuatro y ocho díxitos.</string>
-    <string name="invalidPuk" msgid="8761456210898036513">Escribi un códigu PUK d\'ocho caráuteres o más.</string>
-    <string name="needPuk" msgid="919668385956251611">La tarxeta SIM ta bloquiada col códigu PUK. Introduz el códigu PUK pa desbloquiala.</string>
-    <string name="needPuk2" msgid="4526033371987193070">Introduz el códigu PUK2 pa desbloquiar la tarxeta SIM.</string>
-    <string name="enablePin" msgid="209412020907207950">Error, habilitar bloquéu de SIM/RUIM.</string>
+  <string name="byteShort">B</string>
+  <string name="kilobyteShort">KB</string>
+  <string name="megabyteShort">MB</string>
+  <string name="gigabyteShort">GB</string>
+  <string name="terabyteShort">TB</string>
+  <string name="petabyteShort">PB</string>
+  <string name="fileSizeSuffix"><xliff:g id="number" example="123">%1$s</xliff:g><xliff:g id="unit" example="KB">%2$s</xliff:g></string>
+  <string name="untitled">&lt;Ensin títulu&gt;</string>
+  <string name="ellipsis">\u2026</string>
+  <string name="ellipsis_two_dots">\u2025</string>
+  <string name="emptyPhoneNumber">(Ensin númberu de teléfonu)</string>
+  <string name="unknownName">Desconocíu</string>
+  <string name="defaultVoiceMailAlphaTag">Buzón de voz</string>
+  <string name="defaultMsisdnAlphaTag">MSISDN1</string>
+  <string name="mmiError">Hebo un fallu de conexón o\'l códigu MMI nun ye válidu.</string>
+  <string name="mmiFdnError">La operación namái ye válida pa númberos de marcación fixa.</string>
+  <string name="serviceEnabled">El serviciu habilitóse.</string>
+  <string name="serviceEnabledFor">Habilitóse\'l serviciu pa:</string>
+  <string name="serviceDisabled">El serviciu inhabilitóse.</string>
+  <string name="serviceRegistered">El rexistru féxose correutamente.</string>
+  <string name="serviceErased">L\'elementu desanicióse correutamente.</string>
+  <string name="passwordIncorrect">Contraseña incorreuta</string>
+  <string name="mmiComplete">MMI completu</string>
+  <string name="badPin">El códigu PIN antiguu qu\'introduxisti ye correutu.</string>
+  <string name="badPuk">El códigu PUK qu\'introduxisti nun ye correutu.</string>
+  <string name="mismatchPin">Los códigos PIN inxertaos nun concasen.</string>
+  <string name="invalidPin">Introduz un códigu PIN con una llonxitú ente cuatro y ocho díxitos.</string>
+  <string name="invalidPuk">Escribi un códigu PUK d\'ocho caráuteres o más.</string>
+  <string name="needPuk">La tarxeta SIM ta bloquiada col códigu PUK. Introduz el códigu PUK pa desbloquiala.</string>
+  <string name="needPuk2">Introduz el códigu PUK2 pa desbloquiar la tarxeta SIM.</string>
+  <string name="enablePin">Error, habilitar bloquéu de SIM/RUIM.</string>
   <plurals name="pinpuk_attempts">
-    <item quantity="one" msgid="6596245285809790142">Quédate <xliff:g id="NUMBER">%d</xliff:g> intentu pa bloquiar la tarxeta SIM.</item>
-    <item quantity="other" msgid="7530597808358774740">Quédente <xliff:g id="NUMBER">%d</xliff:g> intentos pa bloquiar la tarxeta SIM.</item>
+    <item quantity="one">Quédate <xliff:g id="NUMBER">%d</xliff:g> intentu pa bloquiar la tarxeta SIM.</item>
+    <item quantity="other">Quédente <xliff:g id="NUMBER">%d</xliff:g> intentos pa bloquiar la tarxeta SIM.</item>
   </plurals>
   <string name="imei">IMEI</string>
   <string name="meid">MEID</string>
@@ -703,47 +703,47 @@
   <string name="policylab_disableKeyguardFeatures">Inhabilitar funciones en bloquéu</string>
   <string name="policydesc_disableKeyguardFeatures">Evita l\'usu de dalgunes funciones mientres el bloquéu.</string>
   <string-array name="phoneTypes">
-    <item msgid="8901098336658710359">Casa</item>
-    <item msgid="869923650527136615">Móvil</item>
-    <item msgid="7897544654242874543">Trabayu</item>
-    <item msgid="1103601433382158155">Fax del trabayu</item>
-    <item msgid="1735177144948329370">Fax de casa</item>
-    <item msgid="603878674477207394">Busca</item>
-    <item msgid="1650824275177931637">Otru</item>
-    <item msgid="9192514806975898961">Personalizar</item>
+    <item>Casa</item>
+    <item>Móvil</item>
+    <item>Trabayu</item>
+    <item>Fax del trabayu</item>
+    <item>Fax de casa</item>
+    <item>Busca</item>
+    <item>Otru</item>
+    <item>Personalizar</item>
   </string-array>
   <string-array name="emailAddressTypes">
-    <item msgid="8073994352956129127">Casa</item>
-    <item msgid="7084237356602625604">Trabayu</item>
-    <item msgid="1112044410659011023">Otra</item>
-    <item msgid="2374913952870110618">Personalizar</item>
+    <item>Casa</item>
+    <item>Trabayu</item>
+    <item>Otra</item>
+    <item>Personalizar</item>
   </string-array>
   <string-array name="postalAddressTypes">
-    <item msgid="6880257626740047286">Casa</item>
-    <item msgid="5629153956045109251">Trabayu</item>
-    <item msgid="4966604264500343469">Otra</item>
-    <item msgid="4932682847595299369">Personalizar</item>
+    <item>Casa</item>
+    <item>Trabayu</item>
+    <item>Otra</item>
+    <item>Personalizar</item>
   </string-array>
   <string-array name="imAddressTypes">
-    <item msgid="1738585194601476694">Casa</item>
-    <item msgid="1359644565647383708">Trabayu</item>
-    <item msgid="7868549401053615677">Otru</item>
-    <item msgid="3145118944639869809">Personalizar</item>
+    <item>Casa</item>
+    <item>Trabayu</item>
+    <item>Otru</item>
+    <item>Personalizar</item>
   </string-array>
   <string-array name="organizationTypes">
-    <item msgid="7546335612189115615">Trabayu</item>
-    <item msgid="4378074129049520373">Otra</item>
-    <item msgid="3455047468583965104">Personalizar</item>
+    <item>Trabayu</item>
+    <item>Otra</item>
+    <item>Personalizar</item>
   </string-array>
   <string-array name="imProtocols">
-    <item msgid="8595261363518459565">AIM</item>
-    <item msgid="7390473628275490700">Windows Live</item>
-    <item msgid="7882877134931458217">Yahoo!</item>
-    <item msgid="5035376313200585242">Skype</item>
-    <item msgid="7532363178459444943">QQ</item>
-    <item msgid="3713441034299660749">Google Talk</item>
-    <item msgid="2506857312718630823">ICQ</item>
-    <item msgid="1648797903785279353">Jabber</item>
+    <item>AIM</item>
+    <item>Windows Live</item>
+    <item>Yahoo!</item>
+    <item>Skype</item>
+    <item>QQ</item>
+    <item>Google Talk</item>
+    <item>ICQ</item>
+    <item>Jabber</item>
   </string-array>
   <string name="phoneTypeCustom">Personalizáu</string>
   <string name="phoneTypeHome">Casa</string>
@@ -856,14 +856,13 @@
   <string name="emergency_calls_only" msgid="2485604591272668370">Namái llamaes d\'emerxencia</string>
   <string name="lockscreen_network_locked_message">Bloquiada pa la rede</string>
   <string name="lockscreen_sim_puk_locked_message">La tarxeta SIM ta bloquiada col códigu PUK.</string>
-  <string name="lockscreen_sim_puk_locked_instructions">Consulta la guía del usuariu o ponte en contautu col serviciu d\'atención al cliente.</string>
-  <string name="lockscreen_sim_locked_message">Inxerta\'l códigu PIN.</string>
+  <string name="lockscreen_sim_locked_message">La tarxeta SIM ta bloquiada.</string>
   <string name="lockscreen_sim_unlock_progress_dialog_message">Desbloquiando tarxeta SIM\u2026</string>
   <string name="lockscreen_too_many_failed_attempts_dialog_message">Fixisti <xliff:g id="number">%d</xliff:g> intentos fallíos de desbloquéu.
 \n\nVuelvi intentalo en <xliff:g id="number">%d</xliff:g> segundos.
-    </string>
+    </string>
   <string name="lockscreen_too_many_failed_password_attempts_dialog_message">Introduxisti una contraseña incorreuta <xliff:g id="number">%d</xliff:g> vegaes.\n\nInténtalo otra vuelta en <xliff:g id="number">%d</xliff:g> segundos. 
-    </string>
+    </string>
   <string name="lockscreen_too_many_failed_pin_attempts_dialog_message">Introduxisti un códigu PIN incorreutu <xliff:g id="NUMBER_0">%d</xliff:g> vegaes. \n\nInténtalo otra vuelta en <xliff:g id="NUMBER_1">%d</xliff:g> segundos.</string>
   <string name="lockscreen_failed_attempts_almost_glogin" product="tablet">Fallasti <xliff:g id="number">%d</xliff:g> vegaes al dibuxar el patrón de desbloquéu. Si falles otres  <xliff:g id="number">%d</xliff:g> vegaes, vas tener d\'usar les tos credenciales d\'accesu de Google pa desbloquiar la tablet.\n\n Inténtalo otra vuelta en <xliff:g id="number">%d</xliff:g> segundos.</string>
   <string name="lockscreen_failed_attempts_almost_glogin" product="default">Fallasti <xliff:g id="NUMBER_0">%d</xliff:g> vegaes al dibuxar el patrón de desbloquéu. Si falles otres <xliff:g id="NUMBER_1">%d</xliff:g> vegaes, vas tender d\'usar les tos credenciales d\'accesu de Google pa desbloquiar el teléfonu.\n\n Inténtalo otra vuelta en <xliff:g id="NUMBER_2">%d</xliff:g> segundos.</string>
@@ -1034,100 +1033,97 @@
   <string name="oneMonthDurationPast">hai un mes</string>
   <string name="beforeOneMonthDurationPast">hai más d\'un mes</string>
   <plurals name="num_seconds_ago">
-    <item quantity="one" msgid="4869870056547896011">hai 1 segundu</item>
-    <item quantity="other" msgid="3903706804349556379">hai <xliff:g id="COUNT">%d</xliff:g> segundos</item>
+    <item quantity="one">hai 1 segundu</item>
+    <item quantity="other">hai <xliff:g id="COUNT">%d</xliff:g> segundos</item>
   </plurals>
   <plurals name="num_minutes_ago">
-    <item quantity="one" msgid="3306787433088810191">hai 1 minutu</item>
-    <item quantity="other" msgid="2176942008915455116">hai <xliff:g id="COUNT">%d</xliff:g> minutos</item>
+    <item quantity="one">hai 1 minutu</item>
+    <item quantity="other">hai <xliff:g id="COUNT">%d</xliff:g> minutos</item>
   </plurals>
   <plurals name="num_hours_ago">
-    <item quantity="one" msgid="9150797944610821849">hai 1 hora</item>
-    <item quantity="other" msgid="2467273239587587569">hai <xliff:g id="COUNT">%d</xliff:g> hores</item>
+    <item quantity="one">hai 1 hora</item>
+    <item quantity="other">hai <xliff:g id="COUNT">%d</xliff:g> hores</item>
   </plurals>
-  <plurals name="last_num_days">
-    <item quantity="other" msgid="3069992808164318268">caberos <xliff:g id="COUNT">%d</xliff:g> díes</item>
-  </plurals>
-    <string name="last_month" msgid="3959346739979055432">el mes pasáu</string>
-    <string name="older" msgid="5211975022815554840">anterior</string>
+  <string name="last_month">el mes pasáu</string>
+  <string name="older">anterior</string>
   <plurals name="num_days_ago">
-    <item quantity="one" msgid="861358534398115820">ayeri</item>
-    <item quantity="other" msgid="2479586466153314633">hai <xliff:g id="COUNT">%d</xliff:g> díes</item>
+    <item quantity="one">ayeri</item>
+    <item quantity="other">hai <xliff:g id="COUNT">%d</xliff:g> díes</item>
   </plurals>
   <plurals name="in_num_seconds">
-    <item quantity="one" msgid="2729745560954905102">d\'equí a 1 segundu</item>
-    <item quantity="other" msgid="1241926116443974687">d\'equí a <xliff:g id="COUNT">%d</xliff:g> segundos</item>
+    <item quantity="one">d\'equí a 1 segundu</item>
+    <item quantity="other">d\'equí a <xliff:g id="COUNT">%d</xliff:g> segundos</item>
   </plurals>
   <plurals name="in_num_minutes">
-    <item quantity="one" msgid="8793095251325200395">d\'equí a 1 minutu</item>
-    <item quantity="other" msgid="3330713936399448749">d\'equí a <xliff:g id="COUNT">%d</xliff:g> minutos</item>
+    <item quantity="one">d\'equí a 1 minutu</item>
+    <item quantity="other">d\'equí a <xliff:g id="COUNT">%d</xliff:g> minutos</item>
   </plurals>
   <plurals name="in_num_hours">
-    <item quantity="one" msgid="7164353342477769999">d\'equí a 1 hora</item>
-    <item quantity="other" msgid="547290677353727389">d\'equí a <xliff:g id="COUNT">%d</xliff:g>  hores</item>
+    <item quantity="one">d\'equí a 1 hora</item>
+    <item quantity="other">d\'equí a <xliff:g id="COUNT">%d</xliff:g>  hores</item>
   </plurals>
   <plurals name="in_num_days">
-    <item quantity="one" msgid="5413088743009839518">mañana</item>
-    <item quantity="other" msgid="5109449375100953247">d\'equí a <xliff:g id="COUNT">%d</xliff:g> díes</item>
+    <item quantity="one">mañana</item>
+    <item quantity="other">d\'equí a <xliff:g id="COUNT">%d</xliff:g> díes</item>
   </plurals>
   <plurals name="abbrev_num_seconds_ago">
-    <item quantity="one" msgid="1849036840200069118">hai 1 segundu</item>
-    <item quantity="other" msgid="3699169366650930415">hai <xliff:g id="COUNT">%d</xliff:g> segundos</item>
+    <item quantity="one">hai 1 segundu</item>
+    <item quantity="other">hai <xliff:g id="COUNT">%d</xliff:g> segundos</item>
   </plurals>
   <plurals name="abbrev_num_minutes_ago">
-    <item quantity="one" msgid="6361490147113871545">hai 1 minutu</item>
-    <item quantity="other" msgid="851164968597150710">hai <xliff:g id="COUNT">%d</xliff:g> minutos</item>
+    <item quantity="one">hai 1 minutu</item>
+    <item quantity="other">hai <xliff:g id="COUNT">%d</xliff:g> minutos</item>
   </plurals>
   <plurals name="abbrev_num_hours_ago">
-    <item quantity="one" msgid="4796212039724722116">hai 1 hora</item>
-    <item quantity="other" msgid="6889970745748538901">hai <xliff:g id="COUNT">%d</xliff:g> hores</item>
+    <item quantity="one">hai 1 hora</item>
+    <item quantity="other">hai <xliff:g id="COUNT">%d</xliff:g> hores</item>
   </plurals>
   <plurals name="abbrev_num_days_ago">
-    <item quantity="one" msgid="8463161711492680309">ayeri</item>
-    <item quantity="other" msgid="3453342639616481191">hai <xliff:g id="COUNT">%d</xliff:g> díes</item>
+    <item quantity="one">ayeri</item>
+    <item quantity="other">hai <xliff:g id="COUNT">%d</xliff:g> díes</item>
   </plurals>
   <plurals name="abbrev_in_num_seconds">
-    <item quantity="one" msgid="5842225370795066299">d\'equí a 1 segundu</item>
-    <item quantity="other" msgid="5495880108825805108">d\'equí a <xliff:g id="COUNT">%d</xliff:g> segundos</item>
+    <item quantity="one">d\'equí a 1 segundu</item>
+    <item quantity="other">d\'equí a <xliff:g id="COUNT">%d</xliff:g> segundos</item>
   </plurals>
   <plurals name="abbrev_in_num_minutes">
-    <item quantity="one" msgid="562786149928284878">d\'equí a 1 minutu</item>
-    <item quantity="other" msgid="4216113292706568726">d\'equí a <xliff:g id="COUNT">%d</xliff:g> minutos</item>
+    <item quantity="one">d\'equí a 1 minutu</item>
+    <item quantity="other">d\'equí a <xliff:g id="COUNT">%d</xliff:g> minutos</item>
   </plurals>
   <plurals name="abbrev_in_num_hours">
-    <item quantity="one" msgid="3274708118124045246">d\'equí a 1 hora</item>
-    <item quantity="other" msgid="3705373766798013406">d\'equí a <xliff:g id="COUNT">%d</xliff:g> hores</item>
+    <item quantity="one">d\'equí a 1 hora</item>
+    <item quantity="other">d\'equí a <xliff:g id="COUNT">%d</xliff:g> hores</item>
   </plurals>
   <plurals name="abbrev_in_num_days">
-    <item quantity="one" msgid="2178576254385739855">mañana</item>
-    <item quantity="other" msgid="2973062968038355991">d\'equí a <xliff:g id="COUNT">%d</xliff:g> díes</item>
+    <item quantity="one">mañana</item>
+    <item quantity="other">d\'equí a <xliff:g id="COUNT">%d</xliff:g> díes</item>
   </plurals>
-    <string name="preposition_for_date" msgid="9093949757757445117">el <xliff:g id="DATE">%s</xliff:g></string>
-    <string name="preposition_for_time" msgid="5506831244263083793">a las <xliff:g id="TIME">%s</xliff:g></string>
-    <string name="preposition_for_year" msgid="5040395640711867177">en <xliff:g id="YEAR">%s</xliff:g></string>
-    <string name="day" msgid="8144195776058119424">día</string>
-    <string name="days" msgid="4774547661021344602">díes</string>
-    <string name="hour" msgid="2126771916426189481">hora</string>
-    <string name="hours" msgid="894424005266852993">hores</string>
-    <string name="minute" msgid="9148878657703769868">min</string>
-    <string name="minutes" msgid="5646001005827034509">minutos</string>
-    <string name="second" msgid="3184235808021478">segundu</string>
-    <string name="seconds" msgid="3161515347216589235">segundos</string>
-    <string name="week" msgid="5617961537173061583">selmana</string>
-    <string name="weeks" msgid="6509623834583944518">selmanes</string>
-    <string name="year" msgid="4001118221013892076">añu</string>
-    <string name="years" msgid="6881577717993213522">años</string>
+  <string name="preposition_for_date">el <xliff:g id="DATE">%s</xliff:g></string>
+  <string name="preposition_for_time">a les <xliff:g id="TIME">%s</xliff:g></string>
+  <string name="preposition_for_year">en <xliff:g id="YEAR">%s</xliff:g></string>
+  <string name="day">día</string>
+  <string name="days">díes</string>
+  <string name="hour">hora</string>
+  <string name="hours">hores</string>
+  <string name="minute">min</string>
+  <string name="minutes">minutos</string>
+  <string name="second">segundu</string>
+  <string name="seconds">segundos</string>
+  <string name="week">selmana</string>
+  <string name="weeks">selmanes</string>
+  <string name="year">añu</string>
+  <string name="years">años</string>
   <plurals name="duration_seconds">
-    <item quantity="one" msgid="6962015528372969481">1 segundu</item>
-    <item quantity="other" msgid="1886107766577166786"><xliff:g id="COUNT">%d</xliff:g> segundos</item>
+    <item quantity="one">1 segundu</item>
+    <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> segundos</item>
   </plurals>
   <plurals name="duration_minutes">
-    <item quantity="one" msgid="4915414002546085617">1 minutu</item>
-    <item quantity="other" msgid="3165187169224908775"><xliff:g id="COUNT">%d</xliff:g> minutos</item>
+    <item quantity="one">1 minutu</item>
+    <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> minutos</item>
   </plurals>
   <plurals name="duration_hours">
-    <item quantity="one" msgid="8917467491248809972">1 hora</item>
-    <item quantity="other" msgid="3863962854246773930"><xliff:g id="COUNT">%d</xliff:g> hores</item>
+    <item quantity="one">1 hora</item>
+    <item quantity="other"><xliff:g id="COUNT">%d</xliff:g> hores</item>
   </plurals>
   <string name="VideoView_error_title">Incidencies col videu</string>
   <string name="VideoView_error_text_invalid_progressive_playback">Esti videu nun pue tresmitise al preséu.</string>
@@ -1223,12 +1219,12 @@
   <string name="ringtone_picker_title">Tonos</string>
   <string name="ringtone_unknown">Tonu desconocíu</string>
   <plurals name="wifi_available">
-    <item quantity="one" msgid="6654123987418168693">Rede Wi-Fi disponible</item>
-    <item quantity="other" msgid="4192424489168397386">Redes Wi-Fi disponibles</item>
+    <item quantity="one">Rede Wi-Fi disponible</item>
+    <item quantity="other">Redes Wi-Fi disponibles</item>
   </plurals>
   <plurals name="wifi_available_detailed">
-    <item quantity="one" msgid="1634101450343277345">Rede Wi-Fi abierta disponible</item>
-    <item quantity="other" msgid="7915895323644292768">Redes Wi-Fi abiertes disponibles</item>
+    <item quantity="one">Rede Wi-Fi abierta disponible</item>
+    <item quantity="other">Redes Wi-Fi abiertes disponibles</item>
   </plurals>
   <string name="wifi_available_sign_in">Aniciar sesión en rede Wi-Fi</string>
   <string name="network_available_sign_in">Aniciar sesión na rede</string>
@@ -1261,7 +1257,7 @@
   <string name="sms_short_code_confirm_allow">Unviar</string>
   <string name="sms_short_code_confirm_deny">Encaboxar</string>
   <string name="sms_short_code_remember_choice">Recordar opción esbillada</string>
-  <string name="sms_short_code_remember_undo_instruction">Pues cambiar esta opción más tarde en Axustes &gt; Aplicaciones.</string>
+  <string name="sms_short_code_remember_undo_instruction">Pues cambiar esta opción más tarde en Axustes &gt; Aplicaciones.</string>
   <string name="sms_short_code_confirm_always_allow">Permitir siempre</string>
   <string name="sms_short_code_confirm_never_allow">Nun permitir enxamás</string>
   <string name="sim_removed_title">Tarxeta SIM desaniciada</string>
@@ -1404,306 +1400,306 @@
   <string name="no_matches">Nun hai coincidencies.</string>
   <string name="find_on_page">Guetar na páxina</string>
   <plurals name="matches_found">
-    <item quantity="one" msgid="8167147081136579439">Una coincidencia</item>
-    <item quantity="other" msgid="4641872797067609177"><xliff:g id="INDEX">%d</xliff:g> de <xliff:g id="TOTAL">%d</xliff:g></item>
+    <item quantity="one">Una coincidencia</item>
+    <item quantity="other"><xliff:g id="INDEX">%d</xliff:g> de <xliff:g id="TOTAL">%d</xliff:g></item>
   </plurals>
-    <string name="action_mode_done" msgid="7217581640461922289">Listo</string>
-    <string name="progress_unmounting" product="nosdcard" msgid="3923810448507612746">Desactivando almacenamientu USB\u2026</string>
-    <string name="progress_unmounting" product="default" msgid="1327894998409537190">Desactivando tarxeta SD\u2026</string>
-    <string name="progress_erasing" product="nosdcard" msgid="4521573321524340058">Desaniciando almacenamientu USB\u2026</string>
-    <string name="progress_erasing" product="default" msgid="6596988875507043042">Desaniciando tarxeta SD\u2026</string>
-    <string name="format_error" product="nosdcard" msgid="6299769563624776948">Nun pudo desaniciase l\'almacenamientu USB.</string>
-    <string name="format_error" product="default" msgid="7315248696644510935">Nun pudo desaniciase la tarxeta SD.</string>
-    <string name="media_bad_removal" msgid="7960864061016603281">La tarxeta SD estráxose enantes de desactivala.</string>
-    <string name="media_checking" product="nosdcard" msgid="418188720009569693">Ta comprobándose l\'almacenamientu USB.</string>
-    <string name="media_checking" product="default" msgid="7334762503904827481">Ta comprobándose la tarxeta SD.</string>
-    <string name="media_removed" msgid="7001526905057952097">Estráxose la tarxeta SD.</string>
-    <string name="media_shared" product="nosdcard" msgid="5830814349250834225">Hai un equipu usando agora mesmo l\'almacenamientu USB.</string>
-    <string name="media_shared" product="default" msgid="5706130568133540435">Hai un equipu usando agora mesmo la tarxeta SD.</string>
-    <string name="media_unknown_state" msgid="729192782197290385">Estáu de mediu esternu desconocíu</string>
-    <string name="share" msgid="1778686618230011964">Compartir</string>
-    <string name="find" msgid="4808270900322985960">Guetar</string>
-    <string name="websearch" msgid="4337157977400211589">Guetar na web</string>
-    <string name="find_next" msgid="5742124618942193978">Atopar siguiente</string>
-    <string name="find_previous" msgid="2196723669388360506">Atopar anterior</string>
-    <string name="gpsNotifTicker" msgid="5622683912616496172">Solicitú de llocalización de <xliff:g id="NAME">%s</xliff:g></string>
-    <string name="gpsNotifTitle" msgid="5446858717157416839">Solicitú de llocalización</string>
-    <string name="gpsNotifMessage" msgid="1374718023224000702">Solicitú unviada por <xliff:g id="NAME">%1$s</xliff:g> (<xliff:g id="SERVICE">%2$s</xliff:g>)</string>
-    <string name="gpsVerifYes" msgid="2346566072867213563">Sí</string>
-    <string name="gpsVerifNo" msgid="1146564937346454865">Non</string>
-    <string name="sync_too_many_deletes" msgid="5296321850662746890">Perpasóse\'l llímite de desanicios.</string>
-    <string name="sync_too_many_deletes_desc" msgid="496551671008694245">Hai <xliff:g id="NUMBER_OF_DELETED_ITEMS">%1$d</xliff:g> elementos desaniciaos pa <xliff:g id="TYPE_OF_SYNC">%2$s</xliff:g> (cuenta <xliff:g id="ACCOUNT_NAME">%3$s</xliff:g>). ¿Qué quies facer?</string>
-    <string name="sync_really_delete" msgid="2572600103122596243">Desaniciar elementos</string>
-    <string name="sync_undo_deletes" msgid="2941317360600338602">Desfacer los desanicios</string>
-    <string name="sync_do_nothing" msgid="3743764740430821845">Nun facer un res agora</string>
-    <string name="choose_account_label" msgid="5655203089746423927">Esbilla una cuenta</string>
-    <string name="add_account_label" msgid="2935267344849993553">Amestar una cuenta</string>
-    <string name="add_account_button_label" msgid="3611982894853435874">Amestar cuenta</string>
-    <string name="number_picker_increment_button" msgid="2412072272832284313">Aumentar</string>
-    <string name="number_picker_decrement_button" msgid="476050778386779067">Amenorgar</string>
-    <string name="number_picker_increment_scroll_mode" msgid="3073101067441638428">Caltén primíu <xliff:g id="VALUE">%s</xliff:g>.</string>
-    <string name="number_picker_increment_scroll_action" msgid="9101473045891835490">Esliza\'l deu hacia arriba p\'aumentar y hacia abaxo p\'amenorgar.</string>
-    <string name="time_picker_increment_minute_button" msgid="8865885114028614321">Aumentar minutos</string>
-    <string name="time_picker_decrement_minute_button" msgid="6246834937080684791">Amenorgar minutos</string>
-    <string name="time_picker_increment_hour_button" msgid="3652056055810223139">Aumentar hores</string>
-    <string name="time_picker_decrement_hour_button" msgid="1377479863429214792">Amenorgar hores</string>
-    <string name="time_picker_increment_set_pm_button" msgid="4147590696151230863">Afitar p.m.</string>
-    <string name="time_picker_decrement_set_am_button" msgid="8302140353539486752">Afitar a.m.</string>
-    <string name="date_picker_increment_month_button" msgid="5369998479067934110">Aumentar mes</string>
-    <string name="date_picker_decrement_month_button" msgid="1832698995541726019">Amenorgar mes</string>
-    <string name="date_picker_increment_day_button" msgid="7130465412308173903">Aumentar díes</string>
-    <string name="date_picker_decrement_day_button" msgid="4131881521818750031">Amenorgar díes</string>
-    <string name="date_picker_increment_year_button" msgid="6318697384310808899">Aumentar añu</string>
-    <string name="date_picker_decrement_year_button" msgid="4482021813491121717">Amenorgar año</string>
-    <string name="keyboardview_keycode_alt" msgid="4856868820040051939">Alt</string>
-    <string name="keyboardview_keycode_cancel" msgid="1203984017245783244">Encaboxar</string>
-    <string name="keyboardview_keycode_delete" msgid="3337914833206635744">Desaniciar</string>
-    <string name="keyboardview_keycode_done" msgid="1992571118466679775">Fecho</string>
-    <string name="keyboardview_keycode_mode_change" msgid="4547387741906537519">Cambéu de mou</string>
-    <string name="keyboardview_keycode_shift" msgid="2270748814315147690">Mayús</string>
-    <string name="keyboardview_keycode_enter" msgid="2985864015076059467">Intro</string>
-    <string name="activitychooserview_choose_application" msgid="2125168057199941199">Esbillar una aplicación</string>
-    <string name="activitychooserview_choose_application_error" msgid="8624618365481126668">Nun pudo abrise <xliff:g id="APPLICATION_NAME">%s</xliff:g></string>
-    <string name="shareactionprovider_share_with" msgid="806688056141131819">Compartir con</string>
-    <string name="shareactionprovider_share_with_application" msgid="5627411384638389738">Compartir con <xliff:g id="APPLICATION_NAME">%s</xliff:g></string>
-    <string name="content_description_sliding_handle" msgid="415975056159262248">Caltén primíu l\'iconu de desbloquéu y eslízalu.</string>
-    <string name="description_direction_up" msgid="7169032478259485180">Esliza\'l deu hacia arriba pa <xliff:g id="TARGET_DESCRIPTION">%s</xliff:g>.</string>
-    <string name="description_direction_down" msgid="5087739728639014595">Esliza\'l deu hacia abaxo pa <xliff:g id="TARGET_DESCRIPTION">%s</xliff:g>.</string>
-    <string name="description_direction_left" msgid="7207478719805562165">Esliza\'l deu hacia la esquierda pa <xliff:g id="TARGET_DESCRIPTION">%s</xliff:g>.</string>
-    <string name="description_direction_right" msgid="8034433242579600980">Esliza\'l deu hacia la derecha pa <xliff:g id="TARGET_DESCRIPTION">%s</xliff:g>.</string>
-    <string name="description_target_unlock" msgid="2228524900439801453">Desbloquiar</string>
-    <string name="description_target_camera" msgid="969071997552486814">Cámara</string>
-    <string name="description_target_silent" msgid="893551287746522182">Silenciu</string>
-    <string name="description_target_soundon" msgid="30052466675500172">Soníu activáu</string>
-    <string name="description_target_search" msgid="3091587249776033139">Guetar</string>
-    <string name="description_target_unlock_tablet" msgid="3833195335629795055">Esliza\'l deu pa desbloquiar.</string>
-    <string name="keyboard_headset_required_to_hear_password" msgid="7011927352267668657">Coneuta un auricular pa escuchar les contraseñes.</string>
-    <string name="keyboard_password_character_no_headset" msgid="2859873770886153678">Puntu</string>
-    <string name="action_bar_home_description" msgid="5293600496601490216">Dir al escritoriu</string>
-    <string name="action_bar_up_description" msgid="2237496562952152589">Desplazase hacia arriba</string>
-    <string name="action_menu_overflow_description" msgid="2295659037509008453">Más opciones</string>
-    <string name="action_bar_home_description_format" msgid="7965984360903693903">%1$s, %2$s</string>
-    <string name="action_bar_home_subtitle_description_format" msgid="6985546530471780727">%1$s, %2$s, %3$s</string>
-    <string name="storage_internal" msgid="4891916833657929263">Almacenamientu internu</string>
-    <string name="storage_sd_card" msgid="3282948861378286745">Tarxeta SD</string>
-    <string name="storage_usb" msgid="3017954059538517278">Almacenamientu USB</string>
-    <string name="extract_edit_menu_button" msgid="8940478730496610137">Editar</string>
-    <string name="data_usage_warning_title" msgid="1955638862122232342">Avisu d\'usu de datos</string>
-    <string name="data_usage_warning_body" msgid="2814673551471969954">Toca pa ver l\'usu y axustes.</string>
-    <string name="data_usage_3g_limit_title" msgid="7093334419518706686">Datos 2G-3G inhabilitaos</string>
-    <string name="data_usage_4g_limit_title" msgid="7636489436819470761">Datos 4G inhabilitaos</string>
-    <string name="data_usage_mobile_limit_title" msgid="7869402519391631884">Datos móviles inhabilitaos</string>
-    <string name="data_usage_wifi_limit_title" msgid="8992154736441284865">Datos Wi-Fi inhabilitaos</string>
-    <string name="data_usage_limit_body" msgid="3317964706973601386">Toca p\'habilitar.</string>
-    <string name="data_usage_3g_limit_snoozed_title" msgid="7026739121138005231">Llímite de datos 2G-3G perpasáu</string>
-    <string name="data_usage_4g_limit_snoozed_title" msgid="1106562779311209039">Llímite de datos 4G perpasáu</string>
-    <string name="data_usage_mobile_limit_snoozed_title" msgid="279240572165412168">Llímite de datos móviles perpasáu</string>
-    <string name="data_usage_wifi_limit_snoozed_title" msgid="8743856006384825974">Llímite de datos Wi-Fi perpasáu</string>
-    <string name="data_usage_limit_snoozed_body" msgid="7035490278298441767">Llímite perpasáu en <xliff:g id="SIZE">%s</xliff:g></string>
-    <string name="data_usage_restricted_title" msgid="5965157361036321914">Conexones automátiques restrinxíes</string>
-    <string name="data_usage_restricted_body" msgid="6741521330997452990">Toca pa desaniciar la restricción.</string>
-    <string name="ssl_certificate" msgid="6510040486049237639">Certificáu de seguridá</string>
-    <string name="ssl_certificate_is_valid" msgid="6825263250774569373">Esti certificáu ye válidu.</string>
-    <string name="issued_to" msgid="454239480274921032">Emitíu pa:</string>
-    <string name="common_name" msgid="2233209299434172646">Nome común:</string>
-    <string name="org_name" msgid="6973561190762085236">Organización:</string>
-    <string name="org_unit" msgid="7265981890422070383">Departamentu:</string>
-    <string name="issued_by" msgid="2647584988057481566">Emitíu por:</string>
-    <string name="validity_period" msgid="8818886137545983110">Validez:</string>
-    <string name="issued_on" msgid="5895017404361397232">Data d\'emisión:</string>
-    <string name="expires_on" msgid="3676242949915959821">Data de caducidá:</string>
-    <string name="serial_number" msgid="758814067660862493">Númberu de serie:</string>
-    <string name="fingerprints" msgid="4516019619850763049">Buelgues dixitales:</string>
-    <string name="sha256_fingerprint" msgid="4391271286477279263">Buelga dixital SHA-256:</string>
-    <string name="sha1_fingerprint" msgid="7930330235269404581">Buelga dixital SHA-1:</string>
-    <string name="activity_chooser_view_see_all" msgid="4292569383976636200">Ver too</string>
-    <string name="activity_chooser_view_dialog_title_default" msgid="4710013864974040615">Selecionar actividá</string>
-    <string name="share_action_provider_share_with" msgid="5247684435979149216">Compartir con</string>
-    <string name="list_delimeter" msgid="3975117572185494152">, </string>
-    <string name="sending" msgid="3245653681008218030">Unviando\u2026</string>
-    <string name="launchBrowserDefault" msgid="2057951947297614725">¿Aniciar el restolador web?</string>
-    <string name="SetupCallDefault" msgid="5834948469253758575">¿Aceutar la llamada?</string>
-    <string name="activity_resolver_use_always" msgid="8017770747801494933">Siempre</string>
-    <string name="activity_resolver_use_once" msgid="2404644797149173758">Namái una vegada</string>
-    <string name="default_audio_route_name" product="tablet" msgid="4617053898167127471">Tablet</string>
-    <string name="default_audio_route_name" product="default" msgid="4239291273420140123">Teléfonu</string>
-    <string name="default_audio_route_name_headphones" msgid="8119971843803439110">Auriculares</string>
-    <string name="default_audio_route_name_dock_speakers" msgid="6240602982276591864">Altavoces de la base</string>
-    <string name="default_media_route_name_hdmi" msgid="2450970399023478055">HDMI</string>
-    <string name="default_audio_route_category_name" msgid="3722811174003886946">Sistema</string>
-    <string name="bluetooth_a2dp_audio_route_name" msgid="8575624030406771015">Audiu Bluetooth</string>
-    <string name="wireless_display_route_description" msgid="9070346425023979651">Pantalla inalámbrica</string>
-    <string name="media_route_button_content_description" msgid="5758553567065145276">Salida multimedia</string>
-    <string name="media_route_chooser_title" msgid="1751618554539087622">Coneutar a preséu</string>
-    <string name="media_route_chooser_title_for_remote_display" msgid="3395541745872017583">Unviar pantalla a preséu</string>
-    <string name="media_route_chooser_searching" msgid="4776236202610828706">Guetando por preseos…</string>
-    <string name="media_route_chooser_extended_settings" msgid="87015534236701604">Axustes</string>
-    <string name="media_route_controller_disconnect" msgid="8966120286374158649">Desconeutar</string>
-    <string name="media_route_status_scanning" msgid="7279908761758293783">Analizando\u2026</string>
-    <string name="media_route_status_connecting" msgid="6422571716007825440">Coneutando\u2026</string>
-    <string name="media_route_status_available" msgid="6983258067194649391">Disponible</string>
-    <string name="media_route_status_not_available" msgid="6739899962681886401">Non disponible</string>
-    <string name="media_route_status_in_use" msgid="4533786031090198063">N\'usu</string>
-    <string name="display_manager_built_in_display_name" msgid="2583134294292563941">Pantalla integrada</string>
-    <string name="display_manager_hdmi_display_name" msgid="1555264559227470109">Pantalla HDMI</string>
-    <string name="display_manager_overlay_display_name" msgid="5142365982271620716">Superposición #<xliff:g id="ID">%1$d</xliff:g></string>
-    <string name="display_manager_overlay_display_title" msgid="652124517672257172"><xliff:g id="NAME">%1$s</xliff:g>: <xliff:g id="WIDTH">%2$d</xliff:g> x <xliff:g id="HEIGHT">%3$d</xliff:g>, <xliff:g id="DPI">%4$d</xliff:g> dpi</string>
-    <string name="display_manager_overlay_display_secure_suffix" msgid="6022119702628572080">, seguru</string>
-    <string name="wifi_display_notification_connecting_title" msgid="2838646471050359706">Unviando pantalla</string>
-    <string name="wifi_display_notification_connecting_message" msgid="5837350993752841389">Coneutando a <xliff:g id="NAME">%1$s</xliff:g></string>
-    <string name="wifi_display_notification_connected_title" msgid="8567308065912676285">Unviando pantalla</string>
-    <string name="wifi_display_notification_connected_message" msgid="2587209325701109715">Coneutáu a <xliff:g id="NAME">%1$s</xliff:g></string>
-    <string name="wifi_display_notification_disconnect" msgid="6183754463561153372">Desconeutar</string>
-    <string name="kg_emergency_call_label" msgid="684946192523830531">Llamada d\'emerxencia</string>
-    <string name="kg_forgot_pattern_button_text" msgid="8852021467868220608">¿Escaecisti\'l patrón?</string>
-    <string name="kg_wrong_pattern" msgid="1850806070801358830">El patrón ye incorreutu</string>
-    <string name="kg_wrong_password" msgid="2333281762128113157">Contraseña incorreuta</string>
-    <string name="kg_wrong_pin" msgid="1131306510833563801">PIN incorreutu</string>
-    <string name="kg_too_many_failed_attempts_countdown" msgid="6358110221603297548">Inténtalo otra vuelta en <xliff:g id="NUMBER">%1$d</xliff:g> segundos.</string>
-    <string name="kg_pattern_instructions" msgid="398978611683075868">Dibuxa\'l to patrón de desbloquéu.</string>
-    <string name="kg_sim_pin_instructions" msgid="2319508550934557331">Inxerta\'l PIN de la tarxeta SIM.</string>
-    <string name="kg_pin_instructions" msgid="2377242233495111557">Introduz el PIN.</string>
-    <string name="kg_password_instructions" msgid="5753646556186936819">Escribi la contraseña.</string>
-    <string name="kg_puk_enter_puk_hint" msgid="453227143861735537">La tarxeta SIM ta inhabilitada. Pa continuar, inxerta\'l códigu PUK. Si quies obtener más información, ponte en contautu col operador</string>
-    <string name="kg_puk_enter_pin_hint" msgid="7871604527429602024">Introduz el códigu PIN deseáu</string>
-    <string name="kg_enter_confirm_pin_hint" msgid="325676184762529976">Confirma\'l códigu PIN</string>
-    <string name="kg_sim_unlock_progress_dialog_message" msgid="8950398016976865762">Desbloquiando tarxeta SIM…</string>
-    <string name="kg_password_wrong_pin_code" msgid="1139324887413846912">Códigu PIN incorreutu</string>
-    <string name="kg_invalid_sim_pin_hint" msgid="8795159358110620001">Introduz un códigu PIN con una llonxitú comprendida ente cuatro y ocho díxitos.</string>
-    <string name="kg_invalid_sim_puk_hint" msgid="7553388325654369575">El códigu PUK tien de tener ocho númberos como mínimo.</string>
-    <string name="kg_invalid_puk" msgid="3638289409676051243">Vuelvi a introducir el códigu PUK correutu. Si introduces un códigu incorreutu delles vegaes, va inhabilitase la tarxeta SIM.</string>
-    <string name="kg_invalid_confirm_pin_hint" product="default" msgid="7003469261464593516">Los códigos PIN nun concasen.</string>
-    <string name="kg_login_too_many_attempts" msgid="6486842094005698475">Abondos intentos incorreutos de crear el patrón</string>
-    <string name="kg_login_instructions" msgid="1100551261265506448">Pa desbloquiar el teléfonu, anicia sesión cola to cuenta de Google.</string>
-    <string name="kg_login_username_hint" msgid="5718534272070920364">Nome d\'usuariu (corréu-e)</string>
-    <string name="kg_login_password_hint" msgid="9057289103827298549">Contraseña</string>
-    <string name="kg_login_submit_button" msgid="5355904582674054702">Aniciar sesión</string>
-    <string name="kg_login_invalid_input" msgid="5754664119319872197">El nome d\'usuariu o la contraseña nun son válidos.</string>
-    <string name="kg_login_account_recovery_hint" msgid="5690709132841752974">Si escaecisti\'l nome d\'usuariu o la contraseña,\nvete a la páxina \"<b>google.com/accounts/recovery\"</b>.</string>
-    <string name="kg_login_checking_password" msgid="1052685197710252395">Comprobando cuenta…</string>
-    <string name="kg_too_many_failed_pin_attempts_dialog_message" msgid="8276745642049502550">Punxisti un códigu PIN incorreutu <xliff:g id="NUMBER_0">%d</xliff:g> vegaes. \n\nVuelvi a intentalo en <xliff:g id="NUMBER_1">%d</xliff:g> segundos.</string>
-    <string name="kg_too_many_failed_password_attempts_dialog_message" msgid="7813713389422226531">Punxisti una contraseña incorreuta <xliff:g id="NUMBER_0">%d</xliff:g> vegaes. \n\nVuelvi a intentalo en <xliff:g id="NUMBER_1">%d</xliff:g> segundos.</string>
-    <string name="kg_too_many_failed_pattern_attempts_dialog_message" msgid="74089475965050805">Fallasti <xliff:g id="NUMBER_0">%d</xliff:g> vegaes al dibuxar el patrón de desbloquéu. \n\nVuelvi a intentalo en <xliff:g id="NUMBER_1">%d</xliff:g> segundos.</string>
-    <string name="kg_failed_attempts_almost_at_wipe" product="tablet" msgid="1575557200627128949">Intentasti desbloquiar la tablet <xliff:g id="NUMBER_0">%d</xliff:g> vegaes, pero nun pudisti. Si falles otres <xliff:g id="NUMBER_1">%d</xliff:g> vegaes, van reafitase los datos de fábrica y van perdese tolos datos del usuariu.</string>
-    <string name="kg_failed_attempts_almost_at_wipe" product="default" msgid="4051015943038199910">Intentasti desbloquiar el teléfonu <xliff:g id="NUMBER_0">%d</xliff:g> vegaes, pero nun pudisti. Si falles otres <xliff:g id="NUMBER_1">%d</xliff:g> vegaes, van reafitase los datos de fábrica y van perdese tolos datos del usuariu.</string>
-    <string name="kg_failed_attempts_now_wiping" product="tablet" msgid="2072996269148483637">Intentasti desbloquiar la tablet <xliff:g id="NUMBER">%d</xliff:g> vegaes, pero nun pudisti. Van reafitase los datos de fábrica del preséu.</string>
-    <string name="kg_failed_attempts_now_wiping" product="default" msgid="4817627474419471518">Intentasti desbloquiar el teléfonu <xliff:g id="NUMBER">%d</xliff:g> vegaes, pero nun pudisti. Van reafitase los datos de fábrica del preséu.</string>
-    <string name="kg_failed_attempts_almost_at_login" product="tablet" msgid="3253575572118914370">Fallasti <xliff:g id="NUMBER_0">%d</xliff:g> vegaes al dibuxar el patrón de desbloquéu. Si falles otres <xliff:g id="NUMBER_1">%d</xliff:g> vegaes, vas tener d\'usar una cuenta de corréu-e pa desbloquiar la tablet.\n\n Vuelvi a intentalo en <xliff:g id="NUMBER_2">%d</xliff:g> segundos.</string>
-    <string name="kg_failed_attempts_almost_at_login" product="default" msgid="1437638152015574839">Fallasti <xliff:g id="NUMBER_0">%d</xliff:g> vegaes al dibuxar el patrón de desbloquéu. Si falles otres <xliff:g id="NUMBER_1">%d</xliff:g> vegaes, vas tener d\'usar una cuenta de corréu-e pa desbloquiar el teléfonu.\n\n Vuelvi a intentalo en <xliff:g id="NUMBER_2">%d</xliff:g> segundos.</string>
-    <string name="kg_text_message_separator" product="default" msgid="4160700433287233771"> — </string>
-    <string name="kg_reordering_delete_drop_target_text" msgid="7899202978204438708">Desaniciar</string>
-    <string name="safe_media_volume_warning" product="default" msgid="7324161939475478066">¿Quies xubir el volume penriba del nivel recomendáu?\nEscuchar soníos al altu la lleva mentanto llargos períodos de tiempu pue dañar los oyíos.</string>
-    <string name="continue_to_enable_accessibility" msgid="1626427372316070258">Caltén la pantalla primida con dos deos p\'habilitar les funciones d\'accesibilidá.</string>
-    <string name="accessibility_enabled" msgid="1381972048564547685">Accesibilidá habilitada</string>
-    <string name="enable_accessibility_canceled" msgid="3833923257966635673">Accesibilidá encaboxada</string>
-    <string name="user_switched" msgid="3768006783166984410">Usuariu actual: <xliff:g id="NAME">%1$s</xliff:g></string>
-    <string name="owner_name" msgid="2716755460376028154">Propietariu</string>
-    <string name="error_message_title" msgid="4510373083082500195">Fallu</string>
-    <string name="app_no_restricted_accounts" msgid="5739463249673727736">Esta aplicación nun almite cuentes de perfiles restrinxíos</string>
-    <string name="app_not_found" msgid="3429141853498927379">Nun s\'atopó nenguna aplicación que pueda facer esta aición.</string>
-    <string name="revoke" msgid="5404479185228271586">Revocar</string>
-    <string name="mediasize_iso_a0" msgid="1994474252931294172">ISO A0</string>
-    <string name="mediasize_iso_a1" msgid="3333060421529791786">ISO A1</string>
-    <string name="mediasize_iso_a2" msgid="3097535991925798280">ISO A2</string>
-    <string name="mediasize_iso_a3" msgid="3023213259314236123">ISO A3</string>
-    <string name="mediasize_iso_a4" msgid="231745325296873764">ISO A4</string>
-    <string name="mediasize_iso_a5" msgid="3484327407340865411">ISO A5</string>
-    <string name="mediasize_iso_a6" msgid="4861908487129577530">ISO A6</string>
-    <string name="mediasize_iso_a7" msgid="5890208588072936130">ISO A7</string>
-    <string name="mediasize_iso_a8" msgid="4319425041085816612">ISO A8</string>
-    <string name="mediasize_iso_a9" msgid="4882220529506432008">ISO A9</string>
-    <string name="mediasize_iso_a10" msgid="2382866026365359391">ISO A10</string>
-    <string name="mediasize_iso_b0" msgid="3651827147402009675">ISO B0</string>
-    <string name="mediasize_iso_b1" msgid="6072859628278739957">ISO B1</string>
-    <string name="mediasize_iso_b2" msgid="1348731852150380378">ISO B2</string>
-    <string name="mediasize_iso_b3" msgid="2612510181259261379">ISO B3</string>
-    <string name="mediasize_iso_b4" msgid="695151378838115434">ISO B4</string>
-    <string name="mediasize_iso_b5" msgid="4863754285582212487">ISO B5</string>
-    <string name="mediasize_iso_b6" msgid="5305816292139647241">ISO B6</string>
-    <string name="mediasize_iso_b7" msgid="531673542602786624">ISO B7</string>
-    <string name="mediasize_iso_b8" msgid="9164474595708850034">ISO B8</string>
-    <string name="mediasize_iso_b9" msgid="282102976764774160">ISO B9</string>
-    <string name="mediasize_iso_b10" msgid="4517141714407898976">ISO B10</string>
-    <string name="mediasize_iso_c0" msgid="3103521357901591100">ISO C0</string>
-    <string name="mediasize_iso_c1" msgid="1231954105985048595">ISO C1</string>
-    <string name="mediasize_iso_c2" msgid="927702816980087462">ISO C2</string>
-    <string name="mediasize_iso_c3" msgid="835154173518304159">ISO C3</string>
-    <string name="mediasize_iso_c4" msgid="5095951985108194011">ISO C4</string>
-    <string name="mediasize_iso_c5" msgid="1985397450332305739">ISO C5</string>
-    <string name="mediasize_iso_c6" msgid="8147421924174693013">ISO C6</string>
-    <string name="mediasize_iso_c7" msgid="8993994925276122950">ISO C7</string>
-    <string name="mediasize_iso_c8" msgid="6871178104139598957">ISO C8</string>
-    <string name="mediasize_iso_c9" msgid="7983532635227561362">ISO C9</string>
-    <string name="mediasize_iso_c10" msgid="5040764293406765584">ISO C10</string>
-    <string name="mediasize_na_letter" msgid="2841414839888344296">Carta</string>
-    <string name="mediasize_na_gvrnmt_letter" msgid="5295836838862962809">Carta del gobiernu</string>
-    <string name="mediasize_na_legal" msgid="8621364037680465666">Llegal</string>
-    <string name="mediasize_na_junior_legal" msgid="3309324162155085904">Junior legal</string>
-    <string name="mediasize_na_ledger" msgid="5567030340509075333">Doble carta</string>
-    <string name="mediasize_na_tabloid" msgid="4571735038501661757">Tabloide</string>
-    <string name="mediasize_na_index_3x5" msgid="5182901917818625126">Index Card 3x5</string>
-    <string name="mediasize_na_index_4x6" msgid="7687620625422312396">Index Card 4x6</string>
-    <string name="mediasize_na_index_5x8" msgid="8834215284646872800">Index Card 5x8</string>
-    <string name="mediasize_na_monarch" msgid="213639906956550754">Monarch</string>
-    <string name="mediasize_na_quarto" msgid="835778493593023223">Quarto</string>
-    <string name="mediasize_na_foolscap" msgid="1573911237983677138">Foolscap</string>
-    <string name="mediasize_chinese_roc_8k" msgid="3626855847189438896">ROC 8K</string>
-    <string name="mediasize_chinese_roc_16k" msgid="9182191577022943355">ROC 16K</string>
-    <string name="mediasize_chinese_prc_1" msgid="4793232644980170500">PRC 1</string>
-    <string name="mediasize_chinese_prc_2" msgid="5404109730975720670">PRC 2</string>
-    <string name="mediasize_chinese_prc_3" msgid="1335092253339363526">PRC 3</string>
-    <string name="mediasize_chinese_prc_4" msgid="9167997800486569834">PRC 4</string>
-    <string name="mediasize_chinese_prc_5" msgid="845875168823541497">PRC 5</string>
-    <string name="mediasize_chinese_prc_6" msgid="3220325667692648789">PRC 6</string>
-    <string name="mediasize_chinese_prc_7" msgid="1776792138507038527">PRC 7</string>
-    <string name="mediasize_chinese_prc_8" msgid="1417176642687456692">PRC 8</string>
-    <string name="mediasize_chinese_prc_9" msgid="4785983473123798365">PRC 9</string>
-    <string name="mediasize_chinese_prc_10" msgid="7847982299391851899">PRC 10</string>
-    <string name="mediasize_chinese_prc_16k" msgid="262793383539980677">PRC 16K</string>
-    <string name="mediasize_chinese_om_pa_kai" msgid="5256815579447959814">Pa Kai</string>
-    <string name="mediasize_chinese_om_dai_pa_kai" msgid="7336412963441354407">Dai Pa Ka</string>
-    <string name="mediasize_chinese_om_jurro_ku_kai" msgid="6324465444100490742">Jurro Ku Kai</string>
-    <string name="mediasize_japanese_jis_b10" msgid="1787262845627694376">JIS B10</string>
-    <string name="mediasize_japanese_jis_b9" msgid="3336035783663287470">JIS B9</string>
-    <string name="mediasize_japanese_jis_b8" msgid="6195398299104345731">JIS B8</string>
-    <string name="mediasize_japanese_jis_b7" msgid="1674621886902828884">JIS B7</string>
-    <string name="mediasize_japanese_jis_b6" msgid="4170576286062657435">JIS B6</string>
-    <string name="mediasize_japanese_jis_b5" msgid="4899297958100032533">JIS B5</string>
-    <string name="mediasize_japanese_jis_b4" msgid="4213158129126666847">JIS B4</string>
-    <string name="mediasize_japanese_jis_b3" msgid="8513715307410310696">JIS B3</string>
-    <string name="mediasize_japanese_jis_b2" msgid="4777690211897131190">JIS B2</string>
-    <string name="mediasize_japanese_jis_b1" msgid="4608142385457034603">JIS B1</string>
-    <string name="mediasize_japanese_jis_b0" msgid="7587108366572243991">JIS B0</string>
-    <string name="mediasize_japanese_jis_exec" msgid="5244075432263649068">JIS Exec</string>
-    <string name="mediasize_japanese_chou4" msgid="4941652015032631361">Chou4</string>
-    <string name="mediasize_japanese_chou3" msgid="6387319169263957010">Chou3</string>
-    <string name="mediasize_japanese_chou2" msgid="1299112025415343982">Chou2</string>
-    <string name="mediasize_japanese_hagaki" msgid="8070115620644254565">Hagaki</string>
-    <string name="mediasize_japanese_oufuku" msgid="6049065587307896564">Oufuku</string>
-    <string name="mediasize_japanese_kahu" msgid="6872696027560065173">Kahu</string>
-    <string name="mediasize_japanese_kaku2" msgid="2359077233775455405">Kaku2</string>
-    <string name="mediasize_japanese_you4" msgid="2091777168747058008">You4</string>
-    <string name="mediasize_unknown_portrait" msgid="3088043641616409762">Cualquier tamañu vertical</string>
-    <string name="mediasize_unknown_landscape" msgid="4876995327029361552">Cualquier tamañu horizontal</string>
-    <string name="write_fail_reason_cancelled" msgid="7091258378121627624">Encaboxáu</string>
-    <string name="write_fail_reason_cannot_write" msgid="8132505417935337724">Fallu al escribir conteníu</string>
-    <string name="reason_unknown" msgid="6048913880184628119">desconocíu</string>
-    <string name="reason_service_unavailable" msgid="7824008732243903268">Serviciu d\'impresión non habilitáu</string>
-    <string name="print_service_installed_title" msgid="2246317169444081628">Instalóse\'l serviciu <xliff:g id="NAME">%s</xliff:g></string>
-    <string name="print_service_installed_message" msgid="5897362931070459152">Tocar p\'habilitar</string>
-    <string name="restr_pin_enter_admin_pin" msgid="783643731895143970">Introduz el PIN del alministrador</string>
-    <string name="restr_pin_enter_pin" msgid="3395953421368476103">Introducir PIN</string>
-    <string name="restr_pin_incorrect" msgid="8571512003955077924">Incorreutu</string>
-    <string name="restr_pin_enter_old_pin" msgid="1462206225512910757">PIN actual</string>
-    <string name="restr_pin_enter_new_pin" msgid="5959606691619959184">PIN nuevu</string>
-    <string name="restr_pin_confirm_pin" msgid="8501523829633146239">Confirma\'l PIN nuevu</string>
-    <string name="restr_pin_create_pin" msgid="8017600000263450337">Crear PIN pa modificar restricciones</string>
-    <string name="restr_pin_error_doesnt_match" msgid="2224214190906994548">Los númberos PIN nun concasen. Vuelvi a intentalo.</string>
-    <string name="restr_pin_error_too_short" msgid="8173982756265777792">El PIN ye enforma curtiu. Tien de tener al menos 4 díxitos.</string>
+  <string name="action_mode_done">Listo</string>
+  <string name="progress_unmounting" product="nosdcard">Desactivando almacenamientu USB\u2026</string>
+  <string name="progress_unmounting" product="default">Desactivando tarxeta SD\u2026</string>
+  <string name="progress_erasing" product="nosdcard">Desaniciando almacenamientu USB\u2026</string>
+  <string name="progress_erasing" product="default">Desaniciando tarxeta SD\u2026</string>
+  <string name="format_error" product="nosdcard">Nun pudo desaniciase l\'almacenamientu USB.</string>
+  <string name="format_error" product="default">Nun pudo desaniciase la tarxeta SD.</string>
+  <string name="media_bad_removal">La tarxeta SD estráxose enantes de desactivala.</string>
+  <string name="media_checking" product="nosdcard">Ta comprobándose l\'almacenamientu USB.</string>
+  <string name="media_checking" product="default">Ta comprobándose la tarxeta SD.</string>
+  <string name="media_removed">Estráxose la tarxeta SD.</string>
+  <string name="media_shared" product="nosdcard">Hai un equipu usando agora mesmo l\'almacenamientu USB.</string>
+  <string name="media_shared" product="default">Hai un equipu usando agora mesmo la tarxeta SD.</string>
+  <string name="media_unknown_state">Estáu de mediu esternu desconocíu</string>
+  <string name="share">Compartir</string>
+  <string name="find">Guetar</string>
+  <string name="websearch">Guetar na web</string>
+  <string name="find_next">Atopar siguiente</string>
+  <string name="find_previous">Atopar anterior</string>
+  <string name="gpsNotifTicker">Solicitú de llocalización de <xliff:g id="NAME">%s</xliff:g></string>
+  <string name="gpsNotifTitle">Solicitú de llocalización</string>
+  <string name="gpsNotifMessage">Solicitú unviada por <xliff:g id="NAME">%1$s</xliff:g> (<xliff:g id="SERVICE">%2$s</xliff:g>)</string>
+  <string name="gpsVerifYes">Sí</string>
+  <string name="gpsVerifNo">Non</string>
+  <string name="sync_too_many_deletes">Perpasóse la llende de desanicios.</string>
+  <string name="sync_too_many_deletes_desc">Hai <xliff:g id="NUMBER_OF_DELETED_ITEMS">%1$d</xliff:g> elementos desaniciaos pa <xliff:g id="TYPE_OF_SYNC">%2$s</xliff:g> (cuenta <xliff:g id="ACCOUNT_NAME">%3$s</xliff:g>). ¿Qué quies facer?</string>
+  <string name="sync_really_delete">Desaniciar elementos</string>
+  <string name="sync_undo_deletes">Desfacer los desanicios</string>
+  <string name="sync_do_nothing">Nun facer un res agora</string>
+  <string name="choose_account_label">Esbilla una cuenta</string>
+  <string name="add_account_label">"Amestar una cuenta"</string>
+  <string name="add_account_button_label">Amestar cuenta</string>
+  <string name="number_picker_increment_button">Aumentar</string>
+  <string name="number_picker_decrement_button">Amenorgar</string>
+  <string name="number_picker_increment_scroll_mode">Caltén primíu <xliff:g id="VALUE">%s</xliff:g>.</string>
+  <string name="number_picker_increment_scroll_action">Esliza\'l deu hacia arriba p\'aumentar y hacia abaxo p\'amenorgar.</string>
+  <string name="time_picker_increment_minute_button">Aumentar minutos</string>
+  <string name="time_picker_decrement_minute_button">Amenorgar minutos</string>
+  <string name="time_picker_increment_hour_button">Aumentar hores</string>
+  <string name="time_picker_decrement_hour_button">Amenorgar hores</string>
+  <string name="time_picker_increment_set_pm_button">Afitar p.m.</string>
+  <string name="time_picker_decrement_set_am_button">Afitar a.m.</string>
+  <string name="date_picker_increment_month_button">Aumentar mes</string>
+  <string name="date_picker_decrement_month_button">Amenorgar mes</string>
+  <string name="date_picker_increment_day_button">Aumentar díes</string>
+  <string name="date_picker_decrement_day_button">Amenorgar díes</string>
+  <string name="date_picker_increment_year_button">Aumentar añu</string>
+  <string name="date_picker_decrement_year_button">Amenorgar año</string>
+  <string name="keyboardview_keycode_alt">Alt</string>
+  <string name="keyboardview_keycode_cancel">Encaboxar</string>
+  <string name="keyboardview_keycode_delete">Desaniciar</string>
+  <string name="keyboardview_keycode_done">Fecho</string>
+  <string name="keyboardview_keycode_mode_change">Cambéu de mou</string>
+  <string name="keyboardview_keycode_shift">Mayús</string>
+  <string name="keyboardview_keycode_enter">Intro</string>
+  <string name="activitychooserview_choose_application">Esbillar una aplicación</string>
+  <string name="activitychooserview_choose_application_error">Nun pudo abrise <xliff:g id="APPLICATION_NAME">%s</xliff:g></string>
+  <string name="shareactionprovider_share_with">Compartir con</string>
+  <string name="shareactionprovider_share_with_application">Compartir con <xliff:g id="APPLICATION_NAME">%s</xliff:g></string>
+  <string name="content_description_sliding_handle">"Caltén primíu l'iconu de desbloquéu y eslízalu."</string>
+  <string name="description_direction_up">Esliza\'l deu hacia arriba pa <xliff:g id="TARGET_DESCRIPTION">%s</xliff:g>.</string>
+  <string name="description_direction_down">Esliza\'l deu hacia abaxo pa <xliff:g id="TARGET_DESCRIPTION">%s</xliff:g>.</string>
+  <string name="description_direction_left">Esliza\'l deu hacia la esquierda pa <xliff:g id="TARGET_DESCRIPTION">%s</xliff:g>.</string>
+  <string name="description_direction_right">Esliza\'l deu hacia la derecha pa <xliff:g id="TARGET_DESCRIPTION">%s</xliff:g>.</string>
+  <string name="description_target_unlock">Desbloquiar</string>
+  <string name="description_target_camera">Cámara</string>
+  <string name="description_target_silent">Silenciu</string>
+  <string name="description_target_soundon">Soníu activáu</string>
+  <string name="description_target_search">Guetar</string>
+  <string name="description_target_unlock_tablet">Esliza\'l deu pa desbloquiar.</string>
+  <string name="keyboard_headset_required_to_hear_password">Coneuta un auricular pa escuchar les contraseñes.</string>
+  <string name="keyboard_password_character_no_headset">Puntu</string>
+  <string name="action_bar_home_description">Dir al escritoriu</string>
+  <string name="action_bar_up_description">Desplazase hacia arriba</string>
+  <string name="action_menu_overflow_description">Más opciones</string>
+  <string name="action_bar_home_description_format">%1$s, %2$s</string>
+  <string name="action_bar_home_subtitle_description_format">%1$s, %2$s, %3$s</string>
+  <string name="storage_internal">Almacenamientu internu</string>
+  <string name="storage_sd_card">Tarxeta SD</string>
+  <string name="storage_usb">Almacenamientu USB</string>
+  <string name="extract_edit_menu_button">Editar</string>
+  <string name="data_usage_warning_title">Avisu d\'usu de datos</string>
+  <string name="data_usage_warning_body">Toca pa ver l\'usu y axustes.</string>
+  <string name="data_usage_3g_limit_title">Datos 2G-3G inhabilitaos</string>
+  <string name="data_usage_4g_limit_title">Datos 4G inhabilitaos</string>
+  <string name="data_usage_mobile_limit_title">Datos móviles inhabilitaos</string>
+  <string name="data_usage_wifi_limit_title">Datos Wi-Fi inhabilitaos</string>
+  <string name="data_usage_limit_body">Toca p\'habilitar.</string>
+  <string name="data_usage_3g_limit_snoozed_title">Llende de datos 2G-3G perpasada</string>
+  <string name="data_usage_4g_limit_snoozed_title">Llende de datos 4G perpasada</string>
+  <string name="data_usage_mobile_limit_snoozed_title">Llende de datos móviles perpasada</string>
+  <string name="data_usage_wifi_limit_snoozed_title">Llende de datos Wi-Fi perpasada</string>
+  <string name="data_usage_limit_snoozed_body">Llende perpasada en <xliff:g id="SIZE">%s</xliff:g></string>
+  <string name="data_usage_restricted_title">Conexones automátiques restrinxíes</string>
+  <string name="data_usage_restricted_body">Toca pa desaniciar la restricción.</string>
+  <string name="ssl_certificate">Certificáu de seguranza</string>
+  <string name="ssl_certificate_is_valid">Esti certificáu ye válidu.</string>
+  <string name="issued_to">Emitíu pa:</string>
+  <string name="common_name">Nome común:</string>
+  <string name="org_name">Organización:</string>
+  <string name="org_unit">Departamentu:</string>
+  <string name="issued_by">Emitíu por:</string>
+  <string name="validity_period">Validez:</string>
+  <string name="issued_on">Data d\'emisión:</string>
+  <string name="expires_on">Data de caducidá:</string>
+  <string name="serial_number">Númberu de serie:</string>
+  <string name="fingerprints">Buelgues dixitales:</string>
+  <string name="sha256_fingerprint">Buelga dixital SHA-256:</string>
+  <string name="sha1_fingerprint">Buelga dixital SHA-1:</string>
+  <string name="activity_chooser_view_see_all">Ver too</string>
+  <string name="activity_chooser_view_dialog_title_default">Selecionar actividá</string>
+  <string name="share_action_provider_share_with">Compartir con</string>
+  <string name="list_delimeter">", "</string>
+  <string name="sending">Unviando\u2026</string>
+  <string name="launchBrowserDefault">¿Aniciar el restolador web?</string>
+  <string name="SetupCallDefault">¿Aceutar la llamada?</string>
+  <string name="activity_resolver_use_always">Siempre</string>
+  <string name="activity_resolver_use_once">Namái una vegada</string>
+  <string name="default_audio_route_name" product="tablet">Tablet</string>
+  <string name="default_audio_route_name" product="default">Teléfonu</string>
+  <string name="default_audio_route_name_headphones">Auriculares</string>
+  <string name="default_audio_route_name_dock_speakers">Altavoces de la base</string>
+  <string name="default_media_route_name_hdmi">HDMI</string>
+  <string name="default_audio_route_category_name">Sistema</string>
+  <string name="bluetooth_a2dp_audio_route_name">Audiu Bluetooth</string>
+  <string name="wireless_display_route_description">Pantalla inalámbrica</string>
+  <string name="media_route_button_content_description">Salida multimedia</string>
+  <string name="media_route_chooser_title">Coneutar a preséu</string>
+  <string name="media_route_chooser_title_for_remote_display">Unviar pantalla a preséu</string>
+  <string name="media_route_chooser_searching">Guetando por preseos…</string>
+  <string name="media_route_chooser_extended_settings">Axustes</string>
+  <string name="media_route_controller_disconnect">Desconeutar</string>
+  <string name="media_route_status_scanning">Analizando\u2026</string>
+  <string name="media_route_status_connecting">Coneutando\u2026</string>
+  <string name="media_route_status_available">Disponible</string>
+  <string name="media_route_status_not_available">Non disponible</string>
+  <string name="media_route_status_in_use">N\'usu</string>
+  <string name="display_manager_built_in_display_name">Pantalla integrada</string>
+  <string name="display_manager_hdmi_display_name">Pantalla HDMI</string>
+  <string name="display_manager_overlay_display_name">Superposición #<xliff:g id="ID">%1$d</xliff:g></string>
+  <string name="display_manager_overlay_display_title"><xliff:g id="NAME">%1$s</xliff:g>: <xliff:g id="WIDTH">%2$d</xliff:g> x <xliff:g id="HEIGHT">%3$d</xliff:g>, <xliff:g id="DPI">%4$d</xliff:g> dpi</string>
+  <string name="display_manager_overlay_display_secure_suffix">, seguru</string>
+  <string name="wifi_display_notification_connecting_title">Unviando pantalla</string>
+  <string name="wifi_display_notification_connecting_message">Coneutando a <xliff:g id="NAME">%1$s</xliff:g></string>
+  <string name="wifi_display_notification_connected_title">Unviando pantalla</string>
+  <string name="wifi_display_notification_connected_message">Coneutáu a <xliff:g id="NAME">%1$s</xliff:g></string>
+  <string name="wifi_display_notification_disconnect">Desconeutar</string>
+  <string name="kg_emergency_call_label">Llamada d\'emerxencia</string>
+  <string name="kg_forgot_pattern_button_text">¿Escaecisti\'l patrón?</string>
+  <string name="kg_wrong_pattern">El patrón ye incorreutu</string>
+  <string name="kg_wrong_password">Contraseña incorreuta</string>
+  <string name="kg_wrong_pin">PIN incorreutu</string>
+  <string name="kg_too_many_failed_attempts_countdown">Inténtalo otra vuelta en <xliff:g id="NUMBER">%1$d</xliff:g> segundos.</string>
+  <string name="kg_pattern_instructions">Dibuxa\'l to patrón de desbloquéu.</string>
+  <string name="kg_sim_pin_instructions">Inxerta\'l PIN de la tarxeta SIM.</string>
+  <string name="kg_pin_instructions">Introduz el PIN.</string>
+  <string name="kg_password_instructions">Escribi la contraseña.</string>
+  <string name="kg_puk_enter_puk_hint">La tarxeta SIM ta inhabilitada. Pa continuar, inxerta\'l códigu PUK. Si quies obtener más información, ponte en contautu col operador</string>
+  <string name="kg_puk_enter_pin_hint">Introduz el códigu PIN deseáu</string>
+  <string name="kg_enter_confirm_pin_hint">Confirma\'l códigu PIN</string>
+  <string name="kg_sim_unlock_progress_dialog_message">Desbloquiando tarxeta SIM…</string>
+  <string name="kg_password_wrong_pin_code">Códigu PIN incorreutu</string>
+  <string name="kg_invalid_sim_pin_hint">Introduz un códigu PIN con una llonxitú comprendida ente cuatro y ocho díxitos.</string>
+  <string name="kg_invalid_sim_puk_hint">El códigu PUK tien de tener ocho númberos como mínimu.</string>
+  <string name="kg_invalid_puk">Vuelvi a introducir el códigu PUK correutu. Si introduces un códigu incorreutu delles vegaes, va inhabilitase la tarxeta SIM.</string>
+  <string name="kg_invalid_confirm_pin_hint" product="default">Los códigos PIN nun concasen.</string>
+  <string name="kg_login_too_many_attempts">Abondos intentos incorreutos de crear el patrón</string>
+  <string name="kg_login_instructions">Pa desbloquiar el teléfonu, anicia sesión cola to cuenta de Google.</string>
+  <string name="kg_login_username_hint">Nome d\'usuariu (corréu-e)</string>
+  <string name="kg_login_password_hint">Contraseña</string>
+  <string name="kg_login_submit_button">Aniciar sesión</string>
+  <string name="kg_login_invalid_input">El nome d\'usuariu o la contraseña nun son válidos.</string>
+  <string name="kg_login_account_recovery_hint">Si escaecisti\'l nome d\'usuariu o la contraseña,\nvete a la páxina \"<b>google.com/accounts/recovery"</b>.</string>
+  <string name="kg_login_checking_password">Comprobando cuenta…</string>
+  <string name="kg_too_many_failed_pin_attempts_dialog_message">Punxisti un códigu PIN incorreutu <xliff:g id="NUMBER_0">%d</xliff:g> vegaes. \n\nVuelvi a intentalo en <xliff:g id="NUMBER_1">%d</xliff:g> segundos.</string>
+  <string name="kg_too_many_failed_password_attempts_dialog_message">Punxisti una contraseña incorreuta <xliff:g id="NUMBER_0">%d</xliff:g> vegaes. \n\nVuelvi a intentalo en <xliff:g id="NUMBER_1">%d</xliff:g> segundos.</string>
+  <string name="kg_too_many_failed_pattern_attempts_dialog_message">Fallasti <xliff:g id="NUMBER_0">%d</xliff:g> vegaes al dibuxar el patrón de desbloquéu. \n\nVuelvi a intentalo en <xliff:g id="NUMBER_1">%d</xliff:g> segundos.</string>
+  <string name="kg_failed_attempts_almost_at_wipe" product="tablet">Intentasti desbloquiar la tablet <xliff:g id="NUMBER_0">%d</xliff:g> vegaes, pero nun pudisti. Si falles otres <xliff:g id="NUMBER_1">%d</xliff:g> vegaes, van reafitase los datos de fábrica y van perdese tolos datos del usuariu.</string>
+  <string name="kg_failed_attempts_almost_at_wipe" product="default">Intentasti desbloquiar el teléfonu <xliff:g id="NUMBER_0">%d</xliff:g> vegaes, pero nun pudisti. Si falles otres <xliff:g id="NUMBER_1">%d</xliff:g> vegaes, van reafitase los datos de fábrica y van perdese tolos datos del usuariu.</string>
+  <string name="kg_failed_attempts_now_wiping" product="tablet">Intentasti desbloquiar la tablet <xliff:g id="NUMBER">%d</xliff:g> vegaes, pero nun pudisti. Van reafitase los datos de fábrica del preséu.</string>
+  <string name="kg_failed_attempts_now_wiping" product="default">Intentasti desbloquiar el teléfonu <xliff:g id="NUMBER">%d</xliff:g> vegaes, pero nun pudisti. Van reafitase los datos de fábrica del preséu.</string>
+  <string name="kg_failed_attempts_almost_at_login" product="tablet">Fallasti <xliff:g id="NUMBER_0">%d</xliff:g> vegaes al dibuxar el patrón de desbloquéu. Si falles otres <xliff:g id="NUMBER_1">%d</xliff:g> vegaes, vas tener d\'usar una cuenta de corréu-e pa desbloquiar la tablet.\n\n Vuelvi a intentalo en <xliff:g id="NUMBER_2">%d</xliff:g> segundos.</string>
+  <string name="kg_failed_attempts_almost_at_login" product="default">Fallasti <xliff:g id="NUMBER_0">%d</xliff:g> vegaes al dibuxar el patrón de desbloquéu. Si falles otres <xliff:g id="NUMBER_1">%d</xliff:g> vegaes, vas tener d\'usar una cuenta de corréu-e pa desbloquiar el teléfonu.\n\n Vuelvi a intentalo en <xliff:g id="NUMBER_2">%d</xliff:g> segundos.</string>
+  <string name="kg_text_message_separator" product="default">" — "</string>
+  <string name="kg_reordering_delete_drop_target_text">Desaniciar</string>
+  <string name="safe_media_volume_warning" product="default">¿Quies xubir el volume penriba del nivel recomendáu?\nEscuchar soníos al altu la lleva mentanto llargos períodos de tiempu pue dañar los oyíos.</string>
+  <string name="continue_to_enable_accessibility">Caltén la pantalla primida con dos deos p\'habilitar les funciones d\'accesibilidá.</string>
+  <string name="accessibility_enabled">Accesibilidá habilitada</string>
+  <string name="enable_accessibility_canceled">Accesibilidá encaboxada</string>
+  <string name="user_switched">Usuariu actual: <xliff:g id="NAME">%1$s</xliff:g></string>
+  <string name="owner_name" msgid="3879126011135546571">Propietariu</string>
+  <string name="error_message_title">Fallu</string>
+  <string name="app_no_restricted_accounts">Esta aplicación nun almite cuentes de perfiles restrinxíos</string>
+  <string name="app_not_found">Nun s\'atopó nenguna aplicación que pueda facer esta aición.</string>
+  <string name="revoke">Revocar</string>
+  <string name="mediasize_iso_a0">ISO A0</string>
+  <string name="mediasize_iso_a1">ISO A1</string>
+  <string name="mediasize_iso_a2">ISO A2</string>
+  <string name="mediasize_iso_a3">ISO A3</string>
+  <string name="mediasize_iso_a4">ISO A4</string>
+  <string name="mediasize_iso_a5">ISO A5</string>
+  <string name="mediasize_iso_a6">ISO A6</string>
+  <string name="mediasize_iso_a7">ISO A7</string>
+  <string name="mediasize_iso_a8">ISO A8</string>
+  <string name="mediasize_iso_a9">ISO A9</string>
+  <string name="mediasize_iso_a10">ISO A10</string>
+  <string name="mediasize_iso_b0">ISO B0</string>
+  <string name="mediasize_iso_b1">ISO B1</string>
+  <string name="mediasize_iso_b2">ISO B2</string>
+  <string name="mediasize_iso_b3">ISO B3</string>
+  <string name="mediasize_iso_b4">ISO B4</string>
+  <string name="mediasize_iso_b5">ISO B5</string>
+  <string name="mediasize_iso_b6">ISO B6</string>
+  <string name="mediasize_iso_b7">ISO B7</string>
+  <string name="mediasize_iso_b8">ISO B8</string>
+  <string name="mediasize_iso_b9">ISO B9</string>
+  <string name="mediasize_iso_b10">ISO B10</string>
+  <string name="mediasize_iso_c0">ISO C0</string>
+  <string name="mediasize_iso_c1">ISO C1</string>
+  <string name="mediasize_iso_c2">ISO C2</string>
+  <string name="mediasize_iso_c3">ISO C3</string>
+  <string name="mediasize_iso_c4">ISO C4</string>
+  <string name="mediasize_iso_c5">ISO C5</string>
+  <string name="mediasize_iso_c6">ISO C6</string>
+  <string name="mediasize_iso_c7">ISO C7</string>
+  <string name="mediasize_iso_c8">ISO C8</string>
+  <string name="mediasize_iso_c9">ISO C9</string>
+  <string name="mediasize_iso_c10">ISO C10</string>
+  <string name="mediasize_na_letter">Carta</string>
+  <string name="mediasize_na_gvrnmt_letter">Carta del gobiernu</string>
+  <string name="mediasize_na_legal">Llegal</string>
+  <string name="mediasize_na_junior_legal">Junior legal</string>
+  <string name="mediasize_na_ledger">Doble carta</string>
+  <string name="mediasize_na_tabloid">Tabloide</string>
+  <string name="mediasize_na_index_3x5">Index Card 3x5</string>
+  <string name="mediasize_na_index_4x6">Index Card 4x6</string>
+  <string name="mediasize_na_index_5x8">Index Card 5x8</string>
+  <string name="mediasize_na_monarch">Monarch</string>
+  <string name="mediasize_na_quarto">Quarto</string>
+  <string name="mediasize_na_foolscap">Foolscap</string>
+  <string name="mediasize_chinese_roc_8k">ROC 8K</string>
+  <string name="mediasize_chinese_roc_16k">ROC 16K</string>
+  <string name="mediasize_chinese_prc_1">PRC 1</string>
+  <string name="mediasize_chinese_prc_2">PRC 2</string>
+  <string name="mediasize_chinese_prc_3">PRC 3</string>
+  <string name="mediasize_chinese_prc_4">PRC 4</string>
+  <string name="mediasize_chinese_prc_5">PRC 5</string>
+  <string name="mediasize_chinese_prc_6">PRC 6</string>
+  <string name="mediasize_chinese_prc_7">PRC 7</string>
+  <string name="mediasize_chinese_prc_8">PRC 8</string>
+  <string name="mediasize_chinese_prc_9">PRC 9</string>
+  <string name="mediasize_chinese_prc_10">PRC 10</string>
+  <string name="mediasize_chinese_prc_16k">PRC 16K</string>
+  <string name="mediasize_chinese_om_pa_kai">Pa Kai</string>
+  <string name="mediasize_chinese_om_dai_pa_kai">Dai Pa Ka</string>
+  <string name="mediasize_chinese_om_jurro_ku_kai">Jurro Ku Kai</string>
+  <string name="mediasize_japanese_jis_b10">JIS B10</string>
+  <string name="mediasize_japanese_jis_b9">JIS B9</string>
+  <string name="mediasize_japanese_jis_b8">JIS B8</string>
+  <string name="mediasize_japanese_jis_b7">JIS B7</string>
+  <string name="mediasize_japanese_jis_b6">JIS B6</string>
+  <string name="mediasize_japanese_jis_b5">JIS B5</string>
+  <string name="mediasize_japanese_jis_b4">JIS B4</string>
+  <string name="mediasize_japanese_jis_b3">JIS B3</string>
+  <string name="mediasize_japanese_jis_b2">JIS B2</string>
+  <string name="mediasize_japanese_jis_b1">JIS B1</string>
+  <string name="mediasize_japanese_jis_b0">JIS B0</string>
+  <string name="mediasize_japanese_jis_exec">JIS Exec</string>
+  <string name="mediasize_japanese_chou4">Chou4</string>
+  <string name="mediasize_japanese_chou3">Chou3</string>
+  <string name="mediasize_japanese_chou2">Chou2</string>
+  <string name="mediasize_japanese_hagaki">Hagaki</string>
+  <string name="mediasize_japanese_oufuku">Oufuku</string>
+  <string name="mediasize_japanese_kahu">Kahu</string>
+  <string name="mediasize_japanese_kaku2">Kaku2</string>
+  <string name="mediasize_japanese_you4">You4</string>
+  <string name="mediasize_unknown_portrait">Cualquier tamañu vertical</string>
+  <string name="mediasize_unknown_landscape">Cualquier tamañu horizontal</string>
+  <string name="write_fail_reason_cancelled">Encaboxáu</string>
+  <string name="write_fail_reason_cannot_write">Fallu al escribir conteníu</string>
+  <string name="reason_unknown">desconocíu</string>
+  <string name="reason_service_unavailable">Serviciu d\'impresión non habilitáu</string>
+  <string name="print_service_installed_title">Instalóse\'l serviciu <xliff:g id="NAME">%s</xliff:g></string>
+  <string name="print_service_installed_message">Tocar p\'habilitar</string>
+  <string name="restr_pin_enter_admin_pin">Introduz el PIN del alministrador</string>
+  <string name="restr_pin_enter_pin">Inxertar PIN</string>
+  <string name="restr_pin_incorrect">Incorreutu</string>
+  <string name="restr_pin_enter_old_pin">PIN actual</string>
+  <string name="restr_pin_enter_new_pin">PIN nuevu</string>
+  <string name="restr_pin_confirm_pin">Confirma\'l PIN nuevu</string>
+  <string name="restr_pin_create_pin">Crear PIN pa modificar restricciones</string>
+  <string name="restr_pin_error_doesnt_match">Los númberos PIN nun concasen. Vuelvi a intentalo.</string>
+  <string name="restr_pin_error_too_short">El PIN ye enforma curtiu. Tien de tener al menos 4 díxitos.</string>
   <plurals name="restr_pin_countdown">
-    <item quantity="one" msgid="311050995198548675">Inténtalo en 1 s</item>
-    <item quantity="other" msgid="4730868920742952817">Inténtalo en <xliff:g id="COUNT">%d</xliff:g> s</item>
+    <item quantity="one">Inténtalo en 1 s</item>
+    <item quantity="other">Inténtalo en <xliff:g id="COUNT">%d</xliff:g> s</item>
   </plurals>
-    <string name="restr_pin_try_later" msgid="973144472490532377">Volver a intentalo más tarde</string>
-    <string name="immersive_mode_confirmation" msgid="7227416894979047467">Esliza\'l deu hacia abaxo pa salir de la pantalla completa</string>
+  <string name="restr_pin_try_later">Volver a intentalo dempués</string>
+  <string name="immersive_mode_confirmation" msgid="8554991488096662508">Esliza\'l deu hacia abaxo pa salir de la pantalla completa</string>
 </resources>
