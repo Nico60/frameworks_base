@@ -142,6 +142,7 @@ import com.android.systemui.statusbar.NotificationData.Entry;
 import com.android.systemui.statusbar.SignalClusterTextView;
 import com.android.systemui.statusbar.SignalClusterView;
 import com.android.systemui.statusbar.StatusBarIconView;
+import com.android.systemui.statusbar.phone.CarrierLabel;
 import com.android.systemui.statusbar.phone.ShortcutsWidget;
 import com.android.systemui.statusbar.policy.BatteryController;
 import com.android.systemui.statusbar.policy.BluetoothController;
@@ -290,6 +291,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     ClockCenter mClockCenter;
     View mCenterSpacer;
     NetworkTraffic mNetworkTraffic;
+    CarrierLabel mMiuiCarrier;
 
     // expanded notifications
     NotificationPanelView mNotificationPanel; // the sliding/resizing panel within the notification window
@@ -1228,6 +1230,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         mNotificationIcons.setCenterSpacer(mCenterSpacer);
         mTickerView = mStatusBarView.findViewById(R.id.ticker);
         mNetworkTraffic = (NetworkTraffic)mStatusBarView.findViewById(R.id.networkTraffic);
+        mMiuiCarrier = (CarrierLabel)mStatusBarView.findViewById(R.id.status_bar_carrier_label);
 
         mPile = (NotificationRowLayout)mStatusBarWindow.findViewById(R.id.latestItems);
         mPile.setLayoutTransitionsEnabled(false);
@@ -4527,6 +4530,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (mNetworkTraffic != null) {
             mNetworkTraffic.updateSettings(color);
         }
+        if (mMiuiCarrier != null) {
+            mMiuiCarrier.updateSettings(color);
+        }
     }
 
     private void resetSystemUIBackgroundColor() {
@@ -4631,6 +4637,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         resetUserSetupObserver();
         mTintedStatusbarObserver.update();
         mNetworkTraffic.updateSettings();
+        mMiuiCarrier.updateColor();
         updateSettings();
 
         super.userSwitched(newUserId);
