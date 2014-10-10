@@ -5466,13 +5466,6 @@ public final class Settings {
         public static final String LOCKSCREEN_SEE_THROUGH = "lockscreen_see_through";
 
         /**
-         * Should the non-intrsive incall ui be used
-         *
-         * @hide
-         */
-        public static final String NON_INTRUSIVE_INCALL = "non_intrusive_incall";
-
-        /**
          * Whether to enable voice wakeup.  The value is boolean (1 or 0).
          * @hide
          */
