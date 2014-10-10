@@ -65,7 +65,6 @@ public final class NavigationBarTransitions extends BarTransitions {
     }
 
     public void setVertical(boolean isVertical) {
-        setIsVertical(isVertical);
         mVertical = isVertical;
         transitionTo(mRequestedMode, false /*animate*/);
     }
@@ -187,8 +186,10 @@ public final class NavigationBarTransitions extends BarTransitions {
         if (ColorUtils.isBrightColor(bg_color)) {
             ic_color = Color.BLACK;
         }
-        mCurrentColor = ic_color;
-        setColorButtonNavigationBar(ic_color);
+        if (mCurrentColor != ic_color) {
+            mCurrentColor = ic_color;
+            setColorButtonNavigationBar(ic_color);
+        }
         super.changeColorIconBackground(bg_color, ic_color);
     }
 
@@ -197,21 +198,14 @@ public final class NavigationBarTransitions extends BarTransitions {
     }
 
     private void setColorButtonNavigationBar(int ic_color) {
-        setKeyButtonViewColor(NavbarEditor.NAVBAR_HOME, ic_color);
-        setKeyButtonViewColor(NavbarEditor.NAVBAR_RECENT, ic_color);
-        setKeyButtonViewColor(NavbarEditor.NAVBAR_CONDITIONAL_MENU, ic_color);
-        setKeyButtonViewColor(NavbarEditor.NAVBAR_ALWAYS_MENU, ic_color);
-        setKeyButtonViewColor(NavbarEditor.NAVBAR_MENU_BIG, ic_color);
-        setKeyButtonViewColor(NavbarEditor.NAVBAR_BACK, ic_color);
+        View[] views = mView.getAllButtons();
+
+        for(View v : views) {
+            setKeyButtonViewButtonColor(v, ic_color);
+        }
         setKeyButtonViewButtonColor(mView.getSearchLight(), ic_color);
         setKeyButtonViewButtonColor(mView.getCameraButton(), ic_color);
-    }
-
-    private void setKeyButtonViewColor(ButtonInfo info, int ic_color) {
-        View button = mView.findViewWithTag(info);
-        if (button != null) {
-            setKeyButtonViewButtonColor(button, ic_color);
-        }
+        setKeyButtonViewButtonColor(mView.getNotifsButton(), ic_color);
     }
 
     private void setKeyButtonViewButtonColor(View button, int ic_color) {
@@ -219,7 +213,7 @@ public final class NavigationBarTransitions extends BarTransitions {
             if (ic_color == -3) {
                 ((KeyButtonView) button).clearColorFilterBg();
             } else {
-                ((KeyButtonView) button).setColorFilterBg(ic_color, PorterDuff.Mode.SRC_ATOP);
+                ((KeyButtonView) button).setColorFilterBg(ic_color, PorterDuff.Mode.MULTIPLY);
             }
         }
     }
