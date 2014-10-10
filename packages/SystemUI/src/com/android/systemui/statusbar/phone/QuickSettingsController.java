@@ -60,6 +60,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_HOVER;
 import static com.android.internal.util.cm.QSConstants.TILE_GESTUREPANEL;
 import static com.android.internal.util.cm.QSConstants.TILE_FCHARGE;
 import static com.android.internal.util.cm.QSConstants.TILE_SPIRIT;
+import static com.android.internal.util.cm.QSConstants.TILE_DYNAMICCOLORS;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -128,6 +129,7 @@ import com.android.systemui.quicksettings.HoverTile;
 import com.android.systemui.quicksettings.GesturePanelTile;
 import com.android.systemui.quicksettings.FastChargeTile;
 import com.android.systemui.quicksettings.SpiritControlsTile;
+import com.android.systemui.quicksettings.DynamicColorsTile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -336,6 +338,8 @@ public class QuickSettingsController {
                 qs = new ScreenshotTile(mContext, this, mHandler);
 	    } else if (tile.equals(TILE_POWER)) {
                 qs = new PowerMenuTile(mContext, this);
+            } else if (tile.equals(TILE_DYNAMICCOLORS)) {
+                qs = new DynamicColorsTile(mContext, this);
             } else if (tile.contains(TILE_CPUFREQ)) {
                 if (cpufreqSupported) {
                     qs = new CPUFreqTile(mContext, this);

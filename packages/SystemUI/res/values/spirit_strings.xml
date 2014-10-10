@@ -179,4 +179,8 @@
     <!-- QuickSettings: Spirit controls -->
     <string name="quick_settings_spirit_controls">Spirit controls</string>
 
+    <!-- Dynamic Colors Tile -->
+    <string name="quick_settings_dynamiccolor_on_label">Dynamic Colors On</string>
+    <string name="quick_settings_dynamiccolor_off_label">Dynamic Colors Off</string>
+
 </resources>
