@@ -4632,7 +4632,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         updateEdgeGestureListenerState();
 
         // update tinted color after layout changes
-        sendAppColorBroadcast(500);
+        sendAppColorBroadcast(400);
         return changes;
     }
 
