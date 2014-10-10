@@ -2863,6 +2863,12 @@ public final class Settings {
         public static final String LOCKSCREEN_DISABLED = "lockscreen.disabled";
 
         /**
+         * Displays a notification when wifi network has changed
+         * @hide
+         */
+        public static final String WIFI_NETWORK_NOTIFICATIONS = "wifi_network_notifications";
+
+        /**
          * Whether to display notifications on screen when screen is off
          * @hide
          */
