@@ -147,13 +147,13 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
     protected boolean mAirplaneMode = false;
     protected boolean mLastAirplaneMode = true;
 
-    private Locale mLocale = null;
-    private Locale mLastLocale = null;
+    protected Locale mLocale = null;
+    protected Locale mLastLocale = null;
 
     //ethernet
     private boolean mEthernetConnected = false;
-    private int mEthernetIconId = 0;
-    private int mLastEthernetIconId = 0;
+    protected int mEthernetIconId = 0;
+    protected int mLastEthernetIconId = 0;
 
     // our ui
     protected Context mContext;
@@ -182,7 +182,7 @@ public class NetworkController extends BroadcastReceiver implements DemoMode {
 
     boolean mDataAndWifiStacked = false;
 
-    private UpdateUIListener mUpdateUIListener = null;
+    protected UpdateUIListener mUpdateUIListener = null;
 
     // Whether the direction arrows are enabled by the user
     boolean mDirectionArrowsEnabled = false;
