@@ -45,6 +45,7 @@ public class QSConstants {
         public static final String TILE_PIE = "togglePie";
         public static final String TILE_GESTUREPANEL = "toggleGesturePanel";
         public static final String TILE_FCHARGE = "toggleFastCharge";
+        public static final String TILE_SPIRIT = "toggleSpiritControls";
         public static final String TILE_DELIMITER = "|";
         public static ArrayList<String> TILES_DEFAULT = new ArrayList<String>();
 

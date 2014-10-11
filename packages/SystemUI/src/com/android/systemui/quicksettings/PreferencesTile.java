@@ -29,7 +29,7 @@ public class PreferencesTile extends QuickSettingsTile{
 
             @Override
             public boolean onLongClick(View v) {
-            Intent intent = new Intent();
+            Intent intent = new Intent("android.intent.action.MAIN");
                 intent.setClassName("com.android.settings",
                     "com.android.settings.Settings$QuickSettingsConfigActivity");
                 startSettingsActivity(intent);

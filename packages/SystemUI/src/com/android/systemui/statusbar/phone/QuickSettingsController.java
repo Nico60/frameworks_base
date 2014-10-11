@@ -59,6 +59,7 @@ import static com.android.internal.util.cm.QSConstants.TILE_THEME;
 import static com.android.internal.util.cm.QSConstants.TILE_HOVER;
 import static com.android.internal.util.cm.QSConstants.TILE_GESTUREPANEL;
 import static com.android.internal.util.cm.QSConstants.TILE_FCHARGE;
+import static com.android.internal.util.cm.QSConstants.TILE_SPIRIT;
 
 import android.content.BroadcastReceiver;
 import android.content.ContentResolver;
@@ -126,6 +127,7 @@ import com.android.systemui.quicksettings.OnTheGoTile;
 import com.android.systemui.quicksettings.HoverTile;
 import com.android.systemui.quicksettings.GesturePanelTile;
 import com.android.systemui.quicksettings.FastChargeTile;
+import com.android.systemui.quicksettings.SpiritControlsTile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -346,6 +348,8 @@ public class QuickSettingsController {
                 qs = new GesturePanelTile(mContext, this);
             } else if (tile.contains(TILE_FCHARGE)) {
                 qs = new FastChargeTile(mContext, this);
+            } else if (tile.contains(TILE_SPIRIT)) {
+                qs = new SpiritControlsTile(mContext, this);
             }
 
             if (qs != null) {
