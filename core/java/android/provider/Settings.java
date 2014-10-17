@@ -3483,6 +3483,13 @@ public final class Settings {
          */
         public static final String QUICK_SETTINGS_RIBBON_TILES = "quick_settings_ribbon_tiles";
 
+       /**
+        * Disable the statusbar ticker
+        * Default is enabled
+        * @hide
+        */
+        public static final String TICKER_DISABLED = "ticker_disabled";
+
         /**
          * Whether to hide the notification screen after clicking on a widget
          * button

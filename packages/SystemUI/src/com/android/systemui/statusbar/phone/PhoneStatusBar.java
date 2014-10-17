@@ -417,6 +417,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private Ticker mTicker;
     private View mTickerView;
     private boolean mTicking;
+    private boolean mTickerDisabled;
 
     // Tracking finger for opening/closing.
     int mEdgeBorder; // corresponds to R.dimen.status_bar_edge_ignore
@@ -614,6 +615,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             resolver.registerContentObserver(Settings.System.getUriFor(
                     Settings.System.STATUS_BAR_FORCE_CLOCK_LOCKSCREEN), false, this,
                     UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.TICKER_DISABLED), false, this);
             updateSettings();
         }
 
@@ -1342,11 +1345,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     View.STATUS_BAR_DISABLE_CLOCK);
         }
 
+        mTickerDisabled = Settings.System.getInt(mContext.getContentResolver(),
+                Settings.System.TICKER_DISABLED, 0) == 1;
         mTicker = new MyTicker(context, mStatusBarView);
         mTicker.setStatusBar(this);
         TickerView tickerView = (TickerView)mStatusBarView.findViewById(R.id.tickerText);
         tickerView.mTicker = mTicker;
-        if (mHaloActive) mTickerView.setVisibility(View.GONE);
 
         mEdgeBorder = res.getDimensionPixelSize(R.dimen.status_bar_edge_ignore);
 
@@ -3865,6 +3869,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         // not for you
         if (!notificationIsForCurrentUser(n)) return;
 
+        // just.. no
+        if (mTickerDisabled) return;
+
         // Show the ticker if one is requested. Also don't do this
         // until status bar window is attached to the window manager,
         // because...  well, what's the point otherwise?  And trying to
@@ -4759,7 +4766,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             enableOrDisableReminder();
         }
 
-        mDoubleTapToSleep = Settings.System.getInt(mContext.getContentResolver(),
+        mTickerDisabled = Settings.System.getInt(resolver,
+                Settings.System.TICKER_DISABLED, 0) == 1;
+        mDoubleTapToSleep = Settings.System.getInt(resolver,
                 Settings.System.DOUBLE_TAP_SLEEP_GESTURE, 0) == 1;
         mShowStatusBarCarrier = Settings.System.getInt(resolver,
                 Settings.System.STATUS_BAR_CARRIER, 0) == 1;
