@@ -352,8 +352,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     private SharedPreferences mShared;
 
     // carrier/wifi label
+    private View mCarrierLableContainer;
     private TextView mCarrierLabel;
-    private TextView mSubsLabel;
+    private View mSubsLabel;
     private TextView mWifiLabel;
     private View mWifiView;
     private View mCarrierAndWifiView;
@@ -1353,6 +1354,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         setAreThereNotifications();
 
         // Other icons
+        mCarrierLableContainer = mStatusBarWindow.findViewById(R.id.carrier_label_container);
         if (MSimTelephonyManager.getDefault().isMultiSimEnabled()) {
             mMSimNetworkController = new MSimNetworkController(mContext);
             mMSimSignalClusterView = (MSimSignalClusterView)
@@ -1382,7 +1384,12 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             mCarrierAndWifiView = mStatusBarWindow.findViewById(R.id.carrier_wifi);
             mWifiView = mStatusBarWindow.findViewById(R.id.wifi_view);
             mCarrierLabel = (TextView)mStatusBarWindow.findViewById(R.id.carrier_label);
-            mSubsLabel = (TextView)mStatusBarWindow.findViewById(R.id.subs_label);
+            mSubsLabel = mStatusBarWindow.findViewById(R.id.subs_label);
+            int numPhones = MSimTelephonyManager.getDefault().getPhoneCount();
+            if (numPhones == 3) {
+                mSubsLabel.findViewById(R.id.sub2_separator).setVisibility(View.VISIBLE);
+                mSubsLabel.findViewById(R.id.sub3_label).setVisibility(View.VISIBLE);
+            }
             mShowCarrierInPanel = (mCarrierLabel != null);
 
             if (DEBUG) Log.v(TAG, "carrierlabel=" + mCarrierLabel + " show=" +
@@ -2379,11 +2386,16 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         if (!mShowCarrierInPanel || mCarrierAndWifiView == null) {
             return;
         }
+        final boolean isMultiSim =  MSimTelephonyManager.getDefault().isMultiSimEnabled();
+        int labelHeight = mCarrierAndWifiViewHeight;
+        if (isMultiSim) {
+            labelHeight = labelHeight * 2; //SubLabel height is same a carrier label
+        }
         // The idea here is to only show the carrier label when there is enough room to see it,
         // i.e. when there aren't enough notifications to fill the panel.
         if (SPEW) {
             Log.d(TAG, String.format("pileh=%d scrollh=%d carrierh=%d",
-                    mPile.getHeight(), mScrollView.getHeight(), mCarrierAndWifiViewHeight));
+                    mPile.getHeight(), mScrollView.getHeight(), labelHeight));
         }
 
         final boolean emergencyCallsShownElsewhere = mEmergencyCallLabel != null;
@@ -2394,7 +2406,7 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         final boolean makeVisible =
             !(emergencyCallsShownElsewhere && isEmergencyOnly)
             && mPile.getHeight() <
-            (mNotificationPanel.getHeight() - mCarrierAndWifiViewHeight
+            (mNotificationPanel.getHeight() - labelHeight
                 - mNotificationHeaderHeight - calculateCarrierLabelBottomMargin())
             && mScrollView.getVisibility() == View.VISIBLE
             && !mAnimatingFlip;
@@ -2404,11 +2416,11 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             if (DEBUG) {
                 Log.d(TAG, "making carrier label " + (makeVisible?"visible":"invisible"));
             }
-            mCarrierAndWifiView.animate().cancel();
+            mCarrierLableContainer.animate().cancel();
             if (makeVisible) {
-                mCarrierAndWifiView.setVisibility(View.VISIBLE);
+                mCarrierLableContainer.setVisibility(View.VISIBLE);
             }
-            mCarrierAndWifiView.animate()
+            mCarrierLableContainer.animate()
                 .alpha(makeVisible ? 1f : 0f)
                 //.setStartDelay(makeVisible ? 500 : 0)
                 //.setDuration(makeVisible ? 750 : 100)
@@ -2417,8 +2429,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                     @Override
                     public void onAnimationEnd(Animator animation) {
                         if (!mCarrierAndWifiViewVisible) { // race
-                            mCarrierAndWifiView.setVisibility(View.INVISIBLE);
-                            mCarrierAndWifiView.animate().alpha(0f);
+                            mCarrierLableContainer.setVisibility(View.INVISIBLE);
+                            mCarrierLableContainer.setAlpha(0f);
                         }
                     }
                 })
