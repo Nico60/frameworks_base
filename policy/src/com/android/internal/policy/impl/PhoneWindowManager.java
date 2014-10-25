@@ -1501,7 +1501,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
                     }
                     @Override
                     public void onTouchUpCancel() {
-                        sendAppColorBroadcast(300);
+                        sendAppColorBroadcast(1);
                     }
                     @Override
                     public void onDebug() {
@@ -4632,7 +4632,7 @@ public class PhoneWindowManager implements WindowManagerPolicy {
         updateEdgeGestureListenerState();
 
         // update tinted color after layout changes
-        sendAppColorBroadcast(400);
+        sendAppColorBroadcast(1);
         return changes;
     }
 

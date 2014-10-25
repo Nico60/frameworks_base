@@ -4467,9 +4467,9 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
                      public void run() {
                          mImeStatusShow = altBack;
                      }
-                }, 550);
+                }, 1);
             }
-            setSystemUIBackgroundColor(325);
+            setSystemUIBackgroundColor(1);
         }
     }
 
