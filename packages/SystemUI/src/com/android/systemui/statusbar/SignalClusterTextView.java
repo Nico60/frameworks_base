@@ -16,9 +16,17 @@
 
 package com.android.systemui.statusbar;
 
+import android.content.ContentResolver;
 import android.content.Context;
+import android.database.ContentObserver;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.Drawable;
+import android.os.Handler;
+import android.os.UserHandle;
+import android.provider.Settings;
 import android.util.AttributeSet;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.telephony.SignalStrength;
@@ -34,7 +42,34 @@ public class SignalClusterTextView extends LinearLayout implements
     private int mDBm = 0;
     private int mSignalClusterStyle = SignalClusterView.STYLE_NORMAL;
 
+    private int mCurrentColor = -3;
+    private boolean mCustomColor;
+    private int systemColor;
+
     private TextView mMobileSignalText;
+    private ImageView mMobileIcon;
+
+    class SettingsObserver extends ContentObserver {
+        SettingsObserver(Handler handler) {
+            super(handler);
+        }
+
+        void observe() {
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.CUSTOM_SYSTEM_ICON_COLOR), false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SYSTEM_ICON_COLOR), false, this, UserHandle.USER_ALL);
+        }
+
+        void unobserve() {
+            mContext.getContentResolver().unregisterContentObserver(this);
+        }
+
+        @Override public void onChange(boolean selfChange) {
+            updateSettings();
+        }
+    }
 
     public SignalClusterTextView(Context context) {
         this(context, null);
@@ -52,6 +87,7 @@ public class SignalClusterTextView extends LinearLayout implements
     protected void onAttachedToWindow() {
         super.onAttachedToWindow();
         mMobileSignalText = (TextView) findViewById(R.id.mobile_signal_text);
+        mMobileIcon       = (ImageView) findViewById(R.id.mobile_signal_text_icon);
         updateSignalText();
     }
 
@@ -68,14 +104,30 @@ public class SignalClusterTextView extends LinearLayout implements
     }
 
     private void updateSignalText() {
+        int nowColor;
         if (mMobileSignalText == null) {
             return;
         }
         if (mAirplaneMode || mDBm == 0) {
             setVisibility(View.GONE);
         } else if (mSignalClusterStyle == SignalClusterView.STYLE_TEXT) {
+            if (mCustomColor) {
+                nowColor=systemColor;
+            } else {
+                if (mCurrentColor != -3) {
+                    nowColor=mCurrentColor;
+                } else {
+                    nowColor=0xFFFFFFFF;
+                }
+            }
             setVisibility(View.VISIBLE);
+            Drawable drawable = getResources().getDrawable( R.drawable.stat_sys_signal_min ); 
+            if (drawable != null && mMobileIcon != null) {
+                drawable.setColorFilter(nowColor, Mode.MULTIPLY);
+                mMobileIcon.setImageDrawable(drawable);
+            }
             mMobileSignalText.setText(getSignalLevelString(mDBm));
+            mMobileSignalText.setTextColor(nowColor);
         } else {
             setVisibility(View.GONE);
         }
@@ -103,6 +155,15 @@ public class SignalClusterTextView extends LinearLayout implements
     @Override
     public void onPhoneSignalStrengthChanged(int dbm) {
         mDBm = dbm;
+        updateSignalText();
+    }
+
+    public void updateSettings() {
+        ContentResolver resolver = mContext.getContentResolver();
+        mCustomColor = Settings.System.getIntForUser(resolver,
+                Settings.System.CUSTOM_SYSTEM_ICON_COLOR, 0, UserHandle.USER_CURRENT) == 1;
+        systemColor = Settings.System.getIntForUser(resolver,
+                Settings.System.SYSTEM_ICON_COLOR, -2, UserHandle.USER_CURRENT);
         updateSignalText();
     }
 }

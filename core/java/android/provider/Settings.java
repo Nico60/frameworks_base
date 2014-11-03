@@ -3378,6 +3378,12 @@ public final class Settings {
         /** @hide */
         public static final String SYSTEM_ICON_COLOR = "system_icon_color";
 
+        /** @hide */
+        public static final String CUSTOM_NOTIFICATION_ICON_COLOR = "custom_notification_icon_color";
+
+        /** @hide */
+        public static final String NOTIFICATION_ICON_COLOR = "notification_icon_color";
+
         /**
          * The OpenCNAM paid account ID
          *

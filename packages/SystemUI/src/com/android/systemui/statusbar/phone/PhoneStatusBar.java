@@ -58,11 +58,15 @@ import android.database.ContentObserver;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.ColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Point;
 import android.graphics.PorterDuff.Mode;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.LayerDrawable;
 import android.graphics.drawable.TransitionDrawable;
 import android.inputmethodservice.InputMethodService;
@@ -289,7 +293,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
     // clock
     Clock mClock;
     ClockCenter mClockCenter;
-    View mCenterSpacer;
     NetworkTraffic mNetworkTraffic;
     CarrierLabel mMiuiCarrier;
 
@@ -523,6 +526,28 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             } catch (RemoteException ex) { }
         }
     };
+
+    public static Drawable GrayscaleDrawable (Context context, Drawable drawable) {
+        int width = drawable.getIntrinsicWidth();
+        width = width > 0 ? width : 1;
+        int height = drawable.getIntrinsicHeight();
+        height = height > 0 ? height : 1;
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap_gray = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        Canvas canvas_gray = new Canvas(bitmap_gray);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        Paint paint = new Paint();
+        ColorMatrix colormatrix = new ColorMatrix();
+        colormatrix.setSaturation(0);
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(colormatrix);
+        paint.setAntiAlias(true);
+        paint.setColorFilter(filter);
+        canvas_gray.drawBitmap(bitmap, 0, 0, paint);
+        Drawable drawable_gray = new BitmapDrawable(context.getResources(), bitmap_gray);
+      return drawable_gray;
+    }
 
     class SettingsObserver extends ContentObserver {
         SettingsObserver(Handler handler) {
@@ -1222,16 +1247,13 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         mSystemIconArea = (LinearLayout) mStatusBarView.findViewById(R.id.system_icon_area);
         mStatusIcons = (LinearLayout)mStatusBarView.findViewById(R.id.statusIcons);
-        mStatusBarContents = (LinearLayout)mStatusBarView.findViewById(R.id.status_bar_contents);
-        mCenterSpacer = (View)mStatusBarView.findViewById(R.id.center_spacer);
-        mCenterClockLayout = (LinearLayout)mStatusBarView.findViewById(R.id.center_clock_layout);
         mClock = (Clock) mStatusBarView.findViewById(R.id.clock);
         mClockCenter = (ClockCenter)mStatusBarView.findViewById(R.id.center_clock);
         mNotificationIcons = (IconMerger)mStatusBarView.findViewById(R.id.notificationIcons);
         mMoreIcon = mStatusBarView.findViewById(R.id.moreIcon);
         mNotificationIcons.setOverflowIndicator(mMoreIcon);
-        mNotificationIcons.setClockCenter(mClockCenter);
-        mNotificationIcons.setCenterSpacer(mCenterSpacer);
+        mStatusBarContents = (LinearLayout)mStatusBarView.findViewById(R.id.status_bar_contents);
+        mCenterClockLayout = (LinearLayout)mStatusBarView.findViewById(R.id.center_clock_layout);
         mTickerView = mStatusBarView.findViewById(R.id.ticker);
         mNetworkTraffic = (NetworkTraffic)mStatusBarView.findViewById(R.id.networkTraffic);
         mMiuiCarrier = (CarrierLabel)mStatusBarView.findViewById(R.id.status_bar_carrier_label);
@@ -2073,9 +2095,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         Drawable iconDrawable = StatusBarIconView.getIcon(mContext, icon);
         if (mCustomColor) {
-            iconDrawable.setColorFilter(systemColor, Mode.SRC_ATOP);
-        } else {
-            iconDrawable.clearColorFilter();
+            iconDrawable=GrayscaleDrawable(mContext,iconDrawable);
+            iconDrawable.setColorFilter(systemColor, Mode.MULTIPLY);
         }
 
         StatusBarIconView view = new StatusBarIconView(mContext, slot, null);
@@ -2091,9 +2112,8 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
 
         Drawable iconDrawable = StatusBarIconView.getIcon(mContext, icon);
         if (mCustomColor) {
-            iconDrawable.setColorFilter(systemColor, Mode.SRC_ATOP);
-        } else {
-            iconDrawable.clearColorFilter();
+            iconDrawable=GrayscaleDrawable(mContext,iconDrawable);
+            iconDrawable.setColorFilter(systemColor, Mode.MULTIPLY);
         }
 
         StatusBarIconView view = (StatusBarIconView)mStatusIcons.getChildAt(viewIndex);
@@ -2566,17 +2586,19 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
             show = true;
         }
         ContentResolver resolver = mContext.getContentResolver();
+        View clock = mStatusBarView.findViewById(R.id.clock);
+        View cclock = mStatusBarView.findViewById(R.id.center_clock);
         boolean showClock = (Settings.System.getIntForUser(
                 resolver, Settings.System.STATUS_BAR_CLOCK, 1,
                 UserHandle.USER_CURRENT) == 1);
         int clockLocation = Settings.System.getIntForUser(
             resolver, Settings.System.STATUSBAR_CLOCK_STYLE, 0,
             UserHandle.USER_CURRENT);
-        if (clockLocation == 0 && mClock != null) {
-            mClock.setVisibility(show ? (showClock ? View.VISIBLE : View.GONE) : View.GONE);
+        if (clockLocation == 0 && clock != null) {
+            clock.setVisibility(show ? (showClock ? View.VISIBLE : View.GONE) : View.GONE);
         }
-        if (clockLocation == 1 && mClockCenter != null) {
-            mClockCenter.setVisibility(show ? (showClock ? View.VISIBLE : View.GONE) : View.GONE);
+        if (clockLocation == 1 && cclock != null) {
+            cclock.setVisibility(show ? (showClock ? View.VISIBLE : View.GONE) : View.GONE);
         }
     }
 
@@ -4682,7 +4704,6 @@ public class PhoneStatusBar extends BaseStatusBar implements DemoMode,
         resetUserSetupObserver();
         mTintedStatusbarObserver.update();
         mNetworkTraffic.updateSettings();
-        mMiuiCarrier.updateColor();
         updateSettings();
 
         super.userSwitched(newUserId);

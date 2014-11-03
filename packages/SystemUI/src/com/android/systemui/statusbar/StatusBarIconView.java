@@ -17,6 +17,7 @@
 package com.android.systemui.statusbar;
 
 import android.app.Notification;
+import android.content.ContentResolver;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
@@ -26,6 +27,11 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Rect;
 import android.graphics.drawable.Drawable;
+import android.graphics.PorterDuff.Mode;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.ColorMatrix;
+import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.os.Handler;
 import android.os.UserHandle;
@@ -56,6 +62,8 @@ public class StatusBarIconView extends AnimatedImageView {
     private Notification mNotification;
     private boolean mShowNotificationCount;
     private GlobalSettingsObserver mObserver;
+    private static boolean mCustomColor;
+    private static int notificationColor;
 
     public StatusBarIconView(Context context, String slot, Notification notification) {
         super(context);
@@ -97,6 +105,28 @@ public class StatusBarIconView extends AnimatedImageView {
         final float scale = (float)imageBounds / (float)outerBounds;
         setScaleX(scale);
         setScaleY(scale);
+    }
+
+    private static Drawable GrayscaleDrawable (Context context, Drawable drawable) {
+        int width = drawable.getIntrinsicWidth();
+        width = width > 0 ? width : 1;
+        int height = drawable.getIntrinsicHeight();
+        height = height > 0 ? height : 1;
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap_gray = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        Canvas canvas_gray = new Canvas(bitmap_gray);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        Paint paint = new Paint();
+        ColorMatrix colormatrix = new ColorMatrix();
+        colormatrix.setSaturation(0);
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(colormatrix);
+        paint.setAntiAlias(true);
+        paint.setColorFilter(filter);
+        canvas_gray.drawBitmap(bitmap, 0, 0, paint);
+        Drawable drawable_gray = new BitmapDrawable(context.getResources(), bitmap_gray);
+      return drawable_gray;
     }
 
     private static boolean streq(String a, String b) {
@@ -164,11 +194,16 @@ public class StatusBarIconView extends AnimatedImageView {
     private boolean updateDrawable(boolean withClear) {
         Drawable drawable = getIcon(mIcon);
         if (drawable == null) {
-            Log.w(TAG, "No icon for slot " + mSlot);
-            return false;
+          Log.w(TAG, "No icon for slot " + mSlot);
+          return false;
         }
         if (withClear) {
-            setImageDrawable(null);
+          setImageDrawable(null);
+        }
+        //Color icons
+        if (mCustomColor && !withClear) {
+          drawable=GrayscaleDrawable(mContext,drawable);
+          drawable.setColorFilter(notificationColor, Mode.MULTIPLY);
         }
         setImageDrawable(drawable);
         return true;
@@ -364,9 +399,14 @@ public class StatusBarIconView extends AnimatedImageView {
         }
 
         void observe() {
-            mContext.getContentResolver().registerContentObserver(
-                    Settings.System.getUriFor(Settings.System.STATUS_BAR_NOTIF_COUNT),
-                    false, this);
+            ContentResolver resolver = mContext.getContentResolver();
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.STATUS_BAR_NOTIF_COUNT), false, this);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.CUSTOM_SYSTEM_ICON_COLOR), false, this, UserHandle.USER_ALL);
+            resolver.registerContentObserver(Settings.System.getUriFor(
+                    Settings.System.SYSTEM_ICON_COLOR), false, this, UserHandle.USER_ALL);
+            updateSettings();
         }
 
         void unobserve() {
@@ -381,6 +421,13 @@ public class StatusBarIconView extends AnimatedImageView {
                 sbiv.mShowNotificationCount = showIconCount;
                 sbiv.set(sbiv.mIcon, true);
             }
+        }
+
+        private void updateSettings() {
+            mCustomColor = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.CUSTOM_NOTIFICATION_ICON_COLOR, 0, UserHandle.USER_CURRENT) == 1;
+            notificationColor = Settings.System.getIntForUser(mContext.getContentResolver(),
+                    Settings.System.NOTIFICATION_ICON_COLOR, -2, UserHandle.USER_CURRENT);
         }
     }
 }

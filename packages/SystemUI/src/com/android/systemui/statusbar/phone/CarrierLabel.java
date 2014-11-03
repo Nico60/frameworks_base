@@ -51,6 +51,8 @@ public class CarrierLabel extends TextView {
     private Context mContext;
 
     private int mCurrentColor = -3;
+
+    protected int mCarrierColor = com.android.internal.R.color.white;
     Handler mHandler;
 
     class SettingsObserver extends ContentObserver {
@@ -175,24 +177,32 @@ public class CarrierLabel extends TextView {
     }
 
     public void updateSettings(int defaultColor) {
+        int newColor = 0;
         if (mCurrentColor != defaultColor) {
             mCurrentColor = defaultColor;
-            updateColor();
+
+            mCarrierColor = Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.STATUS_BAR_CARRIER_COLOR, newColor);
+            if  (mCarrierColor == Integer.MIN_VALUE) {
+                    // flag to reset the color
+                 	mCarrierColor = newColor;
+            }
+            if (mCarrierColor == 0xFFFFFFFF) {
+                mCarrierColor=mCurrentColor;
+            }
+            setTextColor(mCarrierColor);
         }
     }
 
-    public void updateColor() {
-        ContentResolver resolver = mContext.getContentResolver();
+    private void updateColor() {
+        int newColor = 0;
+        mCarrierColor = Settings.System.getInt(mContext.getContentResolver(),
+                            Settings.System.STATUS_BAR_CARRIER_COLOR, newColor);
 
-        int defaultColor = getResources().getColor(R.color.status_bar_clock_color);
-        int CarrierColor = Settings.System.getInt(resolver,
-                Settings.System.STATUS_BAR_CARRIER_COLOR, defaultColor);
-
-        if  (CarrierColor == Integer.MIN_VALUE) {
+        if  (mCarrierColor == Integer.MIN_VALUE) {
              // flag to reset the color
-             CarrierColor = defaultColor;
+             mCarrierColor = newColor;
         }
-        int nowColor = mCurrentColor != -3 ? mCurrentColor : CarrierColor;
-        setTextColor(nowColor);
+        setTextColor(mCarrierColor);
     }
 }

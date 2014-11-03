@@ -53,10 +53,12 @@ import android.graphics.Paint;
 import android.graphics.PixelFormat;
 import android.graphics.Rect;
 import android.graphics.PorterDuff;
-import android.graphics.PorterDuffXfermode;
 import android.graphics.PorterDuff.Mode;
-import android.graphics.drawable.BitmapDrawable;
+import android.graphics.PorterDuffXfermode;
 import android.graphics.drawable.Drawable;
+import android.graphics.drawable.BitmapDrawable;
+import android.graphics.ColorMatrixColorFilter;
+import android.graphics.ColorMatrix;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Handler;
@@ -303,6 +305,29 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     public NotificationData getNotifications() {
         return mNotificationData;
+    }
+
+    private static Drawable GrayscaleDrawable (Context context, Drawable drawable) {
+        int width = drawable.getIntrinsicWidth();
+        width = width > 0 ? width : 1;
+        int height = drawable.getIntrinsicHeight();
+        height = height > 0 ? height : 1;
+        Bitmap bitmap = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Bitmap bitmap_gray = Bitmap.createBitmap(width, height, Bitmap.Config.ARGB_8888);
+        Canvas canvas = new Canvas(bitmap);
+        Canvas canvas_gray = new Canvas(bitmap_gray);
+        drawable.setBounds(0, 0, canvas.getWidth(), canvas.getHeight());
+        drawable.draw(canvas);
+        Paint paint = new Paint();
+        ColorMatrix colormatrix = new ColorMatrix();
+        colormatrix.setSaturation(0);
+        ColorMatrixColorFilter filter = new ColorMatrixColorFilter(colormatrix);
+        paint.setAntiAlias(true);
+        paint.setColorFilter(filter);
+        canvas_gray.drawBitmap(bitmap, 0, 0, paint);
+        Drawable drawable_gray = new BitmapDrawable(context.getResources(), bitmap_gray);
+
+        return drawable_gray;
     }
 
     private ContentObserver mProvisioningObserver = new ContentObserver(mHandler) {
@@ -595,19 +620,17 @@ public abstract class BaseStatusBar extends SystemUI implements
 
     private void updateIconColor() {
         ContentResolver resolver = mContext.getContentResolver();
-
-        boolean mCustomColor = Settings.System.getIntForUser(resolver,
-                Settings.System.CUSTOM_SYSTEM_ICON_COLOR, 0, UserHandle.USER_CURRENT) == 1;
-        int systemColor = Settings.System.getIntForUser(resolver,
-                Settings.System.SYSTEM_ICON_COLOR, -2, UserHandle.USER_CURRENT);
+      boolean mCustomColor = Settings.System.getIntForUser(resolver,
+              Settings.System.CUSTOM_SYSTEM_ICON_COLOR, 0, UserHandle.USER_CURRENT) == 1;
+      int systemColor = Settings.System.getIntForUser(resolver,
+              Settings.System.SYSTEM_ICON_COLOR, -2, UserHandle.USER_CURRENT);
 
         if (mStatusIcons != null) {
             for(int i = 0; i < mStatusIcons.getChildCount(); i++) {
-                Drawable iconDrawable = ((ImageView)mStatusIcons.getChildAt(i)).getDrawable();
+            Drawable iconDrawable = ((ImageView)mStatusIcons.getChildAt(i)).getDrawable();
                 if (mCustomColor) {
-                    iconDrawable.setColorFilter(systemColor, PorterDuff.Mode.SRC_ATOP);
-                } else {
-                    iconDrawable.clearColorFilter();
+                    iconDrawable=GrayscaleDrawable(mContext,iconDrawable);
+                    iconDrawable.setColorFilter(systemColor, Mode.MULTIPLY);
                 }
             }
         }
