@@ -62,6 +62,7 @@ import org.xmlpull.v1.XmlPullParserException;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 
@@ -2022,6 +2023,14 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         }
     }
 
+    private void loadProtectedSmsSetting(SQLiteStatement stmt) {
+        String regAddresses = mContext.getResources()
+                .getString(R.array.def_protected_sms_list_values);
+        if (!TextUtils.isEmpty(regAddresses)) {
+            loadSetting(stmt, Settings.Secure.PROTECTED_SMS_ADDRESSES, regAddresses);
+        }
+    }
+
     private void loadSettings(SQLiteDatabase db) {
         loadSystemSettings(db);
         loadSecureSettings(db);
@@ -2226,6 +2235,8 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                     R.bool.def_user_setup_complete);
 
             loadDefaultThemeSettings(stmt);
+
+            loadProtectedSmsSetting(stmt);
         } finally {
             if (stmt != null) stmt.close();
         }
