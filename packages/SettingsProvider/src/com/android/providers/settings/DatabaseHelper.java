@@ -2109,6 +2109,9 @@ public class DatabaseHelper extends SQLiteOpenHelper {
             loadIntegerSetting(stmt, Settings.System.SYSTEM_POWER_CRT_MODE,
                     R.integer.def_screen_animation_style);
 
+            loadIntegerSetting(stmt, Settings.System.ENABLE_PEOPLE_LOOKUP,
+                    R.integer.def_people_lookup);
+
             loadDefaultAnimationSettings(stmt);
 
             loadRibbonSetting(stmt);
