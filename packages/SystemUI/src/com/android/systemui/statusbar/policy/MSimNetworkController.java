@@ -65,9 +65,7 @@ public class MSimNetworkController extends NetworkController {
     private PhoneStateListener[] mMSimPhoneStateListener;
     private CharSequence[] mCarrierTextSub;
 
-    String[] mMSimOperatorName;
     String[] mMSimNetworkName;
-    int mSimSlotCount;
     int[] mMSimPhoneSignalIconId;
     int[] mMSimLastPhoneSignalIconId;
     private int[] mMSimIconId;
@@ -94,7 +92,7 @@ public class MSimNetworkController extends NetworkController {
     String[] mPlmn;
 
     ArrayList<MSimSignalCluster> mSimSignalClusters = new ArrayList<MSimSignalCluster>();
-    ArrayList<View> mSubsLabelViews = new ArrayList<View>();
+    ArrayList<TextView> mSubsLabelViews = new ArrayList<TextView>();
 
     public interface MSimSignalCluster {
         void setWifiIndicators(boolean visible, int strengthIcon, int activityIcon,
@@ -111,8 +109,7 @@ public class MSimNetworkController extends NetworkController {
     public MSimNetworkController(Context context) {
         super(context);
 
-        MSimTelephonyManager tm = MSimTelephonyManager.getDefault();
-        int numPhones = tm.getPhoneCount();
+        int numPhones = MSimTelephonyManager.getDefault().getPhoneCount();
         mMSimSignalStrength = new SignalStrength[numPhones];
         mMSimDataServiceState = new int[numPhones];
         mMSimServiceState = new ServiceState[numPhones];
@@ -124,9 +121,7 @@ public class MSimNetworkController extends NetworkController {
         mMSimMobileActivityIconId = new int[numPhones];
         mMSimContentDescriptionPhoneSignal = new String[numPhones];
         mMSimLastPhoneSignalIconId = new int[numPhones];
-        mMSimOperatorName = new String[numPhones];
         mMSimNetworkName = new String[numPhones];
-        mSimSlotCount = numPhones;
         mMSimLastDataTypeIconId = new int[numPhones];
         mMSimDataConnected = new boolean[numPhones];
         mMSimDataSignalIconId = new int[numPhones];
@@ -145,10 +140,11 @@ public class MSimNetworkController extends NetworkController {
         mShowPlmn = new boolean[numPhones];
         mSpn = new String[numPhones];
         mPlmn = new String[numPhones];
+
         for (int i=0; i < numPhones; i++) {
             mMSimSignalStrength[i] = new SignalStrength();
             mMSimServiceState[i] = new ServiceState();
-            mMSimState[i] = simStateToIccState(tm.getSimState(i));
+            mMSimState[i] = IccCardConstants.State.READY;
             // phone_signal
             mMSimPhoneSignalIconId[i] = R.drawable.stat_sys_signal_null;
             mMSimLastPhoneSignalIconId[i] = -1;
@@ -161,12 +157,11 @@ public class MSimNetworkController extends NetworkController {
             mMSimLastCombinedActivityIconId[i] = 0;
             mMSimDataActivity[i] = TelephonyManager.DATA_ACTIVITY_NONE;
             mMSimLastSimIconId[i] = 0;
-            mMSimOperatorName[i] = tm.getSimOperatorName(i);
             mMSimNetworkName[i] = mNetworkNameDefault;
             mMSimDataServiceState[i] = ServiceState.STATE_OUT_OF_SERVICE;
         }
 
-        mDefaultSubscription = tm.getDefaultSubscription();
+        mDefaultSubscription = MSimTelephonyManager.getDefault().getDefaultSubscription();
         mDataConnected = mMSimDataConnected[mDefaultSubscription];
         mSimState = mMSimState[mDefaultSubscription];
         mDataActivity = mMSimDataActivity[mDefaultSubscription];
@@ -193,34 +188,6 @@ public class MSimNetworkController extends NetworkController {
         mLastCombinedSignalIconId = mMSimLastCombinedSignalIconId[mDefaultSubscription];
         mLastDataTypeIconId = mMSimLastDataTypeIconId[mDefaultSubscription];
         mLastSimIconId = mMSimLastSimIconId[mDefaultSubscription];
-        initNetworkState();
-    }
-
-    protected void initNetworkState() {
-        if (mMSimServiceState == null) {
-            return; // Not initialized yet
-        }
-        MSimTelephonyManager tm = MSimTelephonyManager.getDefault();
-        for (int i=0; i < tm.getPhoneCount(); i++) {
-            mSpn[i] = tm.getSimOperatorName(i);
-            mPlmn[i] = tm.getNetworkOperatorName(i);
-            updateNetworkName(true, mSpn[i],
-                    true, mPlmn[i], i);
-        }
-    }
-
-    public boolean isEmergencyOnly() {
-        if (mMSimServiceState == null) {
-            return false;
-        }
-        boolean isEmergency = true;
-        for (int i=0; i<mSimSlotCount; i++) {
-            if (!mMSimServiceState[i].isEmergencyOnly()) {
-                isEmergency = false;
-                break;
-            }
-        }
-        return isEmergency;
     }
 
     @Override
@@ -301,7 +268,6 @@ public class MSimNetworkController extends NetworkController {
         } else if (action.equals(TelephonyIntents.ACTION_SIM_STATE_CHANGED)) {
             updateSimState(intent);
             for (int sub = 0; sub < MSimTelephonyManager.getDefault().getPhoneCount(); sub++) {
-                updateSimIcon(sub);
                 updateDataIcon(sub);
                 refreshViews(sub);
             }
@@ -342,12 +308,8 @@ public class MSimNetworkController extends NetworkController {
         }
     }
 
-    public void addSubsLabelView(View v) {
+    public void addSubsLabelView(TextView v) {
         mSubsLabelViews.add(v);
-    }
-
-    public void clearSubsLabelView() {
-        mSubsLabelViews.clear();
     }
 
     private void updateCarrierText(int sub) {
@@ -394,22 +356,11 @@ public class MSimNetworkController extends NetworkController {
     }
 
     private void setCarrierText() {
+        String carrierName = mCarrierTextSub[MSimConstants.SUB1] + "-1"
+                  + "    " + mCarrierTextSub[MSimConstants.SUB2] + "-2";
         for (int i = 0; i < mSubsLabelViews.size(); i++) {
-            View v = mSubsLabelViews.get(i);
-            TextView label1 = (TextView)v.findViewById(R.id.sub1_label);
-            if (label1 != null) {
-                label1.setText(mCarrierTextSub[MSimConstants.SUB1]);
-            }
-            TextView label2 = (TextView)v.findViewById(R.id.sub2_label);
-            if (label2 != null) {
-                label2.setText(mCarrierTextSub[MSimConstants.SUB2]);
-            }
-            if (mSimSlotCount == 3) {
-                TextView label3 = (TextView)v.findViewById(R.id.sub3_label);
-                if (label3 != null) {
-                    label3.setText(mCarrierTextSub[MSimConstants.SUB3]);
-                }
-            }
+            TextView v = mSubsLabelViews.get(i);
+            v.setText(carrierName);
         }
     }
 
@@ -452,6 +403,8 @@ public class MSimNetworkController extends NetworkController {
                 updateTelephonySignalStrength(mSubscription);
                 updateDataNetType(mSubscription);
                 updateDataIcon(mSubscription);
+                updateNetworkName(mShowSpn[mSubscription], mSpn[mSubscription],
+                                mShowPlmn[mSubscription], mPlmn[mSubscription], mSubscription);
                 updateCarrierText(mSubscription);
 
                 refreshViews(mSubscription);
@@ -561,24 +514,6 @@ public class MSimNetworkController extends NetworkController {
         }
         updateSimIcon(sub);
         updateDataIcon(sub);
-    }
-
-    private IccCardConstants.State simStateToIccState(int state) {
-        switch(state) {
-        case TelephonyManager.SIM_STATE_ABSENT:
-            return IccCardConstants.State.ABSENT;
-        case TelephonyManager.SIM_STATE_READY:
-            return IccCardConstants.State.READY;
-        case TelephonyManager.SIM_STATE_PIN_REQUIRED:
-            return IccCardConstants.State.PIN_REQUIRED;
-        case TelephonyManager.SIM_STATE_PUK_REQUIRED:
-            return IccCardConstants.State.PUK_REQUIRED;
-        case TelephonyManager.SIM_STATE_CARD_IO_ERROR:
-        case TelephonyManager.SIM_STATE_NETWORK_LOCKED:
-        case TelephonyManager.SIM_STATE_UNKNOWN:
-        default:
-            return IccCardConstants.State.UNKNOWN;
-        }
     }
 
     private boolean isCdma(int subscription) {
@@ -961,29 +896,21 @@ public class MSimNetworkController extends NetworkController {
         StringBuilder str = new StringBuilder();
         boolean something = false;
         if (showPlmn && plmn != null) {
-            plmn = maybeStripPeriod(plmn);
             str.append(plmn);
             something = true;
         }
         if (showSpn && spn != null) {
-            if (something && showPlmn
-                    && !spn.equals(plmn) &&
-                    !mEmergencyCallOnlyLabel.equals(plmn)) {
-                str.append("  ");
+            if (something) {
                 str.append(mNetworkNameSeparator);
-                str.append("  ");
-                str.append(spn);
-            } else if (!showPlmn) {
-                str.append(spn);
-                something = true;
             }
+            str.append(spn);
+            something = true;
         }
         if (something) {
             mMSimNetworkName[subscription] = str.toString();
         } else {
             mMSimNetworkName[subscription] = mNetworkNameDefault;
         }
-        mMSimNetworkName[subscription] = maybeStripPeriod(mMSimNetworkName[subscription]);
         if (DEBUG) {
             Slog.d(TAG, "mMSimNetworkName[subscription] " + mMSimNetworkName[subscription]
                     + "subscription " + subscription);
@@ -1044,7 +971,6 @@ public class MSimNetworkController extends NetworkController {
         String mobileLabel = "";
         String wifiLabel = "";
         int N;
-        final boolean emergencyOnly = isEmergencyOnly(); // All sims are emergency only
         int dataSub = MSimTelephonyManager.getDefault().getPreferredDataSubscription();
         if (DEBUG) {
             Slog.d(TAG,"refreshViews subscription =" + subscription + "mMSimDataConnected ="
@@ -1064,11 +990,11 @@ public class MSimNetworkController extends NetworkController {
             // is connected, we show nothing.
             // Otherwise (nothing connected) we show "No internet connection".
 
-            if (mMSimDataConnected[dataSub]) {
-                mobileLabel = mMSimNetworkName[dataSub];
-            } else if (mConnected || emergencyOnly) {
-                if (hasService(dataSub) || emergencyOnly) {
-                    mobileLabel = mMSimNetworkName[dataSub];
+            if (mMSimDataConnected[subscription]) {
+                mobileLabel = mMSimNetworkName[subscription];
+            } else if (mConnected) {
+                if (hasService(subscription)) {
+                    mobileLabel = mMSimNetworkName[subscription];
                 } else {
                     mobileLabel = "";
                 }
@@ -1237,7 +1163,6 @@ public class MSimNetworkController extends NetworkController {
         if (DEBUG) {
             Slog.d(TAG, "refreshViews connected={"
                     + (mWifiConnected?" wifi":"")
-                    + " emergencyOnly=" + emergencyOnly
                     + (mMSimDataConnected[subscription]?" data":"")
                     + " } level="
                     + ((mMSimSignalStrength[subscription] == null)?"??":Integer.toString
@@ -1364,6 +1289,7 @@ public class MSimNetworkController extends NetworkController {
         }
 
         // mobile label
+        setCarrierText();
         N = mMobileLabelViews.size();
         for (int i=0; i<N; i++) {
             TextView v = mMobileLabelViews.get(i);
@@ -1374,13 +1300,12 @@ public class MSimNetworkController extends NetworkController {
                 v.setVisibility(View.VISIBLE);
             }
         }
-        setCarrierText();
 
         // e-call label
         N = mEmergencyLabelViews.size();
         for (int i=0; i<N; i++) {
             TextView v = mEmergencyLabelViews.get(i);
-            if (!emergencyOnly) {
+            if (!mMSimServiceState[subscription].isEmergencyOnly()) {
                 v.setVisibility(View.GONE);
             } else {
                 v.setText(mobileLabel); // comes from the telephony stack
